@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, pkgsUnstable, libs, ... }: {
+{ inputs, config, pkgs, pkgsUnstable, lib, ... }: {
 
   # https://github.com/nix-community/nix-direnv#via-home-manager
   programs.direnv.enable = true;
@@ -35,17 +35,19 @@
   programs = {
     bat.enable = true;
 
-
     jq.enable = true;
     ssh.enable = true;
 
   };
 
   # TODO activate neovim
-  # imports = (import ./editors);
+  # imports = import ./editors { inherit config lib pkgs; }; 
+   
   imports = [
     # needed for neovim flake
     ./fzf.nix
+    # ./editors
+    ./nvim.nix
   ];
 
 }

@@ -22,13 +22,20 @@
       url = "github:hajlaoui-nader/neovim-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Telescope
+    telescope = {
+      url = "github:nvim-telescope/telescope.nvim";
+      flake = false;
+    };
+    
   };
 
   outputs = inputs@{ self, flake-utils, darwin, nixpkgs, nixpkgsUnstable
-    , home-manager, neovim-flake }: {
+    , home-manager, neovim-flake, telescope }: {
 
       imports = [ neovim-flake.nixosModules.hm ];
-      
+
       homeConfigurations = {
 
         linuxwork = inputs.home-manager.lib.homeManagerConfiguration {
