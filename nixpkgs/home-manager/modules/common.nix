@@ -44,10 +44,10 @@
   # imports = import ./editors { inherit config lib pkgs; }; 
    
   imports = [
-    # needed for neovim flake
+    inputs.neovim-flake.nixosModules.hm
     ./fzf.nix
     # ./editors
-    ./nvim.nix
+    # ./nvim.nix
   ];
 
 }

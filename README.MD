@@ -29,6 +29,7 @@ expects. The home-manager profile can then be built and activated:
 
 ```shell
 $ home-manager switch
+$ home-manager switch --flake .#linuxwork
 ```
 
 flake activation on linux
