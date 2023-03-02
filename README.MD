@@ -55,4 +55,4 @@ $ home-manager switch
 ```
 
 ### TODO
-- activate nvim flake
+- nvim: fix fold nvim-ufo

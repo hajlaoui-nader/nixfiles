@@ -15,6 +15,8 @@ cmp.setup({
         end
     },
     sources = {{
+        name = 'nvim_lsp'
+    },{
         name = 'vsnip'
     }, {
         name = 'treesitter'
@@ -61,7 +63,7 @@ cmp.setup({
     formatting = {
         format = function(entry, vim_item)
             -- type of kind
-            vim_item.kind = vim_item.kind
+            vim_item.kind = require('lspkind').presets.default[vim_item.kind] .. ' ' .. vim_item.kind
 
             -- name for each source
             vim_item.menu = ({

@@ -22,7 +22,6 @@
   outputs = inputs@{ self, flake-utils, darwin, nixpkgs, nixpkgsUnstable
     , home-manager }: {
 
-
       homeConfigurations = {
 
         linuxwork = inputs.home-manager.lib.homeManagerConfiguration {

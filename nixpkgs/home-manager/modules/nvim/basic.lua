@@ -17,3 +17,76 @@ o.cmdheight = 1
 o.clipboard = "unnamedplus"
 o.smartindent = true
 o.hidden = true
+
+-- window actions with Meta instead of <C-w>
+-- switching
+vim.api.nvim_set_keymap('n', '<M-h>', "<C-w>h", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<M-j>', "<C-w>j", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<M-k>', "<C-w>k", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<M-l>', "<C-w>l", {
+    noremap = true,
+    silent = true
+});
+
+-- moving
+vim.api.nvim_set_keymap('n', '<M-H>', "<C-w>H", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<M-J>', "<C-w>J", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<M-K>', "<C-w>K", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<M-L>', "<C-w>L", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<M-x>', "<C-w>x", {
+    noremap = true,
+    silent = true
+});
+-- resizing
+vim.api.nvim_set_keymap('n', '<M-<>', "<C-w><", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<M->>', "<C-w>>", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<M-+>', "<C-w>+", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<M-->', "<C-w>-", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<M-=>', "<C-w>=", {
+    noremap = true,
+    silent = true
+});

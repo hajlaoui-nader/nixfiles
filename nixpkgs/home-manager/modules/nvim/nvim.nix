@@ -1,4 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: 
+  let lsp =  (import ./lsp.nix { inherit pkgs; }).lsp;
+  vim-plugins = import ./plugins.nix { inherit pkgs lib; };
+in {
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
@@ -18,9 +21,25 @@
       nvim-web-devicons # icons
       glow-nvim # markdown preview
       lualine-nvim # statusline
+      nvim-treesitter # treesitter
+      nvim-treesitter-context # context
+      nvim-ts-autotag # auto close tags
+      nvim-lightbulb # lightbulb
+      lsp_signature-nvim # lsp signature
+      lspsaga-nvim # lsp saga
+      lspkind-nvim # lsp kind
+      nvim-code-action-menu # code actions
+      trouble-nvim # lsp diagnostics
+      nvim-metals # metals
+      null-ls-nvim # null-ls
+      nvim-lspconfig # lsp config
+      # TODO: add these back in
+      # vim-plugins.nvim-ufo
+      # vim-plugins.promise-async
+      bufferline-nvim # bufferline
+      nvim-cursorline # cursorline
+      indent-blankline-nvim # indent lines
     ];
-
-    # extraConfig = "lua << EOF\n" + builtins.readFile ./init.lua + "\nEOF";
 
     extraConfig = ''
       lua << EOF
@@ -37,6 +56,10 @@
       (builtins.readFile ./comments.lua)
       (builtins.readFile ./markdown.lua)
       (builtins.readFile ./statusline.lua)
+      (builtins.readFile ./treesitter.lua)
+      lsp
+      (builtins.readFile ./bufferline.lua)
+      (builtins.readFile ./visuals.lua)
     ]) + ''
 
       EOF'';
