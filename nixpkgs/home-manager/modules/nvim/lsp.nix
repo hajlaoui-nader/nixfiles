@@ -1,7 +1,11 @@
 { pkgs, ... }: {
   lsp = ''
       vim.cmd [[ 
-        autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+        autocmd filetype nix setlocal tabstop=2 shiftwidth=2 softtabstop=2
+    ]]
+
+    vim.cmd [[ 
+        autocmd filetype nix setlocal tabstop=2 shiftwidth=2 softtabstop=2
     ]]
 
     -- Enable trouble diagnostics viewer
@@ -43,11 +47,6 @@
         noremap = true,
         silent = true
     });
-
-    -- nix
-    vim.cmd [[
-        autocmd filetype nix setlocal tabstop=2 shiftwidth=2 softtabstop=2
-    ]]
 
     -- metals
     vim.api.nvim_set_keymap('n', '<leader>ws', "<cmd>lua require'metals'.worksheet_hover()<CR>", {
@@ -149,16 +148,18 @@
       local lspconfig = require('lspconfig')
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
+      
+      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
       -- Python config
-      lspconfig.pyright.setup {
+      lspconfig.pyright.setup{
         capabilities = capabilities;
         on_attach=default_on_attach;
         cmd = {"${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"}
       }
 
       -- Nix config
-      lspconfig.rnix.setup {
+      lspconfig.rnix.setup{
         capabilities = capabilities;
         on_attach = function(client, bufnr)
           attach_keymaps(client, bufnr)

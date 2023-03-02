@@ -35,4 +35,6 @@ require("tokyonight").setup({
     on_highlights = function(highlights, colors) end,
   })
 
+
+-- set theme
 vim.cmd[[colorscheme tokyonight]]

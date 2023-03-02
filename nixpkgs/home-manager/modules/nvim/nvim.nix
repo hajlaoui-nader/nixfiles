@@ -1,11 +1,14 @@
 { pkgs, lib, ... }: 
-  let lsp =  (import ./lsp.nix { inherit pkgs; }).lsp;
+  let 
+  lsp =  (import ./lsp.nix { inherit pkgs; }).lsp;
+  telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
   vim-plugins = import ./plugins.nix { inherit pkgs lib; };
 in {
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
       tokyonight-nvim # theme
+      catppuccin-nvim # theme
       telescope-nvim # fuzzy finder
       which-key-nvim # keybindings
       nvim-tree-lua # file tree
@@ -27,7 +30,7 @@ in {
       nvim-ts-autotag # auto close tags
       nvim-lightbulb # lightbulb
       lsp_signature-nvim # lsp signature
-      lspsaga-nvim # lsp saga
+      # lspsaga-nvim # lsp saga
       lspkind-nvim # lsp kind
       nvim-code-action-menu # code actions
       trouble-nvim # lsp diagnostics
@@ -45,20 +48,20 @@ in {
     extraConfig = ''
       lua << EOF
     '' + (builtins.concatStringsSep "\n" [
+      (builtins.readFile ./completion.lua)
+      lsp
       (builtins.readFile ./basic.lua)
       (builtins.readFile ./arrows.lua)
-      (builtins.readFile ./theme.lua)
-      lsp
+      (builtins.readFile ./catppuccin.lua)
       (builtins.readFile ./which-key.lua)
-      (builtins.readFile ./telescope.lua)
+      (builtins.readFile ./treesitter.lua)
+      telescope
       (builtins.readFile ./filetree.lua)
       (builtins.readFile ./gitsigns.lua)
       (builtins.readFile ./autopairs.lua)
-      (builtins.readFile ./completion.lua)
       (builtins.readFile ./comments.lua)
       (builtins.readFile ./markdown.lua)
       (builtins.readFile ./statusline.lua)
-      (builtins.readFile ./treesitter.lua)
       (builtins.readFile ./bufferline.lua)
       (builtins.readFile ./visuals.lua)
     ]) + ''
