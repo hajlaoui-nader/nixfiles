@@ -39,15 +39,10 @@
     ssh.enable = true;
 
   };
-
-  # TODO activate neovim
-  # imports = import ./editors { inherit config lib pkgs; }; 
    
   imports = [
-    inputs.neovim-flake.nixosModules.hm
     ./fzf.nix
-    # ./editors
-    # ./nvim.nix
+    ./nvim/nvim.nix
   ];
 
 }

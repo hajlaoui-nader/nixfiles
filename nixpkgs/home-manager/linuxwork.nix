@@ -4,7 +4,6 @@
   imports = [
     ./modules/home-manager.nix
     ./modules/common.nix
-    ./modules/nvim.nix
     # TODO uncomment
     # ./modules/zsh
     # TODO uncomment
