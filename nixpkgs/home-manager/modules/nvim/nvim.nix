@@ -11,6 +11,7 @@ in {
       nvim-tree-lua # file tree
       gitsigns-nvim # git signs
       nvim-cmp # autocompletion
+      cmp-nvim-lsp
       cmp-buffer
       cmp-vsnip
       cmp-path
@@ -47,6 +48,7 @@ in {
       (builtins.readFile ./basic.lua)
       (builtins.readFile ./arrows.lua)
       (builtins.readFile ./theme.lua)
+      lsp
       (builtins.readFile ./which-key.lua)
       (builtins.readFile ./telescope.lua)
       (builtins.readFile ./filetree.lua)
@@ -57,7 +59,6 @@ in {
       (builtins.readFile ./markdown.lua)
       (builtins.readFile ./statusline.lua)
       (builtins.readFile ./treesitter.lua)
-      lsp
       (builtins.readFile ./bufferline.lua)
       (builtins.readFile ./visuals.lua)
     ]) + ''
