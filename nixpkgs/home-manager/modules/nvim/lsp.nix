@@ -214,23 +214,6 @@
   '';
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## TODO ADD THIS when ufo
 # capabilities.textDocument.foldingRange = {
 #         dynamicRegistration = false,
