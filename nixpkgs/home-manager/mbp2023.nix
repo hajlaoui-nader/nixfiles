@@ -5,6 +5,8 @@
     ./modules/home-manager.nix
     ./modules/common.nix
     ./modules/git.nix
+    # TODO uncomment
+    # ./modules/zsh
   ];
 
   home.homeDirectory = "/Users/naderhajlaoui";

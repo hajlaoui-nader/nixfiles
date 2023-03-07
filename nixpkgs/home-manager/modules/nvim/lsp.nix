@@ -4,10 +4,6 @@
         autocmd filetype nix setlocal tabstop=2 shiftwidth=2 softtabstop=2
     ]]
 
-    vim.cmd [[ 
-        autocmd filetype nix setlocal tabstop=2 shiftwidth=2 softtabstop=2
-    ]]
-
     -- Enable trouble diagnostics viewer
     require'nvim-lightbulb'.setup()
 

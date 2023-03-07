@@ -6,6 +6,10 @@
 
   home.packages = with pkgs;
     [
+      # archives
+      zip
+      unzip
+      unrar
       lsd
       docker
       jq
@@ -33,16 +37,30 @@
   };
 
   programs = {
-    bat.enable = true;
-
+    bat = {
+      enable = true;
+      config = {
+        pager = "less -FR";
+        theme = "Catppuccin-mocha";
+      };
+      themes = {
+        Catppuccin-mocha = builtins.readFile (pkgs.fetchFromGitHub {
+            owner = "catppuccin";
+            repo = "bat";
+            rev = "00bd462e8fab5f74490335dcf881ebe7784d23fa";
+            sha256 = "yzn+1IXxQaKcCK7fBdjtVohns0kbN+gcqbWVE4Bx7G8=";
+          }
+          + "/Catppuccin-mocha.tmTheme");
+      };
+    };
+    btop.enable = true;
+    exa.enable = true;
+    
     jq.enable = true;
     ssh.enable = true;
 
   };
-   
-  imports = [
-    ./fzf.nix
-    ./nvim/nvim.nix
-  ];
+
+  imports = [ ./fzf.nix ./nvim/nvim.nix ];
 
 }
