@@ -45,6 +45,8 @@
 
 ## metals
  - `Leader + d`  - Metals commands
+ - `Leader + lmc`  - Metals commands
+ - `Leader + lmi`  - Show implicits
  - `Leader + ws` - Metals worksheet hover
  - `Leader + a`  - Metals open all diagnostics
 
