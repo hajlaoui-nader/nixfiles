@@ -154,14 +154,25 @@
         cmd = {"${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"}
       }
 
-      -- Nix config
-      lspconfig.rnix.setup{
-        capabilities = capabilities;
-        on_attach = function(client, bufnr)
-          attach_keymaps(client, bufnr)
-        end,
-        cmd = {"${pkgs.rnix-lsp}/bin/rnix-lsp"}
-      }
+       -- Nix config
+        lspconfig.nil_ls.setup{
+          capabilities = capabilities;
+          on_attach = function(client, bufnr)
+            attach_keymaps(client, bufnr)
+          end,
+          settings = {
+            ['nil'] = {
+              formatting = {
+                command = {"${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"}
+              },
+              diagnostics = {
+                ignored = { "uri_literal" },
+                excludedFiles = { }
+              }
+            }
+          };
+          cmd = {"${pkgs.nil}/bin/nil"}
+        }
 
       -- SQLS config
       lspconfig.sqls.setup {
