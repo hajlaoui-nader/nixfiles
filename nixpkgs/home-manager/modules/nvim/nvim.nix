@@ -64,6 +64,7 @@ in {
       (builtins.readFile ./statusline.lua)
       (builtins.readFile ./bufferline.lua)
       (builtins.readFile ./visuals.lua)
+      (builtins.readFile ./json.lua)
     ]) + ''
 
       EOF'';

@@ -43,7 +43,7 @@
  - `Leader + lwd` - Show workspace diagnostics
  - `Leader + xq`  - Quickfix
 
- ## metals
+## metals
  - `Leader + d`  - Metals commands
  - `Leader + ws` - Metals worksheet hover
  - `Leader + a`  - Metals open all diagnostics
@@ -67,3 +67,6 @@
  - `Leader + b7`     - Go to buffer 7
  - `Leader + b8`     - Go to buffer 8
  - `Leader + b9`     - Go to buffer 9
+
+## json
+- `Leader + jf`     - Format json

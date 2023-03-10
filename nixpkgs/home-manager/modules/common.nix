@@ -9,7 +9,6 @@
       # archives
       zip
       unzip
-      unrar
       lsd
       docker
       jq
