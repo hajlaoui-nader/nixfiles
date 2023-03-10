@@ -60,6 +60,6 @@
 
   };
 
-  imports = [ ./fzf.nix ./nvim/nvim.nix ];
+  imports = [ ./fzf.nix ./nvim/nvim.nix ./fonts.nix];
 
 }
