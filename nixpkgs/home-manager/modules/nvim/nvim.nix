@@ -1,6 +1,6 @@
-{ pkgs, lib, ... }: 
-  let 
-  lsp =  (import ./lsp.nix { inherit pkgs; }).lsp;
+{ pkgs, lib, ... }:
+let
+  lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
   vim-plugins = import ./plugins.nix { inherit pkgs lib; };
 in {
@@ -30,7 +30,7 @@ in {
       nvim-ts-autotag # auto close tags
       nvim-lightbulb # lightbulb
       lsp_signature-nvim # lsp signature
-      # lspsaga-nvim # lsp saga
+      vim-nix # File type and syntax highlighting.
       lspkind-nvim # lsp kind
       nvim-code-action-menu # code actions
       trouble-nvim # lsp diagnostics

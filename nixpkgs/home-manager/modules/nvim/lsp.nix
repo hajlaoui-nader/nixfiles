@@ -1,9 +1,5 @@
 { pkgs, ... }: {
   lsp = ''
-      vim.cmd [[ 
-        autocmd filetype nix setlocal tabstop=2 shiftwidth=2 softtabstop=2
-    ]]
-
     -- Enable trouble diagnostics viewer
     require'nvim-lightbulb'.setup()
 
@@ -54,6 +50,10 @@
         noremap = true,
         silent = true
     });
+
+    vim.cmd [[ 
+        autocmd filetype nix setlocal tabstop=2 shiftwidth=2 softtabstop=2
+    ]]
 
     local attach_keymaps = function(client, bufnr)
         local opts = {
@@ -276,8 +276,6 @@
 #       vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith)
 
 #       capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
-
 
 #  --------------- lsp saga ----------------
 #     -- Enable lspsaga

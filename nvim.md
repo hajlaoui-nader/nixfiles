@@ -27,7 +27,7 @@
 - `<leader> tr` - refresh tree
 
 ## markdown
-- `<ctrl> p` - Glow print
+- `Leader + p` - Glow print
 
 
 ## LSP

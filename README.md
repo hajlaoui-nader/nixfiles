@@ -6,8 +6,11 @@ this is a basic flake definitions containing my basic configuration for my:
 - darwin: macos
 
 # The how ?
-- `nix build .#homeConfigurations.<hostname>.activationPackage`
-- ``
+- linux or rapsberry pi: `nix build .#homeConfigurations.<hostname>.activationPackage`
+- macos: ```
+$ nix build .#darwinConfigurations.mbp2023.system
+$ ./result/sw/bin/darwin-rebuild switch --flake .
+```
 
 
 
