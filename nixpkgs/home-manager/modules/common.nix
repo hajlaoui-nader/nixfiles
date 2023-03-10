@@ -20,16 +20,6 @@
       bottom # a better `top`
       tree-sitter # syntax highlighting
       fd # a better `find`
-      rnix-lsp
-      nixpkgs-fmt
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "FiraMono"
-          "JetBrainsMono"
-          "SourceCodePro"
-        ];
-      })
     ] ++ lib.optionals stdenv.isDarwin [
       coreutils # provides `dd` with --status=progress
       wifi-password

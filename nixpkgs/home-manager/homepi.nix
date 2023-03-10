@@ -13,6 +13,10 @@
   home.homeDirectory = "/home/nhajlaoui";
 
   home.packages = with pkgs; [
+     (nerdfonts.override { fonts = [ "FiraCode"
+          "FiraMono"
+          "JetBrainsMono"
+          "SourceCodePro" ]; })
   ];
 
 }
