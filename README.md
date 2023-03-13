@@ -59,4 +59,4 @@ $ home-manager switch
 
 ### TODO
 - nvim: fix fold nvim-ufo
-- nvim: fix nix
+- nvim: add terraform support
