@@ -7,8 +7,9 @@ in {
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
-      tokyonight-nvim # theme
+      # tokyonight-nvim # theme
       catppuccin-nvim # theme
+      onedark-nvim # theme
       telescope-nvim # fuzzy finder
       which-key-nvim # keybindings
       nvim-tree-lua # file tree
@@ -37,6 +38,7 @@ in {
       nvim-metals # metals
       null-ls-nvim # null-ls
       nvim-lspconfig # lsp config
+      hop-nvim
       # TODO: add these back in
       # vim-plugins.nvim-ufo
       # vim-plugins.promise-async
@@ -52,12 +54,13 @@ in {
       lsp
       (builtins.readFile ./basic.lua)
       (builtins.readFile ./arrows.lua)
-      (builtins.readFile ./catppuccin.lua)
+      (builtins.readFile ./themes/onedark.lua)
       (builtins.readFile ./which-key.lua)
       (builtins.readFile ./treesitter.lua)
       telescope
       (builtins.readFile ./trouble.lua)
       (builtins.readFile ./filetree.lua)
+      (builtins.readFile ./metals.lua)
       (builtins.readFile ./gitsigns.lua)
       (builtins.readFile ./autopairs.lua)
       (builtins.readFile ./comments.lua)
@@ -66,6 +69,7 @@ in {
       (builtins.readFile ./bufferline.lua)
       (builtins.readFile ./visuals.lua)
       (builtins.readFile ./json.lua)
+      (builtins.readFile ./hop.lua)
     ]) + ''
 
       EOF'';

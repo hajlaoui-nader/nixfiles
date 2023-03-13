@@ -5,23 +5,6 @@
 
     require("lsp_signature").setup()
 
-    --------------- lsp ----------------
-    vim.api.nvim_set_keymap('n', '<leader>d', "<cmd> lua require\"telescope\".extensions.metals.commands()<CR>", {
-        noremap = true,
-        silent = true
-    });
-
-    -- metals
-    vim.api.nvim_set_keymap('n', '<leader>ws', "<cmd>lua require'metals'.worksheet_hover()<CR>", {
-        noremap = true,
-        silent = true
-    });
-
-    vim.api.nvim_set_keymap('n', '<leader>a', "<cmd>lua require'metals'.open_all_diagnostics()<CR>", {
-        noremap = true,
-        silent = true
-    });
-
     vim.cmd [[ 
         autocmd filetype nix setlocal tabstop=2 shiftwidth=2 softtabstop=2
     ]]
