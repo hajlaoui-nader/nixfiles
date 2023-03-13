@@ -2,7 +2,7 @@
 let
   lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
-  vim-plugins = import ./plugins.nix { inherit pkgs lib; };
+  #vim-plugins = import ./plugins.nix { inherit pkgs lib; };
 in {
   programs.neovim = {
     enable = true;
@@ -56,6 +56,7 @@ in {
       (builtins.readFile ./which-key.lua)
       (builtins.readFile ./treesitter.lua)
       telescope
+      (builtins.readFile ./trouble.lua)
       (builtins.readFile ./filetree.lua)
       (builtins.readFile ./gitsigns.lua)
       (builtins.readFile ./autopairs.lua)
