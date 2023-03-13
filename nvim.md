@@ -72,3 +72,10 @@
 
 ## json
 - `Leader + jf`     - Format json
+
+## tabs
+- `Ctrl + W s`    - Split window horizontally
+- `Ctrl + W v`    - Split window vertically
+- `Ctrl + W t`    - Move current tab to a new tab window
+- `Ctrl + W c`    - Close current tab
+
