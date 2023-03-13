@@ -79,3 +79,7 @@
 - `Ctrl + W t`    - Move current tab to a new tab window
 - `Ctrl + W c`    - Close current tab
 
+## terminal
+- `:term`                     - Open terminal
+- `ctrl + \ ctrl + n`         - Back to Normal mode
+
