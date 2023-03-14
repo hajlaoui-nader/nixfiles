@@ -6,13 +6,13 @@ this is a basic flake definitions containing my basic configuration for my:
 - darwin: macos
 
 # The how ?
+- Install [Nix][nix] and then install [home-manager][home-manager]. You should be
+able to run the `home-manager` program in a shell.
 - linux or rapsberry pi: `nix build .#homeConfigurations.<hostname>.activationPackage`
 - macos: ```
 $ nix build .#darwinConfigurations.mbp2023.system
 $ ./result/sw/bin/darwin-rebuild switch --flake .
 ```
-
-
 
 # Dotfiles
 
@@ -60,3 +60,4 @@ $ home-manager switch
 ### TODO
 - nvim: fix fold nvim-ufo
 - nvim: add terraform support
+
