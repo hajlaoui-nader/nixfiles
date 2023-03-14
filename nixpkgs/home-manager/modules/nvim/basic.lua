@@ -1,6 +1,13 @@
 local g = vim.g
 local o = vim.o
 
+-- disable netrw at the very start of your init.lua (strongly advised)
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+
+-- set termguicolors to enable highlight groups
+vim.opt.termguicolors = true
+
 -- leader
 g.mapleader = " "
 g.localmapleader = " "
@@ -12,11 +19,25 @@ o.mouse = "v"
 o.swapfile = false
 o.termguicolors = true
 o.shiftwidth = 2
+o.tabstop = 2
 o.softtabstop = 2
 o.cmdheight = 2
 o.clipboard = "unnamedplus"
 o.smartindent = true
 o.hidden = true
+o.autoindent = true
+o.expandtab = true
+o.syntax = "on"
+
+vim.api.nvim_set_keymap('n', '<space>', "<nop>", {
+    noremap = true,
+    silent = true
+});
+
+vim.api.nvim_set_keymap('n', '<C-z>', ":nohlsearch<CR>", {
+    noremap = true,
+    silent = true
+});
 
 -- window actions with Meta instead of <C-w>
 -- switching

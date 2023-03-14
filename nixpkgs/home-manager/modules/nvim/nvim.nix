@@ -26,7 +26,7 @@ in {
       nvim-web-devicons # icons
       glow-nvim # markdown preview
       lualine-nvim # statusline
-      nvim-treesitter # treesitter
+      nvim-treesitter.withAllGrammars
       nvim-treesitter-context # context
       nvim-ts-autotag # auto close tags
       nvim-lightbulb # lightbulb
@@ -50,16 +50,16 @@ in {
     extraConfig = ''
       lua << EOF
     '' + (builtins.concatStringsSep "\n" [
+      (builtins.readFile ./basic.lua)
       (builtins.readFile ./completion.lua)
       lsp
-      (builtins.readFile ./basic.lua)
+      (builtins.readFile ./filetree.lua)
       (builtins.readFile ./arrows.lua)
       (builtins.readFile ./themes/onedark.lua)
       (builtins.readFile ./which-key.lua)
       (builtins.readFile ./treesitter.lua)
       telescope
       (builtins.readFile ./trouble.lua)
-      (builtins.readFile ./filetree.lua)
       (builtins.readFile ./metals.lua)
       (builtins.readFile ./gitsigns.lua)
       (builtins.readFile ./autopairs.lua)

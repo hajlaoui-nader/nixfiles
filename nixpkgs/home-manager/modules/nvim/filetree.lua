@@ -17,7 +17,6 @@ require'nvim-tree'.setup({
     disable_netrw = false,
     hijack_netrw = true,
     open_on_tab = false,
-    open_on_setup = true,
     diagnostics = {
         enable = true
     },
@@ -28,6 +27,7 @@ require'nvim-tree'.setup({
     renderer = {
         add_trailing = true,
         group_empty = true,
+        highlight_git = false,
         indent_markers = {
             enable = true
         }
@@ -43,6 +43,14 @@ require'nvim-tree'.setup({
         ignore = false
     },
     filters = {
-        dotfiles = false 
+        dotfiles = false
     }
+})
+
+local function open_nvim_tree()
+    require("nvim-tree.api").tree.open()
+end
+
+vim.api.nvim_create_autocmd({"VimEnter"}, {
+    callback = open_nvim_tree
 })
