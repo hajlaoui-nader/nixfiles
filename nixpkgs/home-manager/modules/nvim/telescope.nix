@@ -59,7 +59,47 @@
         noremap = true,
         silent = true
     });
+
+    vim.api.nvim_set_keymap('n', '<leader>flsb', "<cmd> Telescope lsp_document_symbols<CR>", {
+        noremap = true,
+        silent = true
+    });
+
+
+    vim.api.nvim_set_keymap('n', '<leader>flsw', "<cmd> Telescope lsp_workspace_symbols<CR>", {
+        noremap = true,
+        silent = true
+    });
+
+    vim.api.nvim_set_keymap('n', '<leader>flsw', "<cmd> Telescope lsp_workspace_symbols<CR>", {
+        noremap = true,
+        silent = true
+    });
+
+
+    vim.api.nvim_set_keymap('n', '<leader>flr', "<cmd> Telescope lsp_references<CR>", {
+        noremap = true,
+        silent = true
+    });
     
+    vim.api.nvim_set_keymap('n', '<leader>fli', "<cmd> Telescope lsp_implementations<CR>", {
+        noremap = true,
+        silent = true
+    });
+
+    vim.api.nvim_set_keymap('n', '<leader>flD', "<cmd> Telescope lsp_definitions<CR>", {
+        noremap = true,
+        silent = true
+    });
+
+    vim.api.nvim_set_keymap('n', '<leader>flt', "<cmd> Telescope lsp_type_definitions<CR>", {
+        noremap = true,
+        silent = true
+    });
+    vim.api.nvim_set_keymap('n', '<leader>fld', "<cmd> Telescope diagnostics<CR>", {
+        noremap = true,
+        silent = true
+    });
     require("telescope").setup {
         defaults = {
           vimgrep_arguments = {

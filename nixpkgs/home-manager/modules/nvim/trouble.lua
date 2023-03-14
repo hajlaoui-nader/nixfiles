@@ -15,6 +15,11 @@ vim.api.nvim_set_keymap('n', '<leader>ld', "<cmd>TroubleToggle document_diagnost
     silent = true
 });
 
+vim.api.nvim_set_keymap('n', '<leader>lr', "<cmd>TroubleToggle lsp_references<CR>", {
+    noremap = true,
+    silent = true
+});
+
 vim.api.nvim_set_keymap('n', '<leader>xq', "<cmd>TroubleToggle quickfix<CR>", {
     noremap = true,
     silent = true
