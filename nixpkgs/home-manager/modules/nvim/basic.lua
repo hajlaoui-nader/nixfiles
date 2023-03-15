@@ -28,6 +28,7 @@ o.hidden = true
 o.autoindent = true
 o.expandtab = true
 o.syntax = "on"
+vim.cmd [[ set signcolumn=yes ]]
 
 vim.api.nvim_set_keymap('n', '<space>', "<nop>", {
     noremap = true,
