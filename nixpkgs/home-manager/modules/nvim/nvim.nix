@@ -45,6 +45,7 @@ in {
       bufferline-nvim # bufferline
       nvim-cursorline # cursorline
       indent-blankline-nvim # indent lines
+      copilot-vim
     ];
 
     extraConfig = ''
