@@ -71,6 +71,7 @@ in {
       (builtins.readFile ./visuals.lua)
       (builtins.readFile ./json.lua)
       (builtins.readFile ./hop.lua)
+      (builtins.readFile ./copilot.lua)
     ]) + ''
 
       EOF'';

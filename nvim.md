@@ -83,3 +83,8 @@
 - `:term`                     - Open terminal
 - `ctrl + \ ctrl + n`         - Back to Normal mode
 
+## copilot
+- `Ctrl + J`  - Accept 
+- `Ctrl + [`  - Previous 
+- `Ctrl + ]`     - Next
+
