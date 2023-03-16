@@ -3,7 +3,8 @@ let
   lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
   #vim-plugins = import ./plugins.nix { inherit pkgs lib; };
-in {
+in
+{
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
@@ -26,7 +27,32 @@ in {
       nvim-web-devicons # icons
       glow-nvim # markdown preview
       lualine-nvim # statusline
-      nvim-treesitter.withAllGrammars
+      #nvim-treesitter.withAllGrammars
+      (nvim-treesitter.withPlugins (
+        plugins: with plugins; [
+          nix
+          c
+          python
+          lua
+          scala
+          java
+          rust
+          go
+          bash
+          json
+          sql
+          html
+          dockerfile
+          scala
+          yaml
+          #(tree-sitter-scala.overrideAttrs
+            #(old: {
+              #version = "master";
+              #src = tree-sitter-scala-master;
+            #})
+          #)
+        ]
+      ))
       nvim-treesitter-context # context
       nvim-ts-autotag # auto close tags
       nvim-lightbulb # lightbulb
