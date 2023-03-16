@@ -45,6 +45,11 @@ in
           dockerfile
           scala
           yaml
+          markdown
+          vim
+          gitignore
+          hcl
+          http
           #(tree-sitter-scala.overrideAttrs
             #(old: {
               #version = "master";
