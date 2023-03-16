@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "home-manager configuration for linux, mac and raspberry pi";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-22.11";
