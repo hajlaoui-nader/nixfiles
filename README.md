@@ -40,6 +40,10 @@ flake activation on linux
 nix build .#homeConfigurations.linux.activationPackage
 result/activate
 ```
+update the flake 
+```shell
+$ nix flake update
+```
 
 To update home-manager:
 
