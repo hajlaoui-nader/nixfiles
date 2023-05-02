@@ -24,9 +24,9 @@
 
       homeConfigurations = {
 
-        linuxwork = inputs.home-manager.lib.homeManagerConfiguration {
+        linux = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-          modules = [ ./nixpkgs/home-manager/linuxwork.nix ];
+          modules = [ ./nixpkgs/home-manager/linux.nix ];
           extraSpecialArgs = {
             pkgsUnstable = inputs.nixpkgsUnstable.legacyPackages.x86_64-linux;
           };

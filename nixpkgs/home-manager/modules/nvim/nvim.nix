@@ -77,6 +77,9 @@ in
       nvim-cursorline # cursorline
       indent-blankline-nvim # indent lines
       copilot-vim # copilot
+      # rust
+      rust-tools-nvim
+      crates-nvim
     ];
 
     extraConfig = ''

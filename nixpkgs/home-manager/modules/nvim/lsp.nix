@@ -105,8 +105,39 @@
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+              -- Rust config
 
-      -- Python config
+        local rustopts = {
+          tools = {
+            autoSetHints = true,
+            hover_with_actions = false,
+            inlay_hints = {
+              only_current_line = false,
+            }
+          },
+          server = {
+            capabilities = capabilities,
+            on_attach = default_on_attach,
+            cmd = {"${pkgs.rust-analyzer}/bin/rust-analyzer"},
+            settings = {
+              ["rust-analyzer"] = {
+            experimental = {
+              procAttrMacros = true,
+            },
+          },
+            }
+          }
+        }
+
+        require('crates').setup {
+          null_ls = {
+            enabled = true,
+            name = "crates.nvim",
+          }
+        }
+        require('rust-tools').setup(rustopts)
+  
+        -- Python config
       lspconfig.pyright.setup{
         capabilities = capabilities;
         on_attach=default_on_attach;

@@ -1,2 +1,2 @@
 #bin/sh
-nix build .#homeConfigurations.linuxwork.activationPackage && result/activate
+nix build .#homeConfigurations.linux.activationPackage && result/activate
