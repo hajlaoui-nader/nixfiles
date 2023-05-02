@@ -65,3 +65,4 @@ $ home-manager switch
 - nvim: fix fold nvim-ufo
 - nvim: add terraform support
 - nvim: add specific tree-sitter grammars
+- nvim: add rust support
