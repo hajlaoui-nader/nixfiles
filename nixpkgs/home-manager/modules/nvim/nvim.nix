@@ -89,7 +89,7 @@ in
       (builtins.readFile ./completion.lua)
       lsp
       (builtins.readFile ./filetree.lua)
-      (builtins.readFile ./arrows.lua)
+      #(builtins.readFile ./arrows.lua)
       (builtins.readFile ./themes/onedark.lua)
       (builtins.readFile ./which-key.lua)
       (builtins.readFile ./treesitter.lua)
