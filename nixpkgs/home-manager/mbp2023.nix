@@ -4,12 +4,14 @@
   imports = [
     ./modules/home-manager.nix
     ./modules/common.nix
-    ./modules/git.nix
     ./modules/zsh
+    ./modules/git.nix
   ];
 
   home.homeDirectory = "/Users/naderh";
   home.username = "naderh";
+
+  programs.htop.enable = true;  
 
   home.stateVersion = "20.09";
 

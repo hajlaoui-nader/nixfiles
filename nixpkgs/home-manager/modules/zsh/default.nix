@@ -13,7 +13,7 @@
     enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "z" ];
+      plugins = [ "z" ];
     };
 
     plugins = [
@@ -32,8 +32,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "chisui";
           repo = "zsh-nix-shell";
-          rev = "af6f8a266ea1875b9a3e86e14796cadbe1cfbf08";
-          sha256 = "sha256-BjgMhILEL/qdgfno4LR64LSB8n9pC9R+gG7IQWwgyfQ=";
+          rev = "v0.5.0";
+          sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
         };
       }
     ];
@@ -49,6 +49,12 @@
     shellAliases = {
       lsd = "exa --long --header --git --all";
       dps = "docker-compose ps";
+      zshreload = "source ~/.zshrc";
+      zshrc = "nvim ~/.zshrc";
+      c = "clear"; 
+      # git
+      gs = "git status";
+      gd = "git diff";
     };
 
     initExtraBeforeCompInit = ''

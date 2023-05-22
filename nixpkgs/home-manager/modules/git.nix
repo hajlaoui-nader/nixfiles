@@ -13,11 +13,21 @@
       };
     };
 
-  aliases = {
-      gs = "git status";
-      gls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
-      gll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate --numstat";
+    # TODO there's a problem here, all aliases defined below don't appear
+    aliases = {
     };
+
+    ignores = [
+      "**/.metals/"
+      "**/project/metals.sbt"
+      "**/.idea/"
+      "**/.vscode/settings.json"
+      "**/.bloop/"
+      "**/.bsp/"
+      "**/.scala-build/"
+      "**/.direnv/"
+      "**/.DS_Store"
+    ];
 
     extraConfig = {
       pull.rebase = true;
