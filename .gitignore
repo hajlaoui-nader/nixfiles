@@ -2,5 +2,5 @@
 result
 tmp
 *~
-
+.DS_STORE
 *.qcow

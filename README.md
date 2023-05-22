@@ -5,9 +5,11 @@ this is a basic flake definitions containing my basic configuration for my:
 - homepi: raspberry pi
 - darwin: macos
 
-# The how ?
+# Before
 - Install [Nix][nix] and then install [home-manager][home-manager]. You should be
 able to run the `home-manager` program in a shell.
+
+# The how ?
 - linux or rapsberry pi: `nix build .#homeConfigurations.<hostname>.activationPackage`
 - macos: ```
 $ nix build .#darwinConfigurations.mbp2023.system
@@ -60,6 +62,9 @@ $ nix-channel --update nixpkgs
 unpacking channels...
 $ home-manager switch
 ```
+# after
+- copy `nixpkgs/modules/iterm/com.googlecode.iterm2.plist` to `~/Library/Preferences/com.googlecode.iterm2`
+
 
 ### TODO
 - nvim: fix fold nvim-ufo

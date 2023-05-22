@@ -13,9 +13,8 @@
     enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "docker" "docker-compose" "z" ];
+      plugins = [ "git" "z" ];
     };
-
 
     plugins = [
       {
@@ -50,11 +49,6 @@
     shellAliases = {
       lsd = "exa --long --header --git --all";
       dps = "docker-compose ps";
-      dcp = "docker-compose";
-      nss = "nix-shell";
-      nb = "nix-build";
-      ngc = "sudo nix-collect-garbage -d";
-      coursier = "cs";
     };
 
     initExtraBeforeCompInit = ''
