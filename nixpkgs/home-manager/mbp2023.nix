@@ -5,12 +5,11 @@
     ./modules/home-manager.nix
     ./modules/common.nix
     ./modules/git.nix
-    # TODO uncomment
-    # ./modules/zsh
+    ./modules/zsh
   ];
 
-  home.homeDirectory = "/Users/naderhajlaoui";
-  home.username = "naderhajlaoui";
+  home.homeDirectory = "/Users/naderh";
+  home.username = "naderh";
 
   home.stateVersion = "20.09";
 
@@ -20,5 +19,7 @@
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/fonts/nerdfonts/default.nix
     # nerdfonts
+    bitwarden-cli
   ];
+
 }

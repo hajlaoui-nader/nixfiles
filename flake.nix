@@ -40,11 +40,10 @@
             pkgsUnstable = inputs.nixpkgsUnstable.legacyPackages.aarch64-linux;
           };
         };
-
       };
 
       # nix build .#darwinConfigurations.mbp2023.system
-      # ./result/sw/bin/darwin-rebuild switch --flake .
+      # ./result/sw/bin/darwin-rebuild switch --flake .#mbp2023
       darwinConfigurations = {
         mbp2023 = darwin.lib.darwinSystem {
           system = "aarch64-darwin";
@@ -54,8 +53,8 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.naderhajlaoui =
-                import ./pkgs/home-manager/mbp2023.nix;
+              home-manager.users.naderh =
+                import ./nixpkgs/home-manager/mbp2023.nix;
               home-manager.extraSpecialArgs = {
                 inherit nixpkgs;
                 pkgsUnstable =
