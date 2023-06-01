@@ -20,6 +20,7 @@
       bottom # a better `top`
       tree-sitter # syntax highlighting
       fd # a better `find`
+      nmap
     ] ++ lib.optionals stdenv.isDarwin [
       coreutils # provides `dd` with --status=progress
       wifi-password
