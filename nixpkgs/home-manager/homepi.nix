@@ -9,8 +9,8 @@
 
   home.stateVersion = "20.09";
 
-  home.username = "nhajlaoui";
-  home.homeDirectory = "/home/nhajlaoui";
+  home.username = "nha";
+  home.homeDirectory = "/home/nha";
 
   home.packages = with pkgs; [
      (nerdfonts.override { fonts = [ "FiraCode"
