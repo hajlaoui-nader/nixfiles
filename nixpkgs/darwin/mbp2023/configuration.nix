@@ -67,6 +67,13 @@
   # list icons
   system.defaults.finder.FXPreferredViewStyle = "Nlsv";
 
+  # diable all hot corners
+  # https://daiderd.com/nix-darwin/manual/index.html#opt-system.defaults.dock.wvous-tl-corner
+  system.defaults.dock.wvous-tl-corner=1;
+  system.defaults.dock.wvous-bl-corner=1;
+  system.defaults.dock.wvous-tr-corner=1;
+  system.defaults.dock.wvous-br-corner=1;
+
   fonts = {
     fontDir.enable = true;
     fonts = [
