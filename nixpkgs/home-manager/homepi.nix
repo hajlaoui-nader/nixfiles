@@ -9,14 +9,14 @@
 
   home.stateVersion = "20.09";
 
-  home.username = "nha";
-  home.homeDirectory = "/home/nha";
+  # home.username = "nha";
+  # home.homeDirectory = "/home/nha";
 
-  home.packages = with pkgs; [
-     (nerdfonts.override { fonts = [ "FiraCode"
-          "FiraMono"
-          "JetBrainsMono"
-          "SourceCodePro" ]; })
-  ];
+  # home.packages = with pkgs; [
+  #    (nerdfonts.override { fonts = [ "FiraCode"
+  #         "FiraMono"
+  #         "JetBrainsMono"
+  #         "SourceCodePro" ]; })
+  # ];
 
 }
