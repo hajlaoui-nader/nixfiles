@@ -9,7 +9,7 @@
 
   home.stateVersion = "20.09";
 
-  # home.username = "nha";
+  home.username = "nha";
   # home.homeDirectory = "/home/nha";
 
   # home.packages = with pkgs; [
