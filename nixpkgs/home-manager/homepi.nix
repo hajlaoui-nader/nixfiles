@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ./modules/home-manager.nix
-    ./modules/common.nix
-    ./modules/git.nix
+    # ./modules/home-manager.nix
+    # ./modules/common.nix
+    # ./modules/git.nix
   ];
 
   home.stateVersion = "20.09";
