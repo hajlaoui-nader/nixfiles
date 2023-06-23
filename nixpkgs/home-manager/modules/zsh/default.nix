@@ -46,17 +46,7 @@
       JK_MACHINE_NAME = "nh-shell";
     };
 
-    shellAliases = {
-      lsd = "exa --long --header --git --all";
-      dps = "docker-compose ps";
-      zshreload = "source ~/.zshrc";
-      zshrc = "nvim ~/.zshrc";
-      c = "clear"; 
-      # git
-      gs = "git status";
-      gd = "git diff";
-      gc = "git commit -v";
-    };
+    shellAliases = {};
 
     initExtraBeforeCompInit = ''
       # powerlevel10k
