@@ -6,9 +6,8 @@
 
   home.packages = with pkgs;
     [
-      # archives
-      zip
-      unzip
+      zip # archives
+      unzip # archives
       lsd
       docker
       jq
@@ -46,6 +45,9 @@
     gs = "git status";
     gd = "git diff";
     gc = "git commit -v";
+
+    # v
+    v = "nvim"; 
   };
 
   programs = {

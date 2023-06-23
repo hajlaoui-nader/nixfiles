@@ -5,6 +5,7 @@
     ./modules/home-manager.nix
     ./modules/common.nix
     ./modules/zsh
+    ./modules/fish.nix
     ./modules/git.nix
   ];
 
@@ -15,8 +16,6 @@
   
   home.stateVersion = "20.09";
 
-  # http://czyzykowski.com/posts/gnupg-nix-osx.html
-  # adds file to `~/.nix-profile/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac`
   home.packages = with pkgs; [
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/fonts/nerdfonts/default.nix
     # nerdfonts
