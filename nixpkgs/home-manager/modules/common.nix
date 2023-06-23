@@ -20,6 +20,13 @@
       tree-sitter # syntax highlighting
       fd # a better `find`
       nmap
+      ## fish related
+      fishPlugins.done
+      fishPlugins.fzf-fish
+      fishPlugins.forgit
+      fishPlugins.hydro
+      fishPlugins.grc
+      grc
     ] ++ lib.optionals stdenv.isDarwin [
       coreutils # provides `dd` with --status=progress
       wifi-password

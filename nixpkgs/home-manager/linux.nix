@@ -4,8 +4,8 @@
   imports = [
     ./modules/home-manager.nix
     ./modules/common.nix
-    # TODO uncomment
-    # ./modules/zsh
+    ./modules/zsh
+    ./modules/fish.nix
     # TODO uncomment
     # ./modules/git.nix
   ];
