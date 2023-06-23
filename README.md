@@ -60,6 +60,16 @@ home-manager packages
 # after
 - copy `nixpkgs/modules/iterm/com.googlecode.iterm2.plist` to `~/Library/Preferences/com.googlecode.iterm2`
 
+# helpers
+## install package
+```shell
+nix-env -iA nixpkgs.<package>
+```
+## search package
+```shell
+nix search nixpkgs <package>
+```
+
 
 ### TODO
 - nvim: fix fold nvim-ufo
