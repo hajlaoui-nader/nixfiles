@@ -12,7 +12,7 @@
   home.username = "naderh";
 
   programs.htop.enable = true;  
-
+  
   home.stateVersion = "20.09";
 
   # http://czyzykowski.com/posts/gnupg-nix-osx.html
@@ -21,6 +21,12 @@
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/fonts/nerdfonts/default.nix
     # nerdfonts
     bitwarden-cli
+    fishPlugins.done
+    fishPlugins.fzf-fish
+    fishPlugins.forgit
+    fishPlugins.hydro
+    fishPlugins.grc
+    grc
   ];
 
 }
