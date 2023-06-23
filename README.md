@@ -19,18 +19,7 @@ $ ./result/sw/bin/darwin-rebuild switch --flake .
 # Dotfiles
 
 ## Usage
-
-Install [Nix][nix] and then install [home-manager][home-manager]. You should be
-able to run the `home-manager` program in a shell.
-
-Next, clone this repository to `~/.config/nixpkgs`.
-
-```shell
-$ git clone git@github.com:hajlaoui-nader/nix-dotfiles.git ~/.config/nixpkgs
-```
-
-This will place the [`home.nix`](home.nix) file in the location home-manager
-expects. The home-manager profile can then be built and activated:
+### hm
 
 ```shell
 $ home-manager switch
@@ -62,6 +51,12 @@ $ nix-channel --update nixpkgs
 unpacking channels...
 $ home-manager switch
 ```
+
+list all packages
+```shell
+home-manager packages
+```
+
 # after
 - copy `nixpkgs/modules/iterm/com.googlecode.iterm2.plist` to `~/Library/Preferences/com.googlecode.iterm2`
 
