@@ -55,6 +55,8 @@
     ApplePressAndHoldEnabled = false;
     AppleShowScrollBars = "WhenScrolling";
     AppleShowAllExtensions = true;
+    "com.apple.keyboard.fnState" = false; # Use F1, F2, etc. keys as standard function keys
+    "com.apple.mouse.tapBehavior" = 1; # trackpad tap to click
   };
   
   system.defaults.dock.autohide = true;
