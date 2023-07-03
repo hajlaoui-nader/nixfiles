@@ -37,7 +37,7 @@
 
   home.shellAliases = {
     lsd = "exa --long --header --git --all";
-    dps = "docker-compose ps";
+    dps = "docker ps";
     zshreload = "source ~/.zshrc";
     zshrc = "nvim ~/.zshrc";
     c = "clear"; 
