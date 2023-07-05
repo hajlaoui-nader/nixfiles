@@ -164,16 +164,6 @@
           cmd = {"${pkgs.nil}/bin/nil"}
         }
 
-      -- SQLS config
-      lspconfig.sqls.setup {
-        on_attach = function(client)
-          client.server_capabilities.execute_command = true
-          on_attach_keymaps(client, bufnr)
-          require'sqls'.setup{}
-        end,
-        cmd = {"${pkgs.sqls}/bin/sqls", "-config", string.format("%s/config.yml", vim.fn.getcwd()) }
-      }
-
       -- Scala nvim-metals config
       metals_config = require('metals').bare_config()
       metals_config.capabilities = capabilities
