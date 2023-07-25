@@ -23,7 +23,6 @@
     , home-manager }: {
 
       homeConfigurations = {
-
         linux = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
           modules = [ ./nixpkgs/home-manager/linux.nix ];
