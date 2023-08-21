@@ -72,6 +72,3 @@ nix search nixpkgs <package>
 
 
 ### TODO
-- nvim: fix fold nvim-ufo
-- nvim: add terraform support
-- nvim: add specific tree-sitter grammars
