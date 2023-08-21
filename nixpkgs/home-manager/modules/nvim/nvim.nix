@@ -50,6 +50,7 @@ in
           gitignore
           hcl
           http
+          terraform
           #(tree-sitter-scala.overrideAttrs
             #(old: {
               #version = "master";
