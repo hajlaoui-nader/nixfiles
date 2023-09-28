@@ -14,7 +14,7 @@
 
   programs.htop.enable = true;  
   
-  home.stateVersion = "20.09";
+  home.stateVersion = "23.05";
 
   home.packages = with pkgs; [
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/fonts/nerdfonts/default.nix

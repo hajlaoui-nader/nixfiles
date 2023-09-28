@@ -41,7 +41,6 @@ in
           bash
           json
           sql
-          html
           dockerfile
           scala
           yaml
@@ -51,6 +50,12 @@ in
           hcl
           http
           terraform
+          typescript
+          javascript
+          html
+          css
+          scss
+
           #(tree-sitter-scala.overrideAttrs
             #(old: {
               #version = "master";

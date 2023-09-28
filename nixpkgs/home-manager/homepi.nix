@@ -7,7 +7,7 @@
     # ./modules/git.nix
   ];
 
-  home.stateVersion = "20.09";
+  home.stateVersion = "23.05";
 
   home.username = "nha";
   # home.homeDirectory = "/home/nha";

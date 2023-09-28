@@ -33,7 +33,6 @@
 
         # nix build .#homeConfigurations.homepi.system
         homepi = inputs.home-manager.lib.homeManagerConfiguration {
-          # pkgs = inputs.nixpkgs.legacyPackages.aarch64-linux;
           pkgs = inputs.nixpkgs.legacyPackages.aarch64-linux;
           modules = [ ./nixpkgs/home-manager/homepi.nix ];
           extraSpecialArgs = {
