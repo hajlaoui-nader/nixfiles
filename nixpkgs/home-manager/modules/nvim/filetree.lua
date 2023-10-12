@@ -1,4 +1,5 @@
 vim.cmd [[ set cursorline ]]
+vim.g.nvim_tree_ignore = { '.git', 'node_modules', '.cache', '.DS_Store' }
 
 vim.api.nvim_set_keymap('n', '<C-F>', ":NvimTreeToggle<CR>", {
     noremap = true,
