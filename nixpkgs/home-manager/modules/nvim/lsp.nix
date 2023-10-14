@@ -172,6 +172,8 @@
       metals_config.settings = {
           metalsBinaryPath = "${pkgs.metals}/bin/metals",
           showImplicitArguments = true,
+          showImplicitConversionsAndClasses = true,
+          showInferredType = true,
           excludedPackages = {
             "akka.actor.typed.javadsl",
             "com.github.swagger.akka.javadsl"
