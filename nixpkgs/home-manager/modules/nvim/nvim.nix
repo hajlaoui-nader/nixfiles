@@ -3,8 +3,7 @@ let
   lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
   #vim-plugins = import ./plugins.nix { inherit pkgs lib; };
-in
-{
+in {
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
@@ -86,6 +85,8 @@ in
       # rust
       rust-tools-nvim
       crates-nvim
+      # notify 
+      nvim-notify
     ];
 
     extraConfig = ''
@@ -112,6 +113,7 @@ in
       (builtins.readFile ./json.lua)
       (builtins.readFile ./hop.lua)
       (builtins.readFile ./copilot.lua)
+      (builtins.readFile ./notify.lua)
     ]) + ''
 
       EOF'';
