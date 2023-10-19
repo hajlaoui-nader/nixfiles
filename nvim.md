@@ -88,3 +88,5 @@
 - `Ctrl + [`  - Previous 
 - `Ctrl + ]`     - Next
 
+## undotree
+- `Leader + F5` - Toggle undotree

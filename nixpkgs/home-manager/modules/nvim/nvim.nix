@@ -87,23 +87,28 @@ in {
       crates-nvim
       # notify 
       nvim-notify
+      # undotree
+      undotree
+      # references
+      vim-illuminate
     ];
 
     extraConfig = ''
       lua << EOF
     '' + (builtins.concatStringsSep "\n" [
+      (builtins.readFile ./which-key.lua)
       (builtins.readFile ./basic.lua)
       (builtins.readFile ./completion.lua)
       lsp
       (builtins.readFile ./filetree.lua)
       #(builtins.readFile ./arrows.lua)
       (builtins.readFile ./themes/onedark.lua)
-      (builtins.readFile ./which-key.lua)
       (builtins.readFile ./treesitter.lua)
       telescope
       (builtins.readFile ./trouble.lua)
       (builtins.readFile ./metals.lua)
       (builtins.readFile ./gitsigns.lua)
+      (builtins.readFile ./notify.lua)
       (builtins.readFile ./autopairs.lua)
       (builtins.readFile ./comments.lua)
       (builtins.readFile ./markdown.lua)
@@ -113,7 +118,7 @@ in {
       (builtins.readFile ./json.lua)
       (builtins.readFile ./hop.lua)
       (builtins.readFile ./copilot.lua)
-      (builtins.readFile ./notify.lua)
+      (builtins.readFile ./undotree.lua)
     ]) + ''
 
       EOF'';
