@@ -7,3 +7,4 @@ local wk = require("which-key")
  wk.register({
     ["<F5>"] = {"<cmd>UndotreeToggle<CR>", "Toggle UndoTree"},
 }, { prefix = "<leader>" })
+

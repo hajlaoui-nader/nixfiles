@@ -91,6 +91,8 @@ in {
       undotree
       # references
       vim-illuminate
+      # neoclip
+      nvim-neoclip-lua
     ];
 
     extraConfig = ''
@@ -119,6 +121,7 @@ in {
       (builtins.readFile ./hop.lua)
       (builtins.readFile ./copilot.lua)
       (builtins.readFile ./undotree.lua)
+      (builtins.readFile ./neoclip.lua)
     ]) + ''
 
       EOF'';
