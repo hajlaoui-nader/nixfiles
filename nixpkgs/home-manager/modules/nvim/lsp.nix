@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, pkgsUnstable, ... }: {
   lsp = ''
     -- Enable trouble diagnostics viewer
     require'nvim-lightbulb'.setup()
@@ -54,8 +54,6 @@
         -- Metals specific
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lmc', '<cmd>lua require("metals").commands()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lmi', '<cmd>lua require("metals").toggle_setting("showImplicitArguments")<CR>', opts)
-        vim.api.nvim_set_keymap('n', '<leader>ws', '<cmd>lua require("metals").worksheet_hover()<CR>', opts)
-        vim.api.nvim_set_keymap('n', '<leader>ad', '<cmd>lua require("metals").open_all_diagnostics()<CR>', opts)
     end
     
     
@@ -147,7 +145,7 @@
       metals_config.on_attach = default_on_attach
 
       metals_config.settings = {
-          metalsBinaryPath = "${pkgs.metals}/bin/metals",
+          metalsBinaryPath = "${pkgsUnstable.metals}/bin/metals",
           showImplicitArguments = true,
           showImplicitConversionsAndClasses = true,
           showInferredType = true,
