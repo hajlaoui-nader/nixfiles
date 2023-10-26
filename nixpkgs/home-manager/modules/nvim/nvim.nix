@@ -72,7 +72,6 @@ in {
       nvim-code-action-menu # code actions
       trouble-nvim # lsp diagnostics
       nvim-metals # metals
-      null-ls-nvim # null-ls
       nvim-lspconfig # lsp config
       hop-nvim
       # TODO: add these back in

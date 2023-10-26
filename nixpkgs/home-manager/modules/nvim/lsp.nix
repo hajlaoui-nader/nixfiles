@@ -4,6 +4,22 @@
     require'nvim-lightbulb'.setup()
 
     require("lsp_signature").setup()
+    
+    vim.cmd [[
+      augroup RustMappings
+      autocmd!
+      autocmd FileType rust lua SetupRustMappings()
+      augroup END
+    ]]
+
+    function SetupRustMappings()
+        local opts = { noremap = true, silent = true }
+        vim.api.nvim_set_keymap('n', '<leader>ri', '<cmd>lua require("rust-tools.inlay_hints").toggle_inlay_hints()<CR>', opts)
+        vim.api.nvim_set_keymap('n', '<leader>rr', '<cmd>lua require("rust-tools.runnables").runnables()<CR>', opts)
+        vim.api.nvim_set_keymap('n', '<leader>re', '<cmd>lua require("rust-tools.expand_macro").expand_macro()<CR>', opts)
+        vim.api.nvim_set_keymap('n', '<leader>rc', '<cmd>lua require("rust-tools.open_cargo_toml").open_cargo_toml()<CR>', opts)
+        vim.api.nvim_set_keymap('n', '<leader>rg', "<cmd>lua require('rust-tools.crate_graph').view_crate_graph('x11', nil)<CR>", opts)
+    end
 
     vim.cmd [[ 
         autocmd filetype nix setlocal tabstop=2 shiftwidth=2 softtabstop=2
@@ -40,35 +56,6 @@
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lmi', '<cmd>lua require("metals").toggle_setting("showImplicitArguments")<CR>', opts)
     end
 
-    local null_ls = require("null-ls")
-    local null_helpers = require("null-ls.helpers")
-    local null_methods = require("null-ls.methods")
-
-    local ls_sources = {
-      null_ls.builtins.formatting.black.with({
-          command = "${pkgs.black}/bin/black",
-      }),
-      null_helpers.make_builtin({
-        method = null_methods.internal.FORMATTING,
-        filetypes = { "sql" },
-        generator_opts = {
-          to_stdin = true,
-          ignore_stderr = true,
-          suppress_errors = true,
-          command = "${pkgs.sqlfluff}/bin/sqlfluff",
-          args = {
-            "fix",
-            "-",
-          },
-        },
-        factory = null_helpers.formatter_factory,
-      }),
-      null_ls.builtins.diagnostics.sqlfluff.with({
-        command = "${pkgs.sqlfluff}/bin/sqlfluff",
-        extra_args = {"--dialect", "postgres"}
-      }),
-    }
-
     vim.g.formatsave = "true"
 
     -- Enable formatting
@@ -90,22 +77,13 @@
         format_callback(client, bufnr)
     end
 
-    -- Enable null-ls
-    require('null-ls').setup({
-        diagnostics_format = "[#{m}] #{s} (#{c})",
-        debounce = 250,
-        default_timeout = 5000,
-        sources = ls_sources,
-        on_attach=default_on_attach
-      })
-
       -- Enable lspconfig
       local lspconfig = require('lspconfig')
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-              -- Rust config
+       -- Rust config
 
         local rustopts = {
           tools = {
@@ -130,10 +108,6 @@
         }
 
         require('crates').setup {
-          null_ls = {
-            enabled = true,
-            name = "crates.nvim",
-          }
         }
         require('rust-tools').setup(rustopts)
   
@@ -195,11 +169,6 @@
       vim.cmd([[autocmd!]])
       vim.cmd([[autocmd FileType java,scala,sbt lua require('metals').initialize_or_attach(metals_config)]])
       vim.cmd([[augroup end]])
-
-      -- Nix formatter
-      null_ls.builtins.formatting.alejandra.with({
-        command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-      });
 
       -- TS config
       lspconfig.tsserver.setup {
