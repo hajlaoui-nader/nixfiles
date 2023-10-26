@@ -3,7 +3,7 @@
 ## telescope
 - `<ctrl> p`      - Telescope find_files
 - `<leader> ff`   - Telescope find_files
-- `<leader> fg`   - Telescope live_grep
+- `<leader> fg`   - Telescope live_grep: send the result to quifix list: `<ctrl> q`
 - `<leader> fb`   - Telescope buffers
 - `<leader> fh`   - Telescope help_tags
 - `<leader> ft`   - Telescope

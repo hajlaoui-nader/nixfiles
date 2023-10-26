@@ -65,7 +65,6 @@
         silent = true
     });
 
-
     vim.api.nvim_set_keymap('n', '<leader>flsw', "<cmd> Telescope lsp_workspace_symbols<CR>", {
         noremap = true,
         silent = true
@@ -75,7 +74,6 @@
         noremap = true,
         silent = true
     });
-
 
     vim.api.nvim_set_keymap('n', '<leader>flr', "<cmd> Telescope lsp_references<CR>", {
         noremap = true,
