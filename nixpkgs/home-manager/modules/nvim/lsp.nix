@@ -54,8 +54,11 @@
         -- Metals specific
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lmc', '<cmd>lua require("metals").commands()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lmi', '<cmd>lua require("metals").toggle_setting("showImplicitArguments")<CR>', opts)
+        vim.api.nvim_set_keymap('n', '<leader>ws', '<cmd>lua require("metals").worksheet_hover()<CR>', opts)
+        vim.api.nvim_set_keymap('n', '<leader>ad', '<cmd>lua require("metals").open_all_diagnostics()<CR>', opts)
     end
-
+    
+    
     vim.g.formatsave = "true"
 
     -- Enable formatting
