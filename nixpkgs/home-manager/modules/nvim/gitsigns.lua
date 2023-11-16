@@ -58,6 +58,7 @@ require('gitsigns').setup {
     map('n', '<leader>gtb', gs.toggle_current_line_blame)
     map('n', '<leader>gd', gs.diffthis)
     map('n', '<leader>gD', function() gs.diffthis('~') end)
+    map('n', '<leader>gts', gs.toggle_signs)
     map('n', '<leader>gtd', gs.toggle_deleted)
 
     -- Text object
