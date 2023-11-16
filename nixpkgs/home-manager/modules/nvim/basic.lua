@@ -126,3 +126,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- replace
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- tab in visual mode
+vim.api.nvim_set_keymap('v', '<Tab>', '>gv', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<S-Tab>', '<gv', {noremap = true, silent = true})
