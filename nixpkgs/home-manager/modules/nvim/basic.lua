@@ -134,3 +134,33 @@ vim.api.nvim_set_keymap('v', '<S-Tab>', '<gv', {noremap = true, silent = true})
 -- tab in normal mode
 vim.api.nvim_set_keymap('n', '<Tab>', '>>_', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<S-Tab>', '<<_', {noremap = true, silent = true})
+
+-- maximize tab
+function _G.toggle_maximize_split()
+    if vim.g.is_maximized == nil or vim.g.is_maximized == false then
+        -- Save original window sizes
+        vim.g.original_win_height = vim.api.nvim_win_get_height(0)
+        vim.g.original_win_width = vim.api.nvim_win_get_width(0)
+
+        -- Maximize current window
+        vim.api.nvim_command('resize | resize')
+        vim.api.nvim_command('vertical resize | vertical resize')
+
+        vim.g.is_maximized = true
+    else
+        -- Restore the window to its original size
+        vim.api.nvim_win_set_height(0, vim.g.original_win_height)
+        vim.api.nvim_win_set_width(0, vim.g.original_win_width)
+
+        vim.g.is_maximized = false
+    end
+end
+
+vim.api.nvim_set_keymap('n', '<F10>', ':lua toggle_maximize_split()<CR>', { noremap = true, silent = true })
+-- highlight yank
+vim.cmd [[
+  augroup highlight_yank
+      autocmd!
+      au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
+  augroup END
+]]

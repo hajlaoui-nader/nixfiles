@@ -2,14 +2,25 @@
 let
   lsp = (import ./lsp.nix { inherit pkgs; inherit pkgsUnstable; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
+  gruberDarker = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "gruber-darker-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "blazkowolf";
+      repo = "gruber-darker.nvim";
+      rev = "master"; # You can specify a specific commit or tag here.
+      sha256 = "OftISM/UpLJsNpnZAC9D/CfDueNjUdbCkrotS4vnH6M="; # Replace with the correct hash.
+    };
+  };
   #vim-plugins = import ./plugins.nix { inherit pkgs lib; };
-in {
+in
+{
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
       # tokyonight-nvim # theme
       catppuccin-nvim # theme
       onedark-nvim # theme
+      gruberDarker # theme
       telescope-nvim # fuzzy finder
       which-key-nvim # keybindings
       nvim-tree-lua # file tree
@@ -56,10 +67,10 @@ in {
           scss
 
           #(tree-sitter-scala.overrideAttrs
-            #(old: {
-              #version = "master";
-              #src = tree-sitter-scala-master;
-            #})
+          #(old: {
+          #version = "master";
+          #src = tree-sitter-scala-master;
+          #})
           #)
         ]
       ))
