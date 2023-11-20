@@ -24,7 +24,7 @@ in
       telescope-nvim # fuzzy finder
       which-key-nvim # keybindings
       nvim-tree-lua # file tree
-      #gitsigns-nvim # git signs
+      gitsigns-nvim # git signs
       nvim-cmp # autocompletion
       cmp-nvim-lsp
       cmp-buffer
@@ -121,7 +121,7 @@ in
       telescope
       (builtins.readFile ./trouble.lua)
       (builtins.readFile ./metals.lua)
-      #(builtins.readFile ./gitsigns.lua)
+      (builtins.readFile ./gitsigns.lua)
       (builtins.readFile ./fugitive.lua)
       (builtins.readFile ./notify.lua)
       (builtins.readFile ./autopairs.lua)
