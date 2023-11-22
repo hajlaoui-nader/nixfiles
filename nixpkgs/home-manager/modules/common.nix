@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, pkgsUnstable, lib, ... }: {
+{ inputs, config, pkgs, lib, ... }: {
 
   # https://github.com/nix-community/nix-direnv#via-home-manager
   programs.direnv.enable = true;
@@ -15,7 +15,7 @@
       neofetch # command-line system information
       ripgrep # fast grep
       tree # display files in a tree view
-      exa # a better `ls`
+      eza # a better `ls`
       bottom # a better `top`
       tree-sitter # syntax highlighting
       fd # a better `find`
@@ -36,7 +36,7 @@
   };
 
   home.shellAliases = {
-    lsd = "exa --long --header --git --all";
+    lsd = "eza --long --header --git --all";
     dps = "docker ps";
     zshreload = "source ~/.zshrc";
     zshrc = "nvim ~/.zshrc";
@@ -55,21 +55,12 @@
       enable = true;
       config = {
         pager = "less -FR";
-        theme = "Catppuccin-mocha";
-      };
-      themes = {
-        Catppuccin-mocha = builtins.readFile (pkgs.fetchFromGitHub {
-            owner = "catppuccin";
-            repo = "bat";
-            rev = "00bd462e8fab5f74490335dcf881ebe7784d23fa";
-            sha256 = "yzn+1IXxQaKcCK7fBdjtVohns0kbN+gcqbWVE4Bx7G8=";
-          }
-          + "/Catppuccin-mocha.tmTheme");
+        theme = "DarkNeon";
       };
     };
     
     btop.enable = true;
-    exa.enable = true;
+    eza.enable = true;
     
     jq.enable = true;
     ssh.enable = true;

@@ -2,12 +2,10 @@
   description = "home-manager configuration for linux, mac and raspberry pi";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-23.05";
-
-    nixpkgsUnstable.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -19,25 +17,20 @@
     };
   };
 
-  outputs = inputs@{ self, flake-utils, darwin, nixpkgs, nixpkgsUnstable
-    , home-manager }: {
+  outputs = inputs@{ self, flake-utils, darwin, nixpkgs, home-manager }: {
 
       homeConfigurations = {
         linux = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-          modules = [ ./nixpkgs/home-manager/linux.nix ];
-          extraSpecialArgs = {
-            pkgsUnstable = inputs.nixpkgsUnstable.legacyPackages.x86_64-linux;
-          };
+          modules = [ 
+            ./nixpkgs/home-manager/linux.nix 
+          ];
         };
 
         # nix build .#homeConfigurations.homepi.system
         homepi = inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = inputs.nixpkgs.legacyPackages.aarch64-linux;
           modules = [ ./nixpkgs/home-manager/homepi.nix ];
-          extraSpecialArgs = {
-            pkgsUnstable = inputs.nixpkgsUnstable.legacyPackages.aarch64-linux;
-          };
         };
       };
 
@@ -56,8 +49,6 @@
                 import ./nixpkgs/home-manager/mbp2023.nix;
               home-manager.extraSpecialArgs = {
                 inherit nixpkgs;
-                pkgsUnstable =
-                  inputs.nixpkgsUnstable.legacyPackages.aarch64-darwin;
               };
             }
           ];

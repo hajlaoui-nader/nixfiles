@@ -62,32 +62,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1700648356,
-        "narHash": "sha256-b47pbx5jFWC2OQ8Z0wc6LlUjGivg2Zy4/Jv+lzIXSSQ=",
+        "lastModified": 1700538105,
+        "narHash": "sha256-uZhOCmwv8VupEmPZm3erbr9XXmyg7K67Ul3+Rx2XMe0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f8baac2255e6bb135091fcb6f29f806a20e1567e",
+        "rev": "51a01a7e5515b469886c120e38db325c96694c2f",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgsUnstable": {
-      "locked": {
-        "lastModified": 1700648356,
-        "narHash": "sha256-b47pbx5jFWC2OQ8Z0wc6LlUjGivg2Zy4/Jv+lzIXSSQ=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "f8baac2255e6bb135091fcb6f29f806a20e1567e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -97,8 +81,7 @@
         "darwin": "darwin",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs",
-        "nixpkgsUnstable": "nixpkgsUnstable"
+        "nixpkgs": "nixpkgs"
       }
     },
     "systems": {

@@ -1,4 +1,4 @@
-{ pkgs, pkgsUnstable, ... }: {
+{ pkgs, ... }: {
   lsp = ''
     -- Enable trouble diagnostics viewer
     require'nvim-lightbulb'.setup()
@@ -145,7 +145,7 @@
       metals_config.on_attach = default_on_attach
 
       metals_config.settings = {
-          metalsBinaryPath = "${pkgsUnstable.metals}/bin/metals",
+          metalsBinaryPath = "${pkgs.metals}/bin/metals",
           showImplicitArguments = true,
           showImplicitConversionsAndClasses = true,
           showInferredType = true,
