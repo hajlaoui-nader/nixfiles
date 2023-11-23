@@ -132,8 +132,8 @@ vim.api.nvim_set_keymap('v', '<Tab>', '>gv', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<S-Tab>', '<gv', {noremap = true, silent = true})
 
 -- tab in normal mode
-vim.api.nvim_set_keymap('n', '<Tab>', '>>_', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<S-Tab>', '<<_', {noremap = true, silent = true})
+--vim.api.nvim_set_keymap('n', '<Tab>', '>>_', {noremap = true, silent = true})
+--vim.api.nvim_set_keymap('n', '<S-Tab>', '<<_', {noremap = true, silent = true})
 
 -- maximize tab
 function _G.toggle_maximize_split()

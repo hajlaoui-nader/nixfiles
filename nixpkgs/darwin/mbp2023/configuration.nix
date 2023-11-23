@@ -5,6 +5,7 @@
   environment.systemPackages =
     [ 
       pkgs.vim
+      pkgs.home-manager
     ];
 
   imports = [];
