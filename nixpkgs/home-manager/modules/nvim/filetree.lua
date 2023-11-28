@@ -25,7 +25,8 @@ require'nvim-tree'.setup({
     },
     view = {
         width = 25,
-        side = 'left'
+        side = 'left',
+        preserve_window_proportions = true
     },
     renderer = {
         add_trailing = true,
@@ -38,7 +39,7 @@ require'nvim-tree'.setup({
     actions = {
         open_file = {
             quit_on_open = false,
-            resize_window = true
+            resize_window = false
         }
     },
     git = {
