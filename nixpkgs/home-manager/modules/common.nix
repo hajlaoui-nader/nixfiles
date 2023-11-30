@@ -19,6 +19,7 @@
       bottom # a better `top`
       tree-sitter # syntax highlighting
       fd # a better `find`
+      lf # a file manager
       nmap
     ] ++ lib.optionals stdenv.isDarwin [
       coreutils # provides `dd` with --status=progress
