@@ -116,7 +116,8 @@ in
       lsp
       (builtins.readFile ./filetree.lua)
       #(builtins.readFile ./arrows.lua)
-      (builtins.readFile ./themes/onedark.lua)
+      #(builtins.readFile ./themes/onedark.lua)
+      (builtins.readFile ./themes/catppuccin.lua)
       (builtins.readFile ./treesitter.lua)
       telescope
       (builtins.readFile ./trouble.lua)
