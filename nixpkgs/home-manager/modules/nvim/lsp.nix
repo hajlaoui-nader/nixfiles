@@ -120,6 +120,13 @@
           null_ls.builtins.formatting.black.with({
               command = "${pkgs.black}/bin/black",
             }),
+            null_ls.builtins.diagnostics.mypy.with({
+              command = "${pkgs.mypy}/bin/mypy",
+              extra_args = {"--ignore-missing-imports"},
+            }),
+            null_ls.builtins.diagnostics.ruff.with({
+              command = "${pkgs.ruff}/bin/ruff",
+            }),
           }
 
         default_on_attach_python = function(client, bufnr)
