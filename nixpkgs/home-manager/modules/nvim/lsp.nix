@@ -111,11 +111,51 @@
         require('crates').setup {
         }
         require('rust-tools').setup(rustopts)
-  
+
+        local null_ls = require("null-ls")
+
+        local null_helpers = require("null-ls.helpers")
+        local null_methods = require("null-ls.methods")
+        local ls_sources = {
+          null_ls.builtins.formatting.black.with({
+              command = "${pkgs.black}/bin/black",
+            }),
+          }
+
+        default_on_attach_python = function(client, bufnr)
+            attach_keymaps(client, bufnr)
+            format_callback_python(client, bufnr)
+        end
+
+        format_callback_python = function(client, bufnr)
+          if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({
+                group = augroup,
+                buffer = bufnr,
+              })
+              vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                  vim.lsp.buf.format({bufnr = bufnr})
+                  end
+              })
+          end
+        end
+
+        null_ls.setup({
+          diagnostics_format = "[#{m}] #{s} (#{c})",
+          debounce = 250,
+          default_timeout = 5000,
+          sources = ls_sources,
+          on_attach=default_on_attach_python
+        })
+
+
         -- Python config
       lspconfig.pyright.setup{
         capabilities = capabilities;
-        on_attach=default_on_attach;
+        on_attach=default_on_attach_python;
         cmd = {"${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"}
       }
 

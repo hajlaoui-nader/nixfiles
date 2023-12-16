@@ -25,6 +25,7 @@ in
       which-key-nvim # keybindings
       nvim-tree-lua # file tree
       gitsigns-nvim # git signs
+      null-ls-nvim
       nvim-cmp # autocompletion
       cmp-nvim-lsp
       cmp-buffer
