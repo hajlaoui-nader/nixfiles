@@ -5,18 +5,19 @@
     ./modules/home-manager.nix
     ./modules/common.nix
     ./modules/zsh
-    #./modules/fish.nix
-    # TODO uncomment
-    # ./modules/git.nix
+    ./modules/git.nix
+    ./programs/alacritty.nix
   ];
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
-  home.username = "nhajlaoui";
-  home.homeDirectory = "/home/nhajlaoui";
+  home.username = "zeus";
+  home.homeDirectory = "/home/zeus";
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    #nerdfonts
+    bitwarden-cli
     (nerdfonts.override { fonts = [ "FiraCode"
           "FiraMono"
           "JetBrainsMono"

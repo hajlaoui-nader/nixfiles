@@ -5,7 +5,7 @@
     ./modules/home-manager.nix
     ./modules/common.nix
     ./modules/zsh
-    ./modules/fish.nix
+    #./modules/fish.nix
     ./modules/git.nix
   ];
 

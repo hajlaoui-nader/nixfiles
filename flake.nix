@@ -18,6 +18,24 @@
   };
 
   outputs = inputs@{ self, flake-utils, darwin, nixpkgs, home-manager }: {
+     nixosConfigurations = {
+      zeus = nixpkgs.lib.nixosSystem {
+       system = "x86_64-linux";
+       modules = [
+        ./nixpkgs/nixos/zeus.nix
+	inputs.home-manager.nixosModules.home-manager
+	{
+          home-manager.useGlobalPkgs = true;
+	  home-manager.useUserPackages = true;
+	  home-manager.users.zeus = 
+	  	import ./nixpkgs/home-manager/zeus.nix;
+	  home-manager.extraSpecialArgs = {
+	   inherit nixpkgs;
+	  };
+	}
+       ]; 
+      };
+     };
 
       homeConfigurations = {
         linux = inputs.home-manager.lib.homeManagerConfiguration {
