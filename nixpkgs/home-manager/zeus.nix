@@ -17,6 +17,7 @@
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     #nerdfonts
+    copyq
     bitwarden-cli
     (nerdfonts.override { fonts = [ "FiraCode"
           "FiraMono"
