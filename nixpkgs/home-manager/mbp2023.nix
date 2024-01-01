@@ -7,6 +7,7 @@
     ./modules/zsh
     #./modules/fish.nix
     ./modules/git.nix
+    ./programs/tmux
   ];
 
   home.homeDirectory = "/Users/naderh";
