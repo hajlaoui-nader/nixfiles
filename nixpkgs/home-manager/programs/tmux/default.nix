@@ -16,7 +16,15 @@ in
     extraConfig = tmuxConf;
     plugins = with pkgs.tmuxPlugins; [
       cpu
-      nord # theme
+      #nord # theme
+      {
+        plugin = dracula;
+        # available plugins: battery, cpu-usage, git, gpu-usage, ram-usage, tmux-ram-usage, network, network-bandwidth, network-ping, ssh-session, attached-clients, network-vpn, weather, time, mpc, spotify-tui, kubernetes-context, synchronize-panes
+        extraConfig = ''
+          set -g @dracula-time-format "%d/%m/%Y %H:%M"
+          set -g @dracula-plugins " time cpu-usage ram-usage battery"
+          '';
+      }
       {
         plugin = resurrect;
         extraConfig = "set -g @resurrect-strategy-nvim 'session'";
