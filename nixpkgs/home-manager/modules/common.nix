@@ -21,6 +21,7 @@
       fd # a better `find`
       lf # a file manager
       nmap
+      duf # disk usage
     ] ++ lib.optionals stdenv.isDarwin [
       coreutils # provides `dd` with --status=progress
       wifi-password

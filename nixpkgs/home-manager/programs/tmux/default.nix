@@ -1,6 +1,5 @@
 { lib, pkgs, ... }:
 let
-  #plugins = pkgs.tmuxPlugins // pkgs.callPackage ./custom-plugins.nix { };
   tmuxConf = lib.readFile ./default.conf;
 in
 {
@@ -16,13 +15,12 @@ in
     extraConfig = tmuxConf;
     plugins = with pkgs.tmuxPlugins; [
       cpu
-      #nord # theme
       {
         plugin = dracula;
         # available plugins: battery, cpu-usage, git, gpu-usage, ram-usage, tmux-ram-usage, network, network-bandwidth, network-ping, ssh-session, attached-clients, network-vpn, weather, time, mpc, spotify-tui, kubernetes-context, synchronize-panes
         extraConfig = ''
           set -g @dracula-time-format "%d/%m/%Y %H:%M"
-          set -g @dracula-plugins " time cpu-usage ram-usage battery"
+          set -g @dracula-plugins " time cpu-usage ram-usage network-bandwidth battery"
           '';
       }
       {
