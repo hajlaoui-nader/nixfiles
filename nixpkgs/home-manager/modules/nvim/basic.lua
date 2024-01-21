@@ -164,3 +164,5 @@ vim.cmd [[
       au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
   augroup END
 ]]
+
+vim.api.nvim_set_keymap('x', '<leader>p', '"_dP', {noremap = true, silent = true})
