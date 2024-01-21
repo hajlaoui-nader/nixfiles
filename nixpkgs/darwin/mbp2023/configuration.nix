@@ -85,6 +85,7 @@
           "FiraMono"
           "JetBrainsMono"
           "SourceCodePro"
+          "Iosevka"
         ];
       })
     ];
