@@ -2,6 +2,7 @@
 let
   lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
+  glowMarkdown = (import ./markdown.nix { inherit pkgs; }).markdown;
   gruberDarker = pkgs.vimUtils.buildVimPlugin {
     name = "gruber-darker-nvim";
     src = pkgs.fetchFromGitHub {
@@ -116,8 +117,6 @@ in
       (builtins.readFile ./completion.lua)
       lsp
       (builtins.readFile ./filetree.lua)
-      #(builtins.readFile ./arrows.lua)
-      #(builtins.readFile ./themes/onedark.lua)
       (builtins.readFile ./themes/catppuccin.lua)
       (builtins.readFile ./treesitter.lua)
       telescope
@@ -128,7 +127,6 @@ in
       (builtins.readFile ./notify.lua)
       (builtins.readFile ./autopairs.lua)
       (builtins.readFile ./comments.lua)
-      (builtins.readFile ./markdown.lua)
       (builtins.readFile ./statusline.lua)
       (builtins.readFile ./bufferline.lua)
       (builtins.readFile ./visuals.lua)
@@ -137,6 +135,7 @@ in
       (builtins.readFile ./copilot.lua)
       (builtins.readFile ./undotree.lua)
       (builtins.readFile ./neoclip.lua)
+      glowMarkdown
     ]) + ''
 
       EOF'';
