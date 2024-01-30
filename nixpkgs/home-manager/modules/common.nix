@@ -41,7 +41,9 @@
 
   home.shellAliases = {
     lsd = "eza --long --header --git --all";
-    dps = "docker ps";
+    dps = "docker ps --all";
+    stopanddeleteallcontainers = "docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)";
+    deleteallvolumes = "docker volume rm $(docker volume ls -q)";
     zshreload = "source ~/.zshrc";
     zshrc = "nvim ~/.zshrc";
     c = "clear"; 
