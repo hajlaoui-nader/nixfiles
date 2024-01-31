@@ -163,7 +163,15 @@
       lspconfig.pyright.setup{
         capabilities = capabilities;
         on_attach=default_on_attach_python;
-        cmd = {"${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"}
+        cmd = {"${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"};
+        python = {
+          analysis = {
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = "workspace",
+            typeCheckingMode = "off",
+          }
+        }
       }
 
        -- Nix config
