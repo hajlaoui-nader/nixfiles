@@ -3,12 +3,12 @@ vim.wo.colorcolumn = "99999"
 vim.opt.list = true
 
 require("ibl").setup {
-    --indent = { highlight = highlight, char = "" },
-    --whitespace = {
-        --highlight = highlight,
-        --remove_blankline_trail = false,
-    --},
-    --scope = { enabled = false },
+  scope = {
+    enabled = true;
+    char = "│",
+    injected_languages = true,
+    show_end = true,
+  }
 }
 
 vim.g.cursorline_timeout = 0
