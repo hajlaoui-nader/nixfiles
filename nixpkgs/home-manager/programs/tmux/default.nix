@@ -15,6 +15,7 @@ in
     extraConfig = tmuxConf;
     plugins = with pkgs.tmuxPlugins; [
       cpu
+      yank
       {
         plugin = dracula;
         # available plugins: battery, cpu-usage, git, gpu-usage, ram-usage, tmux-ram-usage, network, network-bandwidth, network-ping, ssh-session, attached-clients, network-vpn, weather, time, mpc, spotify-tui, kubernetes-context, synchronize-panes
