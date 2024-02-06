@@ -3,12 +3,12 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
-    [ 
+    [
       pkgs.vim
       pkgs.home-manager
     ];
 
-  imports = [];
+  imports = [ ];
 
   # # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -37,7 +37,7 @@
     zsh.enable = true;
   };
 
- # environment.shells = [ pkgs.fish ];
+  # environment.shells = [ pkgs.fish ];
 
   users.users.naderh = {
     home = "/Users/naderh";
@@ -59,7 +59,7 @@
     "com.apple.keyboard.fnState" = false; # Use F1, F2, etc. keys as standard function keys
     "com.apple.mouse.tapBehavior" = 1; # trackpad tap to click
   };
-  
+
   system.defaults.dock.autohide = true;
   system.keyboard.enableKeyMapping = true;
 
@@ -70,10 +70,10 @@
 
   # diable all hot corners
   # https://daiderd.com/nix-darwin/manual/index.html#opt-system.defaults.dock.wvous-tl-corner
-  system.defaults.dock.wvous-tl-corner=1;
-  system.defaults.dock.wvous-bl-corner=1;
-  system.defaults.dock.wvous-tr-corner=1;
-  system.defaults.dock.wvous-br-corner=1;
+  system.defaults.dock.wvous-tl-corner = 1;
+  system.defaults.dock.wvous-bl-corner = 1;
+  system.defaults.dock.wvous-tr-corner = 1;
+  system.defaults.dock.wvous-br-corner = 1;
 
   fonts = {
     fontDir.enable = true;

@@ -14,8 +14,7 @@
     };
 
     # TODO there's a problem here, all aliases defined below don't appear
-    aliases = {
-    };
+    aliases = { };
 
     ignores = [
       "**/.metals/"

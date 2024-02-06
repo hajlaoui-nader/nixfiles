@@ -17,11 +17,15 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode"
-          "Iosevka"
-          "FiraMono"
-          "JetBrainsMono"
-          "SourceCodePro" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "Iosevka"
+        "FiraMono"
+        "JetBrainsMono"
+        "SourceCodePro"
+      ];
+    })
   ];
 
 }

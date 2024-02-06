@@ -46,14 +46,14 @@
     deleteallvolumes = "docker volume rm $(docker volume ls -q)";
     zshreload = "source ~/.zshrc";
     zshrc = "nvim ~/.zshrc";
-    c = "clear"; 
+    c = "clear";
     # git
     gs = "git status";
     gd = "git diff";
     gc = "git commit -v";
 
     # v
-    v = "nvim"; 
+    v = "nvim";
   };
 
   programs = {
@@ -64,15 +64,15 @@
         theme = "DarkNeon";
       };
     };
-    
+
     btop.enable = true;
     eza.enable = true;
-    
+
     jq.enable = true;
     ssh.enable = true;
 
   };
 
-  imports = [ ./fzf.nix ./nvim/nvim.nix];
+  imports = [ ./fzf.nix ./nvim/nvim.nix ];
 
 }
