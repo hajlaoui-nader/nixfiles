@@ -1,4 +1,3 @@
-require'lspkind'.init()
 vim.wo.colorcolumn = "99999"
 vim.opt.list = true
 

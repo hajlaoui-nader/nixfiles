@@ -8,7 +8,15 @@ local feedkey = function(key, mode)
 end
 
 local cmp = require'cmp'
+local lspkind = require'lspkind'
+
 cmp.setup({
+  formatting = {
+    format = lspkind.cmp_format({
+      --options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+      mode = 'text_symbol',
+    })
+  },
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)

@@ -10,6 +10,7 @@
     
       formatters_by_ft = {
         python = { "black" },
+        lua = { "stylua" },
         -- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
         ["_"] = { "trim_whitespace" },
       },
@@ -19,6 +20,9 @@
       formatters = {
         black = {
           command = "${pkgs.black}/bin/black"
+        },
+        stylua = {
+          command = "${pkgs.stylua}/bin/stylua"
         },
       },
     })

@@ -2,7 +2,7 @@
 let
   lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
-  conform = (import ./conform.nix { inherit pkgs; }).conform;
+  conform = (import ./formatters.nix { inherit pkgs; }).conform;
   glowMarkdown = (import ./markdown.nix { inherit pkgs; }).markdown;
   gruberDarker = pkgs.vimUtils.buildVimPlugin {
     name = "gruber-darker-nvim";

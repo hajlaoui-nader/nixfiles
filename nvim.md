@@ -1,5 +1,12 @@
 # here's my neovim shortcuts
 
+## basics
+- `<leader>s` - substitute
+
+## formatters 
+- `python`: `black`
+- `lua`: `stylua`
+
 ## telescope
 - `<ctrl> p`      - Telescope find_files
 - `<leader> ff`   - Telescope find_files
@@ -31,17 +38,7 @@
 
 
 ## LSP
- - `Leader + lr`  - Rename
- - `Leader + ld`  - Go to definition
- - `Leader + ll`  - Show line diagnostic
- - `Leader + lc`  - Show cursor diagnostic
- - `Leader + lp`  - Jump to previous diagnostic
- - `Leader + ln`  - Jump to next diagnostic
- - `Leader + ca`  - Code action
- - `Leader + ls`  - Signature help
- - `Leader + xx`  - Show problems
- - `Leader + lwd` - Show workspace diagnostics
- - `Leader + xq`  - Quickfix
+- TODO 
 
 ## metals
  - `Leader + d`  - Metals commands
