@@ -91,7 +91,7 @@
   users.users.zeus = {
     isNormalUser = true;
     description = "zeus";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       firefox
       git

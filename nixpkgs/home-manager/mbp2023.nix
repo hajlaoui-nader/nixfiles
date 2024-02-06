@@ -13,8 +13,8 @@
   home.homeDirectory = "/Users/naderh";
   home.username = "naderh";
 
-  programs.htop.enable = true;  
-  
+  programs.htop.enable = true;
+
   home.stateVersion = "23.05";
 
   home.packages = with pkgs; [

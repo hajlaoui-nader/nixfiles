@@ -2,6 +2,7 @@
 let
   lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
+  conform = (import ./conform.nix { inherit pkgs; }).conform;
   glowMarkdown = (import ./markdown.nix { inherit pkgs; }).markdown;
   gruberDarker = pkgs.vimUtils.buildVimPlugin {
     name = "gruber-darker-nvim";
@@ -26,7 +27,7 @@ in
       which-key-nvim # keybindings
       nvim-tree-lua # file tree
       gitsigns-nvim # git signs
-      null-ls-nvim
+      conform-nvim # formatter
       nvim-cmp # autocompletion
       cmp-nvim-lsp
       cmp-buffer
@@ -115,6 +116,7 @@ in
       (builtins.readFile ./which-key.lua)
       (builtins.readFile ./basic.lua)
       (builtins.readFile ./completion.lua)
+      conform
       lsp
       (builtins.readFile ./filetree.lua)
       (builtins.readFile ./themes/catppuccin.lua)

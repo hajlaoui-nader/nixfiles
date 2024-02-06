@@ -50,6 +50,7 @@
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lsh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', 'F', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'F', '<cmd>lua require("conform").format({lsp_fallback = true })<CR>', opts)
 
         -- Metals specific
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lmc', '<cmd>lua require("metals").commands()<CR>', opts)
@@ -110,24 +111,8 @@
 
         require('crates').setup {
         }
+
         require('rust-tools').setup(rustopts)
-
-        local null_ls = require("null-ls")
-
-        local null_helpers = require("null-ls.helpers")
-        local null_methods = require("null-ls.methods")
-        local ls_sources = {
-          null_ls.builtins.formatting.black.with({
-              command = "${pkgs.black}/bin/black",
-            }),
-            null_ls.builtins.diagnostics.mypy.with({
-              command = "${pkgs.mypy}/bin/mypy",
-              extra_args = {"--ignore-missing-imports"},
-            }),
-            null_ls.builtins.diagnostics.ruff.with({
-              command = "${pkgs.ruff}/bin/ruff",
-            }),
-          }
 
         default_on_attach_python = function(client, bufnr)
             attach_keymaps(client, bufnr)
@@ -149,15 +134,6 @@
               })
           end
         end
-
-        null_ls.setup({
-          diagnostics_format = "[#{m}] #{s} (#{c})",
-          debounce = 250,
-          default_timeout = 5000,
-          sources = ls_sources,
-          on_attach=default_on_attach_python
-        })
-
 
         -- Python config
       lspconfig.pyright.setup{

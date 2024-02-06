@@ -19,10 +19,14 @@
     #nerdfonts
     copyq
     bitwarden-cli
-    (nerdfonts.override { fonts = [ "FiraCode"
-          "FiraMono"
-          "JetBrainsMono"
-          "SourceCodePro" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "FiraMono"
+        "JetBrainsMono"
+        "SourceCodePro"
+      ];
+    })
   ];
 
 }

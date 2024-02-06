@@ -22,7 +22,7 @@ in
         extraConfig = ''
           set -g @dracula-time-format "%d/%m/%Y %H:%M"
           set -g @dracula-plugins " time cpu-usage ram-usage battery"
-          '';
+        '';
       }
       {
         plugin = resurrect;
