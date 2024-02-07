@@ -63,6 +63,7 @@ cmp.setup({
     end, { 'i', 's' })
   },
   completion = {
+    autocomplete = false, -- autocomplete only on trigger 
     completeopt = 'menu,menuone,noinsert',
   },
 })
