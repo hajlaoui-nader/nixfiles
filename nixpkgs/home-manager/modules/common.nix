@@ -19,7 +19,7 @@
       bottom # a better `top`
       tree-sitter # syntax highlighting
       fd # a better `find`
-      lf # a file manager
+      #lf # a file manager
       nmap
       duf # disk usage
     ] ++ lib.optionals stdenv.isDarwin [
@@ -36,7 +36,7 @@
     DISPLAY = ":0";
     EDITOR = "nvim";
     BROWSER = "firefox";
-    TERMINAL = "alacritty";
+    #TERMINAL = "alacritty";
   };
 
   home.shellAliases = {
