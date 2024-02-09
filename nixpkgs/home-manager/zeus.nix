@@ -11,6 +11,7 @@
     ./programs/rofi
     ./programs/waybar
     ./programs/kitty.nix
+    ./programs/tmux
     ./themes
   ];
 
