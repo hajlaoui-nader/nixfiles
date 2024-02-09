@@ -33,6 +33,11 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
@@ -56,7 +61,7 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -77,7 +82,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -96,7 +101,7 @@
       firefox
       git
       xclip
-      #  #  thunderbird
+      wl-clipboard
     ];
   };
 
@@ -116,6 +121,16 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
+    #(pkgs.waybar.overrideAttrs (oldAttrs: {
+    #mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    #}))
+    #waybar
+    dunst
+    libnotify
+    rofi-wayland
+    swww
+    kitty
+    playerctl
   ];
 
   boot.initrd.kernelModules = [ "amdgpu" ];
@@ -149,6 +164,14 @@
       };
     };
   };
+
+  # hyprland 
+  programs.hyprland.enable = true;
+  programs.hyprland.xwayland.enable = true;
+
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

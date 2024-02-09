@@ -6,7 +6,12 @@
     ./modules/common.nix
     ./modules/zsh
     ./modules/git.nix
+    ./programs/hyprland
     ./programs/alacritty.nix
+    ./programs/rofi
+    ./programs/waybar
+    ./programs/kitty.nix
+    ./themes
   ];
 
   home.stateVersion = "23.11";
@@ -16,7 +21,11 @@
 
   fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
+    home-manager
+    networkmanagerapplet
+    spotify
     #nerdfonts
+    iosevka
     copyq
     bitwarden-cli
     (nerdfonts.override {

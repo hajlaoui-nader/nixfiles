@@ -10,7 +10,8 @@ let
       owner = "blazkowolf";
       repo = "gruber-darker.nvim";
       rev = "master"; # You can specify a specific commit or tag here.
-      sha256 = "OftISM/UpLJsNpnZAC9D/CfDueNjUdbCkrotS4vnH6M="; # Replace with the correct hash.
+      #sha256 = "OftISM/UpLJsNpnZAC9D/CfDueNjUdbCkrotS4vnH6M="; # Replace with the correct hash.
+      sha256 = "dMs2gdzhS8DLg6P0+msJ+cYluV9LoXE5cW3rI2i+tus=";
     };
   };
   #vim-plugins = import ./plugins.nix { inherit pkgs lib; };
