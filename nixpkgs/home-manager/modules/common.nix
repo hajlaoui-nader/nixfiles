@@ -36,7 +36,6 @@
     DISPLAY = ":0";
     EDITOR = "nvim";
     BROWSER = "firefox";
-    #TERMINAL = "alacritty";
   };
 
   home.shellAliases = {

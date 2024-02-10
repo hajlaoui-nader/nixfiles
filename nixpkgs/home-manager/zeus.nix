@@ -7,7 +7,6 @@
     ./modules/zsh
     ./modules/git.nix
     ./programs/hyprland
-    ./programs/alacritty.nix
     ./programs/rofi
     ./programs/waybar
     ./programs/kitty.nix

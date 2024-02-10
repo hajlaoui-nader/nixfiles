@@ -4,7 +4,7 @@
   programs.rofi = {
     enable = true;
     plugins = with pkgs; [ rofi-calc rofi-emoji ];
-    terminal = "${pkgs.alacritty}/bin/alacritty";
+    terminal = "${pkgs.kitty}/bin/kitty";
     #theme = ./theme.rafi;
   };
 
