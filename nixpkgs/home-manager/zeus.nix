@@ -38,4 +38,8 @@
     })
   ];
 
+  home.shellAliases = {
+    open = "xdg-open";
+  };
+
 }
