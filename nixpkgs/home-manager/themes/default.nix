@@ -1,18 +1,19 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     gruvbox-gtk-theme
+    pop-gtk-theme
   ];
 
   gtk = {
     enable = true;
     font.name = "JetBrainsMono 11";
     theme = {
-      name = "gruvbox";
+      name = "pop";
     };
     cursorTheme = {
-      name = "gruvboxc";
+      name = "popc";
       size = 24;
     };
   };
@@ -23,8 +24,8 @@
   };
 
   home.sessionVariables = {
-    XCURSOR_THEME="gruvboxc";
-    XCURSOR_SIZE="24";
+    XCURSOR_THEME = "pop";
+    XCURSOR_SIZE = "24";
   };
 }
 
