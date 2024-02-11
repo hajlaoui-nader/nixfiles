@@ -6,9 +6,9 @@
     ./modules/common.nix
     ./modules/zsh
     ./modules/git.nix
-    ./programs/hyprland
-    ./programs/rofi
-    ./programs/waybar
+    #./programs/hyprland
+    #./programs/rofi
+    #./programs/waybar
     ./programs/kitty.nix
     ./programs/tmux
     ./themes

@@ -20,6 +20,8 @@
       tree-sitter # syntax highlighting
       fd # a better `find`
       #lf # a file manager
+      file # file type
+      xxd # hexdump
       nmap
       duf # disk usage
     ] ++ lib.optionals stdenv.isDarwin [

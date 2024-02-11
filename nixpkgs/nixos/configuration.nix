@@ -61,7 +61,7 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -101,7 +101,7 @@
       firefox
       git
       xclip
-      wl-clipboard
+      #wl-clipboard
     ];
   };
 
@@ -125,10 +125,10 @@
     #mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     #}))
     #waybar
-    dunst
-    libnotify
-    rofi-wayland
-    swww
+    #dunst
+    #libnotify
+    #rofi-wayland
+    #swww
     kitty
     playerctl
   ];
@@ -166,12 +166,29 @@
   };
 
   # hyprland 
-  programs.hyprland.enable = true;
-  programs.hyprland.xwayland.enable = true;
+  #programs.hyprland.enable = true;
+  #programs.hyprland.xwayland.enable = true;
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
+  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
+  nix = {
+
+    settings.auto-optimise-store = true;
+
+    extraOptions = ''
+      # needed for nix-direnv
+      keep-outputs = true
+      keep-derivations = true
+
+      # assuming the builder has a faster internet connection
+      builders-use-substitutes = true
+
+      experimental-features = nix-command flakes
+    '';
+  };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
