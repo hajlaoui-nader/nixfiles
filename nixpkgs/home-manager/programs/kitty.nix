@@ -16,6 +16,9 @@
 
       copy_on_select yes
 
+      # Set transparency
+      background_opacity 0.8
+
     '';
 
   };
