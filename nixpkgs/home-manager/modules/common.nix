@@ -55,6 +55,8 @@
 
     # v
     v = "nvim";
+    installedpackages = "nix-store --query --requisites /run/current-system";
+    installedpackagespretty = "nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq";
   };
 
   programs = {

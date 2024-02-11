@@ -131,6 +131,7 @@
     #swww
     kitty
     playerctl
+    pciutils
   ];
 
   boot.initrd.kernelModules = [ "amdgpu" ];
