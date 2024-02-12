@@ -2,20 +2,21 @@
 
 {
   home.packages = with pkgs; [
-    gruvbox-gtk-theme
     pop-gtk-theme
+    pop-icon-theme
   ];
 
   gtk = {
     enable = true;
     font.name = "JetBrainsMono 11";
     theme = {
-      name = "pop";
+      name = "Pop";
     };
     cursorTheme = {
       name = "popc";
       size = 24;
     };
+    iconTheme.name = "Pop";
   };
 
   qt = {
@@ -24,7 +25,7 @@
   };
 
   home.sessionVariables = {
-    XCURSOR_THEME = "pop";
+    XCURSOR_THEME = "Pop";
     XCURSOR_SIZE = "24";
   };
 }
