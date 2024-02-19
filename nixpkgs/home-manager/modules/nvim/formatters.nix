@@ -11,6 +11,9 @@
       formatters_by_ft = {
         python = { "black" },
         lua = { "stylua" },
+        html = { "prettier" },
+        css = { "prettier" },
+        markdown = { "prettier" },
         -- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
         ["_"] = { "trim_whitespace" },
       },
@@ -23,6 +26,9 @@
         },
         stylua = {
           command = "${pkgs.stylua}/bin/stylua"
+        },
+        prettier = {
+          command = "${pkgs.nodePackages.prettier}/bin/prettier"
         },
       },
     })
