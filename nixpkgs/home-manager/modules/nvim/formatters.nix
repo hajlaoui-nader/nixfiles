@@ -1,5 +1,11 @@
 { pkgs, ... }: {
   conform = ''
+    -- set formatting shortcut if lsp is not attached
+    vim.api.nvim_set_keymap("n", "F", '<cmd>lua require("conform").format({lsp_fallback = true })<CR>', {
+        noremap = true,
+        silent = true,
+    })
+    
     require("conform").setup({
     
       format_on_save = {

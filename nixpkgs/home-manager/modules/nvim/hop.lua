@@ -1,6 +1,6 @@
-vim.api.nvim_set_keymap('n', '<leader>h', "<cmd> HopPattern<CR>", {
-    noremap = true,
-    silent = true
-});
+vim.api.nvim_set_keymap("n", "<leader>h", "<cmd> HopPattern<CR>", {
+	noremap = true,
+	silent = true,
+})
 
-require('hop').setup()
+require("hop").setup()
