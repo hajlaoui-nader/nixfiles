@@ -69,7 +69,7 @@ in
           html
           css
           scss
-
+          vimdoc
           #(tree-sitter-scala.overrideAttrs
           #(old: {
           #version = "master";
