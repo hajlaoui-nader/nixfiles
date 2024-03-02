@@ -3,7 +3,8 @@
     -- Enable trouble diagnostics viewer
     require'nvim-lightbulb'.setup()
 
-    require("lsp_signature").setup()
+    -- Disable lsp signature
+    -- require("lsp_signature").setup()
     
     vim.cmd [[
       augroup RustMappings
