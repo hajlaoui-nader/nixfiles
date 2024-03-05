@@ -100,7 +100,7 @@ in
       rust-tools-nvim
       crates-nvim
       # notify 
-      nvim-notify
+      #nvim-notify
       # undotree
       undotree
       # references
@@ -127,7 +127,7 @@ in
       (builtins.readFile ./metals.lua)
       (builtins.readFile ./gitsigns.lua)
       (builtins.readFile ./fugitive.lua)
-      (builtins.readFile ./notify.lua)
+      #(builtins.readFile ./notify.lua)
       (builtins.readFile ./autopairs.lua)
       (builtins.readFile ./comments.lua)
       (builtins.readFile ./statusline.lua)
