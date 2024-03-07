@@ -9,7 +9,7 @@ this is a basic flake definitions containing my basic configuration for my:
 
 # Before
 
-- Install [Nix][nix] and then install [home-manager][home-manager]. You should be
+- Install [Nix](!https://nixos.org/) and then install [home-manager](!https://github.com/nix-community/home-manager). You should be
   able to run the `home-manager` program in a shell.
 
 # The how ?
