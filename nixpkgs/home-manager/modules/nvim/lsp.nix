@@ -219,5 +219,13 @@
           end,
           cmd = { "${pkgs.nodePackages.vscode-html-languageserver-bin}/bin/html-languageserver", "--stdio" }
         }
+
+
+      -- C Config
+      lspconfig.clangd.setup {
+          capabilities = capabilities;
+          on_attach = default_on_attach,
+          cmd = { "/usr/bin/clangd", "--offset-encoding=utf-16" }
+        }
   '';
 }
