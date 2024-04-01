@@ -29,7 +29,7 @@ o.autoindent = true
 o.expandtab = true
 o.syntax = "on"
 o.spelllang = "en_us"
-o.spell = true
+o.spell = false
 
 vim.cmd([[ set signcolumn=yes ]])
 
