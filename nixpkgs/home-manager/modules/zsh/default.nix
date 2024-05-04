@@ -10,7 +10,7 @@
     enable = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     oh-my-zsh = {
       enable = true;
       plugins = [ "z" ];
@@ -46,7 +46,7 @@
       JK_MACHINE_NAME = "nh-shell";
     };
 
-    shellAliases = {};
+    shellAliases = { };
 
     initExtraBeforeCompInit = ''
       # powerlevel10k
