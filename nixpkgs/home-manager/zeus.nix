@@ -40,6 +40,7 @@
 
   home.shellAliases = {
     open = "xdg-open";
+    generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
   };
 
 }
