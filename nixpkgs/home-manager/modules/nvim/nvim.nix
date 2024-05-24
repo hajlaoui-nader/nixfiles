@@ -120,7 +120,7 @@ in
       conform
       lsp
       (builtins.readFile ./filetree.lua)
-      (builtins.readFile ./themes/catppuccin.lua)
+      (builtins.readFile ./themes/onedark.lua)
       (builtins.readFile ./treesitter.lua)
       telescope
       (builtins.readFile ./trouble.lua)
