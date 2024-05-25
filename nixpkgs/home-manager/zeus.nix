@@ -11,8 +11,7 @@
     #./programs/waybar
     ./programs/kitty.nix
     ./programs/tmux
-    ./themes
-  ];
+   ];
 
   home.stateVersion = "23.11";
 
