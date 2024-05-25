@@ -84,4 +84,13 @@ nix-env -iA nixpkgs.<package>
 nix search nixpkgs <package>
 ```
 
+## Update system
+
+```shell
+nix flake update
+
+# Apply the updates
+sudo nixos-rebuild switch --flake .#??? <== put output
+```
+
 ### TODO
