@@ -10,17 +10,10 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  # ntfs support
-  boot.supportedFilesystems = [ "ntfs" ];
 
   # Bootloader.
-  #boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  #
-  boot.loader.grub.enable = true;
-  boot.loader.grub.devices = [ "nodev" ];
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.useOSProber = true;
 
 
   networking.hostName = "zeusos"; # Define your hostname.
@@ -108,6 +101,15 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "zeus";
+
+  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
+
+
+  programs.firefox.enable = true;
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -129,25 +131,6 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
   virtualisation = {
     docker = {
       enable = true;
@@ -157,14 +140,6 @@
       };
     };
   };
-
-  # hyprland 
-  #programs.hyprland.enable = true;
-  #programs.hyprland.xwayland.enable = true;
-
-  xdg.portal.enable = true;
-  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   nix = {
 
