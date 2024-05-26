@@ -10,8 +10,8 @@
     enable = true;
     syntaxHighlighting.enable = true;
     enableCompletion = true;
-    #autosuggestion.enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
+    #enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
       plugins = [ "z" ];
