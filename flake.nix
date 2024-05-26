@@ -19,8 +19,11 @@
   };
 
   outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-23_11, home-manager }: {
+    
+     
     nixosConfigurations = {
-      zeus = nixpkgs-23_11.lib.nixosSystem {
+      zeus = nixpkgs-unstable.lib.nixosSystem rec {
+        
         system = "x86_64-linux";
         modules = [
           ./nixpkgs/nixos/zeus.nix
@@ -31,7 +34,9 @@
             home-manager.users.zeus =
               import ./nixpkgs/home-manager/zeus.nix;
             home-manager.extraSpecialArgs = {
-              inherit nixpkgs-23_11;
+                nixpkgs = nixpkgs-23_11 {
+                  inherit system;
+                };
             };
           }
           {
@@ -40,7 +45,7 @@
         ];
       };
     };
-
+	
     homeConfigurations = {
       linux = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
