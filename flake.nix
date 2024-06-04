@@ -5,7 +5,12 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-24_05.url = "github:NixOS/nixpkgs/nixos-24.05";
 
-    home-manager = {
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs-24_05";
+    };
+
+    home-manager-unstable = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
@@ -18,16 +23,16 @@
     };
   };
 
-  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-24_05, home-manager }: {
+  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-24_05, home-manager-stable, home-manager-unstable }: {
 
 
     nixosConfigurations = {
-      zeus = nixpkgs-unstable.lib.nixosSystem rec {
+      zeus = nixpkgs-24_05.lib.nixosSystem rec {
 
         system = "x86_64-linux";
         modules = [
           ./nixpkgs/nixos/zeus.nix
-          inputs.home-manager.nixosModules.home-manager
+          home-manager-stable.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -73,7 +78,7 @@
         system = "aarch64-darwin";
         modules = [
           ./nixpkgs/darwin/mbp2023/configuration.nix
-          home-manager.darwinModules.home-manager
+          home-manager-unstable.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
