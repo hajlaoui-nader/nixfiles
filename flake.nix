@@ -31,7 +31,7 @@
 
         system = "x86_64-linux";
         modules = [
-          ./nixpkgs/nixos/zeus.nix
+          ./machines/nixos/zeus.nix
           home-manager-stable.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -77,7 +77,7 @@
       mbp2023 = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
-          ./nixpkgs/darwin/mbp2023/configuration.nix
+          ./machines/darwin/mbp2023/configuration.nix
           home-manager-unstable.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
