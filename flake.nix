@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-23_11.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-24_05.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -18,12 +18,12 @@
     };
   };
 
-  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-23_11, home-manager }: {
-    
-     
+  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-24_05, home-manager }: {
+
+
     nixosConfigurations = {
       zeus = nixpkgs-unstable.lib.nixosSystem rec {
-        
+
         system = "x86_64-linux";
         modules = [
           ./nixpkgs/nixos/zeus.nix
@@ -34,9 +34,9 @@
             home-manager.users.zeus =
               import ./nixpkgs/home-manager/zeus.nix;
             home-manager.extraSpecialArgs = {
-                nixpkgs = nixpkgs-23_11 {
-                  inherit system;
-                };
+              nixpkgs = nixpkgs-24_05 {
+                inherit system;
+              };
             };
           }
           {
@@ -45,7 +45,7 @@
         ];
       };
     };
-	
+
     homeConfigurations = {
       linux = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
@@ -87,7 +87,7 @@
             nix.settings.trusted-users = [ "naderh" ];
           }
         ];
-        inputs = { inherit darwin nixpkgs-unstable; };
+        inputs = { inherit darwin nixpkgs-24_05; };
       };
     };
 
