@@ -93,4 +93,11 @@ nix flake update
 sudo nixos-rebuild switch --flake .#??? <== put output
 ```
 
+### repl
+
+```shell
+nix repl
+    > :lf . # load flake
+```
+
 ### TODO
