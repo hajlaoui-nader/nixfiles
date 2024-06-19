@@ -159,6 +159,14 @@
 
       experimental-features = nix-command flakes
     '';
+
+    # Perform garbage collection weekly to maintain low disk usage
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 1w";
+    };
+
   };
 
 
