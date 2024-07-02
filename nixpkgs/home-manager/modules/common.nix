@@ -32,6 +32,7 @@
       libuuid # `uuidgen` (already pre-installed on mac)
       font-awesome # awesome fonts
       material-design-icons # fonts with glyphs
+      vscode
     ];
 
   home.sessionVariables = {
