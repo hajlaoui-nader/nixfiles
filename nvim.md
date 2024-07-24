@@ -3,6 +3,7 @@
 ## basics
 
 - `<leader>s` - substitute
+- select word using `*` or `#`, change it with `cgn`, `.` to repeat
 
 ## formatters
 
