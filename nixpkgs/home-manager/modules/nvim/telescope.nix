@@ -107,7 +107,8 @@
             "--with-filename",
             "--line-number",
             "--column",
-            "--smart-case"
+            "--smart-case",
+            "--fixed-strings"
           },
           pickers = {
             find_command = {
