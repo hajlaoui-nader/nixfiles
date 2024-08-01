@@ -19,6 +19,7 @@
 
     darwin = {
       url = "github:lnl7/nix-darwin/master";
+      # if you want to change darwin to use stable change the following, now darwin follows nixpkgs-unstable
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
@@ -85,7 +86,7 @@
             home-manager.users.naderh =
               import ./nixpkgs/home-manager/mbp2023.nix;
             home-manager.extraSpecialArgs = {
-              inherit nixpkgs-unstable;
+              # put here the variables that you want to pass to the home-manager configuration such as pkgs unstable
             };
           }
           {
