@@ -10,7 +10,10 @@
 
   imports = [ ];
 
-  # # Auto upgrade nix package and the daemon service.
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
   nix = {
@@ -87,8 +90,7 @@
   system.defaults.dock.wvous-br-corner = 1;
 
   fonts = {
-    fontDir.enable = true;
-    fonts = [
+    packages = [
       pkgs.inter
       (pkgs.nerdfonts.override {
         fonts = [
