@@ -10,7 +10,10 @@
 
   imports = [ ];
 
-  # # Auto upgrade nix package and the daemon service.
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
 
   nix = {
