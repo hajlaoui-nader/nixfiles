@@ -20,7 +20,7 @@
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       # if you want to change darwin to use stable change the following, now darwin follows nixpkgs-unstable
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs-24_05";
     };
   };
 
@@ -75,19 +75,24 @@
     };
 
     darwinConfigurations = {
-      mbp2023 = darwin.lib.darwinSystem {
+      mbp2023 = darwin.lib.darwinSystem rec {
         system = "aarch64-darwin";
         modules = [
           ./machines/darwin/mbp2023/configuration.nix
-          home-manager-unstable.darwinModules.home-manager
+          home-manager-stable.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.naderh =
               import ./nixpkgs/home-manager/mbp2023.nix;
-            home-manager.extraSpecialArgs = {
-              # put here the variables that you want to pass to the home-manager configuration such as pkgs unstable
-            };
+            home-manager.extraSpecialArgs =
+              {
+                # put here the variables that you want to pass to the home-manager configuration such as pkgs unstable
+                unstable = import nixpkgs-unstable
+                  {
+                    inherit system;
+                  };
+              };
           }
           {
             nix.settings.trusted-users = [ "naderh" ];

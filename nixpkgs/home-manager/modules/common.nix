@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, ... }: {
+{ inputs, config, pkgs, unstable, lib, ... }: {
 
   # https://github.com/nix-community/nix-direnv#via-home-manager
   programs.direnv.enable = true;

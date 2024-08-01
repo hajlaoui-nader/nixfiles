@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, unstable, ... }:
 let
   lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
@@ -18,6 +18,7 @@ let
 in
 {
   programs.neovim = {
+    package = unstable.neovim;
     enable = true;
     plugins = with pkgs.vimPlugins; [
       # tokyonight-nvim # theme
