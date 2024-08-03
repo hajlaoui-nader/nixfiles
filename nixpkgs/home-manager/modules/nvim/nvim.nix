@@ -18,7 +18,7 @@ let
 in
 {
   programs.neovim = {
-    package = unstable.neovim;
+    #package = unstable.neovim;
     enable = true;
     plugins = with pkgs.vimPlugins; [
       # tokyonight-nvim # theme

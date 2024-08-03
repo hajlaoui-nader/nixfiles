@@ -20,7 +20,7 @@
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       # if you want to change darwin to use stable change the following, now darwin follows nixpkgs-unstable
-      inputs.nixpkgs.follows = "nixpkgs-24_05";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
@@ -79,7 +79,7 @@
         system = "aarch64-darwin";
         modules = [
           ./machines/darwin/mbp2023/configuration.nix
-          home-manager-stable.darwinModules.home-manager
+          home-manager-unstable.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

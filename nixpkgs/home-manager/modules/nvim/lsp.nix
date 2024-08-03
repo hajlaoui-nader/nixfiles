@@ -139,7 +139,7 @@
       lspconfig.pyright.setup{
         capabilities = capabilities;
         on_attach=default_on_attach_python;
-        cmd = {"${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"};
+        cmd = {"${pkgs.pyright}/bin/pyright-langserver", "--stdio"};
         python = {
           analysis = {
             autoSearchPaths = true,
@@ -217,7 +217,7 @@
           on_attach = function(client, bufnr)
             attach_keymaps(client, bufnr)
           end,
-          cmd = { "${pkgs.nodePackages.vscode-html-languageserver-bin}/bin/html-languageserver", "--stdio" }
+          cmd = { "${pkgs.vscode-langservers-extracted}/bin/html-languageserver", "--stdio" }
         }
 
 

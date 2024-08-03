@@ -1,35 +1,30 @@
 -- Set variable so other plugins can register mappings
 local wk = require("which-key")
 
- -- Set up which-key
- require("which-key").setup {}
+-- Set up which-key
+require("which-key").setup({})
 
 wk.register({
-    ["<F5>"] = {"<cmd>UndotreeToggle<CR>", "Toggle UndoTree"},
+	{ "<leader>", "<leader><F5>", desc = "<cmd>UndotreeToggle<CR>" },
 }, { prefix = "<leader>" })
 
 -- Register gitsigns keybindings with descriptions
 wk.register({
-  g = {
-    name = "Gitsigns", -- Optional group name
-    n = {"<cmd>Gitsigns next_hunk<CR>", "Next Hunk"},
-    p = {"<cmd>Gitsigns prev_hunk<CR>", "Previous Hunk"},
-    s = {"<cmd>Gitsigns stage_hunk<CR>", "Stage Hunk"},
-    r = {"<cmd>Gitsigns reset_hunk<CR>", "Reset Hunk"},
-    S = {"<cmd>Gitsigns stage_buffer<CR>", "Stage Buffer"},
-    u = {"<cmd>Gitsigns undo_stage_hunk<CR>", "Undo Stage Hunk"},
-    R = {"<cmd>Gitsigns reset_buffer<CR>", "Reset Buffer"},
-    b = {"<cmd>lua require'gitsigns'.blame_line{full=true}<CR>", "Blame Line"},
-    p = {"<cmd>Gitsigns preview_hunk<CR>", "Preview Hunk"},
-    t = {
-      name = "Toggle",
-      s = {"<cmd>Gitsigns toggle_signs<CR>", "Toggle Signs"},
-      d = {"<cmd>Gitsigns toggle_deleted<CR>", "Toggle Deleted"},
-      b = {"<cmd>Gitsigns toggle_current_line_blame<CR>", "Toggle Line Blame"},
-  },
-
-    d = {"<cmd>Gitsigns diffthis<CR>", "Diff This"},
-    D = {"<cmd>lua require'gitsigns'.diffthis('~')<CR>", "Diff This ~"},
-    -- Text object not necessary to show in which-key
-  }
+	{
+		{ "<leader>", "<leader>gr", desc = "<cmd>gitsigns reset_hunk<cr>" },
+		{ "<leader>", "<leader>gr", desc = "<cmd>gitsigns reset_buffer<cr>" },
+		{ "<leader>", "<leader>gd", desc = "<cmd>lua require'gitsigns'.diffthis('~')<cr>" },
+		{ "<leader>", "<leader>gs", desc = "<cmd>gitsigns stage_buffer<cr>" },
+		{ "<leader>", "<leader>gd", desc = "<cmd>gitsigns diffthis<cr>" },
+		{ "<leader>", "<leader>gb", desc = "<cmd>lua require'gitsigns'.blame_line{full=true}<cr>" },
+		{ "<leader>", "<leader>gn", desc = "<cmd>gitsigns next_hunk<cr>" },
+		{ "<leader>", group = "gitsigns" },
+		{ "<leader>", "<leader>gts", desc = "<cmd>gitsigns toggle_signs<cr>" },
+		{ "<leader>", "<leader>gs", desc = "<cmd>gitsigns stage_hunk<cr>" },
+		{ "<leader>", "<leader>gu", desc = "<cmd>gitsigns undo_stage_hunk<cr>" },
+		{ "<leader>", group = "toggle" },
+		{ "<leader>", "<leader>gtd", desc = "<cmd>gitsigns toggle_deleted<cr>" },
+		{ "<leader>", "<leader>gtb", desc = "<cmd>gitsigns toggle_current_line_blame<cr>" },
+		{ "<leader>", "<leader>gp", desc = "<cmd>gitsigns preview_hunk<cr>" },
+	},
 }, { prefix = "<leader>" })
