@@ -14,6 +14,9 @@ class Jelo:
     def say_hello(self) -> str:
         return f"Hello, {self.name}!"
 
+    def say_goodbye(self) -> str:
+        return f"Goodbye, {self.name}!"
+
 
 a = Jelo("Jelo")
 a.say_hello()

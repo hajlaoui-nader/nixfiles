@@ -40,11 +40,13 @@ in
       nvim-autopairs # auto pairs
       nerdcommenter # comments
       nvim-web-devicons # icons
+      mini-nvim # containing mini.icons
       glow-nvim # markdown preview
       lualine-nvim # statusline
       #nvim-treesitter.withAllGrammars
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
+          tsx
           nix
           c
           python
