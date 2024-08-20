@@ -31,6 +31,11 @@ o.syntax = "on"
 o.spelllang = "en_us"
 o.spell = false
 
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = "*.md",
+	command = "setlocal spell",
+})
+
 vim.cmd([[ set signcolumn=yes ]])
 
 vim.api.nvim_set_keymap("n", "<space>", "<nop>", {

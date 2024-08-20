@@ -47,8 +47,8 @@ cmp.setup({
 				cmp.select_next_item()
 			elseif vim.fn["vsnip#available"](1) == 1 then
 				feedkey("<Plug>(vsnip-expand-or-jump)", "")
-				--elseif has_words_before() then
-				--cmp.complete()
+			elseif has_words_before() then
+				cmp.complete()
 			else
 				fallback()
 			end
@@ -63,10 +63,18 @@ cmp.setup({
 		end, { "i", "s" }),
 	},
 	completion = {
-		autocomplete = false, -- autocomplete only on trigger
+		--autocomplete = false, -- autocomplete only on trigger
 		completeopt = "menu,menuone,noinsert",
 	},
 })
 
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { text = "" } }))
+
+-- dadbod
+cmp.filetypes({ "sql" }, {
+	sources = {
+		{ name = "vim-dadbod-completion" },
+		{ name = "buffer" },
+	},
+})

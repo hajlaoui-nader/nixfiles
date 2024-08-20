@@ -112,12 +112,17 @@ in
       nvim-neoclip-lua
       # fugitive
       vim-fugitive
+      # db
+      vim-dadbod
+      # db-ui
+      vim-dadbod-ui
+      # db-completion
+      vim-dadbod-completion
     ];
 
     extraConfig = ''
       lua << EOF
     '' + (builtins.concatStringsSep "\n" [
-      (builtins.readFile ./which-key.lua)
       (builtins.readFile ./basic.lua)
       (builtins.readFile ./completion.lua)
       conform
@@ -141,6 +146,7 @@ in
       (builtins.readFile ./copilot.lua)
       (builtins.readFile ./undotree.lua)
       (builtins.readFile ./neoclip.lua)
+      (builtins.readFile ./which-key.lua)
       glowMarkdown
     ]) + ''
 
