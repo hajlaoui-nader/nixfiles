@@ -20,3 +20,5 @@ class Jelo:
 
 a = Jelo("Jelo")
 a.say_hello()
+b = Jelo("Jelo")
+b.say_goodbye()

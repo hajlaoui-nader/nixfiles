@@ -123,6 +123,7 @@ in
     extraConfig = ''
       lua << EOF
     '' + (builtins.concatStringsSep "\n" [
+      (builtins.readFile ./which-key.lua)
       (builtins.readFile ./basic.lua)
       (builtins.readFile ./completion.lua)
       conform
@@ -146,7 +147,6 @@ in
       (builtins.readFile ./copilot.lua)
       (builtins.readFile ./undotree.lua)
       (builtins.readFile ./neoclip.lua)
-      (builtins.readFile ./which-key.lua)
       glowMarkdown
     ]) + ''
 
