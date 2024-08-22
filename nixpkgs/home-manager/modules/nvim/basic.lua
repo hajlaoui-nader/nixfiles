@@ -30,6 +30,8 @@ o.expandtab = true
 o.syntax = "on"
 o.spelllang = "en_us"
 o.spell = false
+o.ignorecase = true
+o.smartcase = true
 
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	pattern = "*.md",
