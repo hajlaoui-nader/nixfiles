@@ -26,6 +26,9 @@ in
       onedark-nvim # theme
       gruberDarker # theme
       telescope-nvim # fuzzy finder
+      telescope-ui-select-nvim # telescope ui
+      actions-preview-nvim # code action
+      nui-nvim # ui
       which-key-nvim # keybindings
       nvim-tree-lua # file tree
       gitsigns-nvim # git signs
@@ -118,6 +121,7 @@ in
       vim-dadbod-ui
       # db-completion
       vim-dadbod-completion
+
     ];
 
     extraConfig = ''
@@ -148,6 +152,7 @@ in
       (builtins.readFile ./undotree.lua)
       (builtins.readFile ./neoclip.lua)
       glowMarkdown
+      (builtins.readFile ./actions.lua)
     ]) + ''
 
       EOF'';

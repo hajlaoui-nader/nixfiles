@@ -1,10 +1,14 @@
 { pkgs, ... }: {
   lsp = ''
     -- Enable trouble diagnostics viewer
-    require'nvim-lightbulb'.setup()
+    require("nvim-lightbulb").setup(
+      {
+        autocmd = { enabled = true }
+      }
+    )
 
-    -- Disable lsp signature
-    -- require("lsp_signature").setup()
+    -- lsp signature: hints as you type
+    require("lsp_signature").setup()
     
     vim.cmd [[
       augroup RustMappings
@@ -39,7 +43,7 @@
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 
         -- Alternative keybinding for code actions for when code-action-menu does not work as expected.
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lca', '<cmd>lua require("actions-preview").code_actions()<CR>', opts)
 
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
         vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
@@ -227,5 +231,7 @@
           on_attach = default_on_attach,
           cmd = { "/usr/bin/clangd", "--offset-encoding=utf-16" }
         }
+
+      require("telescope").load_extension("ui-select")
   '';
 }

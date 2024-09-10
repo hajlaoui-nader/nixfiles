@@ -1,9 +1,21 @@
+import os
+
+
 def hello() -> str:
+    print("Hello, world!")
+    "jell" * 2
     return "Hello, world!"
 
 
 def goodbye() -> str:
     return "Goodbye, world!"
+
+
+def how() -> str:
+    return ""
+
+
+ds = {"a": 1, "b": 34}
 
 
 class Jelo:
@@ -22,3 +34,6 @@ a = Jelo("Jelo")
 a.say_hello()
 b = Jelo("Jelo")
 b.say_goodbye()
+Jelo("heou")
+Hello = Jelo("Hello")
+ds.get("vd")
