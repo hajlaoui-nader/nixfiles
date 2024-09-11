@@ -37,3 +37,19 @@ b.say_goodbye()
 Jelo("heou")
 Hello = Jelo("Hello")
 ds.get("vd")
+
+
+def jello() -> str:
+    return "jello"
+
+
+# generate : init.py
+def generate() -> str:
+    return "generate"
+
+
+def generate2() -> str:
+    return "generate2"
+
+
+":"

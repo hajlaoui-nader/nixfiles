@@ -29,6 +29,7 @@ in
       telescope-ui-select-nvim # telescope ui
       actions-preview-nvim # code action
       nui-nvim # ui
+      nvim-surround # surround
       which-key-nvim # keybindings
       nvim-tree-lua # file tree
       gitsigns-nvim # git signs
@@ -153,6 +154,7 @@ in
       (builtins.readFile ./neoclip.lua)
       glowMarkdown
       (builtins.readFile ./actions.lua)
+      (builtins.readFile ./surround.lua)
     ]) + ''
 
       EOF'';
