@@ -176,3 +176,15 @@ vim.cmd([[
 ]])
 
 vim.api.nvim_set_keymap("x", "<leader>p", '"_dP', { noremap = true, silent = true })
+
+-- close buffer
+vim.api.nvim_set_keymap("n", "<leader>bx", ":bd<CR>", {
+	noremap = true,
+	silent = true,
+})
+
+-- close all buffers
+vim.api.nvim_set_keymap("n", "<leader>ba", ":bufdo bd<CR>", {
+	noremap = true,
+	silent = true,
+})
