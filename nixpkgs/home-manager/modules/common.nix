@@ -24,6 +24,7 @@
       xxd # hexdump
       nmap
       duf # disk usage
+      lua-language-server
     ] ++ lib.optionals stdenv.isDarwin [
       coreutils # provides `dd` with --status=progress
       wifi-password
