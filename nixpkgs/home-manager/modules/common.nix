@@ -25,6 +25,7 @@
       nmap
       duf # disk usage
       lua-language-server
+      lua
     ] ++ lib.optionals stdenv.isDarwin [
       coreutils # provides `dd` with --status=progress
       wifi-password
