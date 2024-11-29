@@ -20,7 +20,7 @@
   home.packages = with unstable; [
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/fonts/nerdfonts/default.nix
     # nerdfonts
-    bitwarden-cli
+    #bitwarden-cli # it causes an error
   ];
 
 

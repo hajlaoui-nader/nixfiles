@@ -2,7 +2,7 @@
   description = "home-manager configuration for linux, mac and raspberry pi";
 
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/af51545ec9a44eadf3fe3547610a5cdd882bc34e";
     nixpkgs-24_05.url = "github:NixOS/nixpkgs/nixos-24.05";
 
     home-manager-stable = {
@@ -11,7 +11,7 @@
     };
 
     home-manager-unstable = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/2f7739d01080feb4549524e8f6927669b61c6ee3";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -98,7 +98,7 @@
             nix.settings.trusted-users = [ "naderh" ];
           }
         ];
-        inputs = { inherit darwin nixpkgs-24_05; };
+        inputs = { inherit darwin nixpkgs-unstable; };
       };
     };
 

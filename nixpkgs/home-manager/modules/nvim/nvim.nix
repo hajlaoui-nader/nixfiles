@@ -3,7 +3,6 @@ let
   lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
   conform = (import ./formatters.nix { inherit pkgs; }).conform;
-  glowMarkdown = (import ./markdown.nix { inherit pkgs; }).markdown;
   gruberDarker = pkgs.vimUtils.buildVimPlugin {
     name = "gruber-darker-nvim";
     src = pkgs.fetchFromGitHub {
@@ -41,11 +40,11 @@ in
       cmp-path
       cmp-treesitter
       vim-vsnip
+      render-markdown-nvim # markdown preview
       nvim-autopairs # auto pairs
       nerdcommenter # comments
       nvim-web-devicons # icons
       mini-nvim # containing mini.icons
-      glow-nvim # markdown preview
       lualine-nvim # statusline
       #nvim-treesitter.withAllGrammars
       (nvim-treesitter.withPlugins (
@@ -102,7 +101,7 @@ in
       bufferline-nvim # bufferline
       nvim-cursorline # cursorline
       indent-blankline-nvim # indent lines
-      copilot-vim # copilot
+      #copilot-vim # copilot
       # rust
       rust-tools-nvim
       crates-nvim
@@ -122,6 +121,8 @@ in
       vim-dadbod-ui
       # db-completion
       vim-dadbod-completion
+      # float terminal 
+      toggleterm-nvim
 
     ];
 
@@ -149,12 +150,12 @@ in
       (builtins.readFile ./visuals.lua)
       (builtins.readFile ./json.lua)
       (builtins.readFile ./hop.lua)
-      (builtins.readFile ./copilot.lua)
+      #(builtins.readFile ./copilot.lua)
       (builtins.readFile ./undotree.lua)
       (builtins.readFile ./neoclip.lua)
-      glowMarkdown
       (builtins.readFile ./actions.lua)
       (builtins.readFile ./surround.lua)
+      (builtins.readFile ./terminal.lua)
     ]) + ''
 
       EOF'';

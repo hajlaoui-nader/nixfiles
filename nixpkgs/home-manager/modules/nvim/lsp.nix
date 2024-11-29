@@ -207,7 +207,7 @@
       vim.cmd([[augroup end]])
 
       -- TS config
-      lspconfig.tsserver.setup {
+      lspconfig.ts_ls.setup {
           capabilities = capabilities;
           on_attach = function(client, bufnr)
             attach_keymaps(client, bufnr)
@@ -221,7 +221,7 @@
           on_attach = function(client, bufnr)
             attach_keymaps(client, bufnr)
           end,
-          cmd = { "${pkgs.vscode-langservers-extracted}/bin/html-languageserver", "--stdio" }
+          cmd = { "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server", "--stdio" }
         }
 
 
