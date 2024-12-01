@@ -26,6 +26,7 @@ require("lualine").setup({
 				},
 			},
 			{ "filetype" },
+			"filesize",
 			"fileformat",
 			"encoding",
 		},
