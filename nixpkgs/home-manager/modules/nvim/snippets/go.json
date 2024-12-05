@@ -1,0 +1,62 @@
+{
+  "Main Function": {
+    "prefix": "main",
+    "body": [
+      "package main",
+      "",
+      "import \"fmt\"",
+      "",
+      "func main() {",
+      "    fmt.Println(\"${1:Hello, World!}\")",
+      "}"
+    ],
+    "description": "Create a Go main function"
+  },
+  "Function": {
+    "prefix": "func",
+    "body": [
+      "func ${1:FunctionName}(${2:params}) ${3:returnType} {",
+      "    ${0:// TODO: Implement}",
+      "}"
+    ],
+    "description": "Define a Go function"
+  },
+  "Struct": {
+    "prefix": "struct",
+    "body": [
+      "type ${1:StructName} struct {",
+      "    ${2:FieldName} ${3:FieldType}",
+      "}",
+      ""
+    ],
+    "description": "Define a Go struct"
+  },
+  "Method": {
+    "prefix": "method",
+    "body": [
+      "func (${1:receiver} *${2:Type}) ${3:MethodName}(${4:params}) ${5:returnType} {",
+      "    ${0:// TODO: Implement}",
+      "}"
+    ],
+    "description": "Define a Go method"
+  },
+  "Goroutine": {
+    "prefix": "go",
+    "body": [
+      "go ${1:functionCall}()"
+    ],
+    "description": "Launch a goroutine"
+  },
+  "Channel": {
+    "prefix": "channel",
+    "body": [
+      "ch := make(chan ${1:Type})",
+      "go func() {",
+      "    ${2:// channel work}",
+      "    ch <- ${3:result}",
+      "}( )"
+    ],
+    "description": "Create a Go channel and use it"
+  }
+}
+

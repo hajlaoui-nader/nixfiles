@@ -232,6 +232,12 @@
               cmd = { "/usr/bin/clangd", "--offset-encoding=utf-16" }
             }
 
+            lspconfig.gopls.setup {
+              capabilities = capabilities;
+              on_attach = default_on_attach;
+              cmd = { "${pkgs.gopls}/bin/gopls", "serve" }
+            }
+
           -- Lua Config
      lspconfig.lua_ls.setup {
             on_init = function(client)

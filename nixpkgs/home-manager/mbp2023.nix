@@ -23,7 +23,6 @@
     #bitwarden-cli # it causes an error
   ];
 
-
   home.sessionVariables = {
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";

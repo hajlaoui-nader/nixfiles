@@ -1,8 +1,22 @@
 import os
 
 
+def main():
+    """
+    Main function.
+    """
+    # TODO: Implement main logic
+
+
+if __name__ == "__main__":
+    main()
+if __name__ == "__main__":
+    main()
+
+
 def hello() -> str:
     print("Hello, world!")
+
     "jell" * 2
     return "Hello, world!"
 
