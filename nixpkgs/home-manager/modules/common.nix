@@ -15,6 +15,7 @@ in
 
   home.packages = with pkgs;
     [
+      man-pages # linux programmer's manual
       zip # archives
       unzip # archives
       lsd
