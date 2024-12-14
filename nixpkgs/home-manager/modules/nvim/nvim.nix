@@ -24,6 +24,7 @@ in
       catppuccin-nvim # theme
       onedark-nvim # theme
       gruberDarker # theme
+      kanagawa-nvim # theme
       telescope-nvim # fuzzy finder
       telescope-ui-select-nvim # telescope ui
       actions-preview-nvim # code action

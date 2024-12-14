@@ -16,7 +16,6 @@ if __name__ == "__main__":
 
 def hello() -> str:
     print("Hello, world!")
-
     "jell" * 2
     return "Hello, world!"
 
