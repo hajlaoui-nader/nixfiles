@@ -68,7 +68,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -167,6 +166,16 @@
       options = "--delete-older-than 1w";
     };
 
+  };
+
+  fonts = {
+    packages = [
+      pkgs.inter
+      pkgs.nerd-fonts.fira-code
+      pkgs.nerd-fonts.fira-mono
+      pkgs.nerd-fonts.jetbrains-mono
+      pkgs.nerd-fonts.iosevka
+    ];
   };
 
 

@@ -3,11 +3,11 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/af51545ec9a44eadf3fe3547610a5cdd882bc34e";
-    nixpkgs-24_05.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-24_11.url = "github:NixOS/nixpkgs/af51545ec9a44eadf3fe3547610a5cdd882bc34e";
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs-24_05";
+      url = "github:nix-community/home-manager/2f7739d01080feb4549524e8f6927669b61c6ee3";
+      inputs.nixpkgs.follows = "nixpkgs-24_11";
     };
 
     home-manager-unstable = {
@@ -24,11 +24,11 @@
     };
   };
 
-  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-24_05, home-manager-stable, home-manager-unstable }: {
+  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-24_11, home-manager-stable, home-manager-unstable }: {
 
 
     nixosConfigurations = {
-      zeus = nixpkgs-24_05.lib.nixosSystem rec {
+      zeus = nixpkgs-24_11.lib.nixosSystem rec {
 
         system = "x86_64-linux";
         modules = [
@@ -40,7 +40,7 @@
             home-manager.users.zeus =
               import ./nixpkgs/home-manager/zeus.nix;
             home-manager.extraSpecialArgs = {
-              nixpkgs = nixpkgs-24_05 {
+              nixpkgs = nixpkgs-24_11 {
                 inherit system;
               };
             };

@@ -25,14 +25,6 @@
     iosevka
     copyq
     bitwarden-cli
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "FiraMono"
-        "JetBrainsMono"
-        "SourceCodePro"
-      ];
-    })
   ];
 
   # neovim snippets 
