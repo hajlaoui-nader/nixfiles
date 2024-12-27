@@ -1,0 +1,65 @@
+{
+  "pythonMain": {
+    "prefix": "main",
+    "body": [
+      "def main():",
+      "    \"\"\"",
+      "    Main function.",
+      "    \"\"\"",
+      "    ${0:# TODO: Implement main logic}",
+      "",
+      "if __name__ == \"__main__\":",
+      "    main()"
+    ],
+    "description": "Python main function template"
+  },
+  "pythonClass": {
+    "prefix": "class",
+    "body": [
+      "class ${1:ClassName}:",
+      "    \"\"\"",
+      "    ${2:Class description}",
+      "    \"\"\"",
+      "    def __init__(self, ${3:args}):",
+      "        \"\"\"",
+      "        Initialize the class.",
+      "        \"\"\"",
+      "        ${0:# TODO: Initialize attributes}"
+    ],
+    "description": "Define a Python class"
+  },
+  "pythonFunction": {
+    "prefix": "def",
+    "body": [
+      "def ${1:function_name}(${2:args}):",
+      "    \"\"\"",
+      "    ${3:Function description}",
+      "    \"\"\"",
+      "    ${0:# TODO: Implement function}",
+      ""
+    ],
+    "description": "Define a Python function"
+  },
+  "pythonLogging": {
+    "prefix": "logging",
+    "body": [
+      "import logging",
+      "",
+      "logging.basicConfig(",
+      "    level=logging.${1:DEBUG},",
+      "    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'",
+      ")",
+      "logger = logging.getLogger(__name__)",
+      "",
+      "logger.${2:info}(\"${3:Log message}\")"
+    ],
+    "description": "Set up Python logging"
+  },
+  "listComprehension": {
+    "prefix": "listcomp",
+    "body": [
+      "[${1:expression} for ${2:item} in ${3:iterable} if ${4:condition}]"
+    ],
+    "description": "Create a list comprehension"
+  }
+}

@@ -30,6 +30,13 @@ o.expandtab = true
 o.syntax = "on"
 o.spelllang = "en_us"
 o.spell = false
+o.ignorecase = true
+o.smartcase = true
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = "*.md",
+	command = "setlocal spell",
+})
 
 vim.cmd([[ set signcolumn=yes ]])
 
@@ -169,3 +176,15 @@ vim.cmd([[
 ]])
 
 vim.api.nvim_set_keymap("x", "<leader>p", '"_dP', { noremap = true, silent = true })
+
+-- close buffer
+vim.api.nvim_set_keymap("n", "<leader>bx", ":bd<CR>", {
+	noremap = true,
+	silent = true,
+})
+
+-- close all buffers
+vim.api.nvim_set_keymap("n", "<leader>ba", ":bufdo bd<CR>", {
+	noremap = true,
+	silent = true,
+})

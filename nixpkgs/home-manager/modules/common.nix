@@ -1,4 +1,13 @@
-{ inputs, config, pkgs, lib, ... }: {
+{ inputs, config, pkgs, unstable, lib, ... }:
+let
+  snippetFiles =
+    {
+      "global.json" = ./nvim/snippets/global.json;
+      "python.json" = ./nvim/snippets/python.json;
+      "go.json" = ./nvim/snippets/go.json;
+    };
+in
+{
 
   # https://github.com/nix-community/nix-direnv#via-home-manager
   programs.direnv.enable = true;
@@ -6,6 +15,7 @@
 
   home.packages = with pkgs;
     [
+      man-pages # linux programmer's manual
       zip # archives
       unzip # archives
       lsd
@@ -24,6 +34,9 @@
       xxd # hexdump
       nmap
       duf # disk usage
+      lua-language-server
+      lua
+      go
     ] ++ lib.optionals stdenv.isDarwin [
       coreutils # provides `dd` with --status=progress
       wifi-password
@@ -77,6 +90,18 @@
 
   };
 
-  imports = [ ./fzf.nix ./nvim/nvim.nix ];
+  home.file = builtins.foldl'
+    (acc: key:
+      acc // {
+        ".config/nvim/snippets/${key}" = {
+          source = builtins.toPath snippetFiles.${key};
+          recursive = true;
+        };
+      }
+    )
+    { }
+    (builtins.attrNames snippetFiles);
 
+
+  imports = [ ./fzf.nix ./nvim/nvim.nix ];
 }

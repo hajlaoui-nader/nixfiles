@@ -44,26 +44,11 @@ update the flake
 $ nix flake update
 ```
 
-To update home-manager:
+update a single input, exemple `nixpkgs-unstable`
 
 ```shell
-$ nix-channel --update nixpkgs
-unpacking channels...
-$ nix-env -u home-manager
-```
 
-To update home-manager-managed packages:
-
-```shell
-$ nix-channel --update nixpkgs
-unpacking channels...
-$ home-manager switch
-```
-
-list all packages
-
-```shell
-home-manager packages
+$ nix flake lock --update-input nixpkgs-unstable
 ```
 
 # after

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   imports = [
     ./modules/home-manager.nix
     ./modules/common.nix
@@ -11,7 +9,7 @@
     #./programs/waybar
     ./programs/kitty.nix
     ./programs/tmux
-   ];
+  ];
 
   home.stateVersion = "23.11";
 
@@ -27,16 +25,9 @@
     iosevka
     copyq
     bitwarden-cli
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "FiraMono"
-        "JetBrainsMono"
-        "SourceCodePro"
-      ];
-    })
   ];
 
+  # neovim snippets 
   home.shellAliases = {
     open = "xdg-open";
     generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";

@@ -1,35 +1,36 @@
 -- Set variable so other plugins can register mappings
 local wk = require("which-key")
 
- -- Set up which-key
- require("which-key").setup {}
+-- Set up which-key
+wk.setup({})
 
-wk.register({
-    ["<F5>"] = {"<cmd>UndotreeToggle<CR>", "Toggle UndoTree"},
-}, { prefix = "<leader>" })
+wk.add({
+	mode = "n",
+	{ "<leader><F5>", "<cmd>UndotreeToggle<CR>", desc = "toggle undo tree" },
+})
+-- LSP
+wk.add({
+	mode = "n",
+	{ "<leader>l", group = "lsp" },
+})
 
--- Register gitsigns keybindings with descriptions
-wk.register({
-  g = {
-    name = "Gitsigns", -- Optional group name
-    n = {"<cmd>Gitsigns next_hunk<CR>", "Next Hunk"},
-    p = {"<cmd>Gitsigns prev_hunk<CR>", "Previous Hunk"},
-    s = {"<cmd>Gitsigns stage_hunk<CR>", "Stage Hunk"},
-    r = {"<cmd>Gitsigns reset_hunk<CR>", "Reset Hunk"},
-    S = {"<cmd>Gitsigns stage_buffer<CR>", "Stage Buffer"},
-    u = {"<cmd>Gitsigns undo_stage_hunk<CR>", "Undo Stage Hunk"},
-    R = {"<cmd>Gitsigns reset_buffer<CR>", "Reset Buffer"},
-    b = {"<cmd>lua require'gitsigns'.blame_line{full=true}<CR>", "Blame Line"},
-    p = {"<cmd>Gitsigns preview_hunk<CR>", "Preview Hunk"},
-    t = {
-      name = "Toggle",
-      s = {"<cmd>Gitsigns toggle_signs<CR>", "Toggle Signs"},
-      d = {"<cmd>Gitsigns toggle_deleted<CR>", "Toggle Deleted"},
-      b = {"<cmd>Gitsigns toggle_current_line_blame<CR>", "Toggle Line Blame"},
-  },
+-- Trouble
+wk.add({ mode = "n", { "<leader>x", group = "trouble" } })
 
-    d = {"<cmd>Gitsigns diffthis<CR>", "Diff This"},
-    D = {"<cmd>lua require'gitsigns'.diffthis('~')<CR>", "Diff This ~"},
-    -- Text object not necessary to show in which-key
-  }
-}, { prefix = "<leader>" })
+-- a code action
+wk.add({
+	mode = "n",
+	{ "<leader>a", group = "code action" },
+})
+
+-- b buffers
+wk.add({ mode = "n", { "<leader>b", group = "buffers" } })
+
+-- c commenter group
+wk.add({ mode = "n", { "<leader>c", group = "commenter" } })
+
+-- f telescope
+wk.add({ mode = "n", { "<leader>f", group = "telescope" } })
+
+-- s substitute
+wk.add({ mode = "n", { "<leader>s", group = "substitute" } })

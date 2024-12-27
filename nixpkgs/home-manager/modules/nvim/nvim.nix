@@ -1,9 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, unstable, ... }:
 let
   lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
   conform = (import ./formatters.nix { inherit pkgs; }).conform;
-  glowMarkdown = (import ./markdown.nix { inherit pkgs; }).markdown;
   gruberDarker = pkgs.vimUtils.buildVimPlugin {
     name = "gruber-darker-nvim";
     src = pkgs.fetchFromGitHub {
@@ -18,13 +17,19 @@ let
 in
 {
   programs.neovim = {
+    #package = unstable.neovim;
     enable = true;
     plugins = with pkgs.vimPlugins; [
       # tokyonight-nvim # theme
       catppuccin-nvim # theme
       onedark-nvim # theme
       gruberDarker # theme
+      kanagawa-nvim # theme
       telescope-nvim # fuzzy finder
+      telescope-ui-select-nvim # telescope ui
+      actions-preview-nvim # code action
+      nui-nvim # ui
+      nvim-surround # surround
       which-key-nvim # keybindings
       nvim-tree-lua # file tree
       gitsigns-nvim # git signs
@@ -36,14 +41,16 @@ in
       cmp-path
       cmp-treesitter
       vim-vsnip
+      render-markdown-nvim # markdown preview
       nvim-autopairs # auto pairs
       nerdcommenter # comments
       nvim-web-devicons # icons
-      glow-nvim # markdown preview
+      mini-nvim # containing mini.icons
       lualine-nvim # statusline
       #nvim-treesitter.withAllGrammars
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
+          tsx
           nix
           c
           python
@@ -95,7 +102,7 @@ in
       bufferline-nvim # bufferline
       nvim-cursorline # cursorline
       indent-blankline-nvim # indent lines
-      copilot-vim # copilot
+      #copilot-vim # copilot
       # rust
       rust-tools-nvim
       crates-nvim
@@ -109,6 +116,15 @@ in
       nvim-neoclip-lua
       # fugitive
       vim-fugitive
+      # db
+      vim-dadbod
+      # db-ui
+      vim-dadbod-ui
+      # db-completion
+      vim-dadbod-completion
+      # float terminal 
+      toggleterm-nvim
+
     ];
 
     extraConfig = ''
@@ -135,10 +151,12 @@ in
       (builtins.readFile ./visuals.lua)
       (builtins.readFile ./json.lua)
       (builtins.readFile ./hop.lua)
-      (builtins.readFile ./copilot.lua)
+      #(builtins.readFile ./copilot.lua)
       (builtins.readFile ./undotree.lua)
       (builtins.readFile ./neoclip.lua)
-      glowMarkdown
+      (builtins.readFile ./actions.lua)
+      (builtins.readFile ./surround.lua)
+      (builtins.readFile ./terminal.lua)
     ]) + ''
 
       EOF'';

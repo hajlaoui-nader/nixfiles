@@ -2,16 +2,16 @@
   description = "home-manager configuration for linux, mac and raspberry pi";
 
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-24_05.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/af51545ec9a44eadf3fe3547610a5cdd882bc34e";
+    nixpkgs-24_11.url = "github:NixOS/nixpkgs/af51545ec9a44eadf3fe3547610a5cdd882bc34e";
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs-24_05";
+      url = "github:nix-community/home-manager/2f7739d01080feb4549524e8f6927669b61c6ee3";
+      inputs.nixpkgs.follows = "nixpkgs-24_11";
     };
 
     home-manager-unstable = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager/2f7739d01080feb4549524e8f6927669b61c6ee3";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -24,11 +24,11 @@
     };
   };
 
-  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-24_05, home-manager-stable, home-manager-unstable }: {
+  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-24_11, home-manager-stable, home-manager-unstable }: {
 
 
     nixosConfigurations = {
-      zeus = nixpkgs-24_05.lib.nixosSystem rec {
+      zeus = nixpkgs-24_11.lib.nixosSystem rec {
 
         system = "x86_64-linux";
         modules = [
@@ -40,7 +40,7 @@
             home-manager.users.zeus =
               import ./nixpkgs/home-manager/zeus.nix;
             home-manager.extraSpecialArgs = {
-              nixpkgs = nixpkgs-24_05 {
+              nixpkgs = nixpkgs-24_11 {
                 inherit system;
               };
             };
@@ -75,7 +75,7 @@
     };
 
     darwinConfigurations = {
-      mbp2023 = darwin.lib.darwinSystem {
+      mbp2023 = darwin.lib.darwinSystem rec {
         system = "aarch64-darwin";
         modules = [
           ./machines/darwin/mbp2023/configuration.nix
@@ -85,15 +85,20 @@
             home-manager.useUserPackages = true;
             home-manager.users.naderh =
               import ./nixpkgs/home-manager/mbp2023.nix;
-            home-manager.extraSpecialArgs = {
-              # put here the variables that you want to pass to the home-manager configuration such as pkgs unstable
-            };
+            home-manager.extraSpecialArgs =
+              {
+                # put here the variables that you want to pass to the home-manager configuration such as pkgs unstable
+                unstable = import nixpkgs-unstable
+                  {
+                    inherit system;
+                  };
+              };
           }
           {
             nix.settings.trusted-users = [ "naderh" ];
           }
         ];
-        inputs = { inherit darwin nixpkgs-24_05; };
+        inputs = { inherit darwin nixpkgs-unstable; };
       };
     };
 

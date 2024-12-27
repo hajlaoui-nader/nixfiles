@@ -24,7 +24,7 @@
     #    nix-store --optimise
     # Refer to the following link for more details:
     # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
-    settings.auto-optimise-store = true;
+    optimise.automatic = true;
 
     extraOptions = ''
       # needed for nix-direnv
@@ -90,18 +90,12 @@
   system.defaults.dock.wvous-br-corner = 1;
 
   fonts = {
-    fontDir.enable = true;
-    fonts = [
+    packages = [
       pkgs.inter
-      (pkgs.nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "FiraMono"
-          "JetBrainsMono"
-          "SourceCodePro"
-          "Iosevka"
-        ];
-      })
+      pkgs.nerd-fonts.fira-code
+      pkgs.nerd-fonts.fira-mono
+      pkgs.nerd-fonts.jetbrains-mono
+      pkgs.nerd-fonts.iosevka
     ];
   };
 
