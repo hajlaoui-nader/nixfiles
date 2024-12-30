@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/af51545ec9a44eadf3fe3547610a5cdd882bc34e";
-    nixpkgs-24_11.url = "github:NixOS/nixpkgs/58a5eaa68d1de0c5e318f35152cfbfb8f687ebd3";
+    nixpkgs-24_11.url = "github:NixOS/nixpkgs/88195a94f390381c6afcdaa933c2f6ff93959cb4"; # contains ghostty
 
     home-manager-stable = {
       url = "github:nix-community/home-manager/2f7739d01080feb4549524e8f6927669b61c6ee3";
@@ -23,12 +23,9 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
   };
 
-  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-24_11, home-manager-stable, home-manager-unstable, ghostty }: {
+  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-24_11, home-manager-stable, home-manager-unstable }: {
 
 
     nixosConfigurations = {
@@ -51,11 +48,6 @@
           }
           {
             nix.settings.trusted-users = [ "zeus" ];
-          }
-          {
-            environment.systemPackages = [
-              ghostty.packages.x86_64-linux.default
-            ];
           }
         ];
       };

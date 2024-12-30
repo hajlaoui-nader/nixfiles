@@ -9,6 +9,7 @@
     #./programs/waybar
     ./programs/kitty.nix
     ./programs/tmux
+    ./programs/ghostty
   ];
 
   home.stateVersion = "23.11";
@@ -29,7 +30,6 @@
 
   home.file = {
     ".config/i3/config".source = ./i3config.conf;
-
   };
 
   # neovim snippets 

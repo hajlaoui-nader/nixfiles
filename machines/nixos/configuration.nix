@@ -115,6 +115,7 @@
     pkgs.kitty
     pkgs.playerctl
     pkgs.pciutils
+    pkgs.ghostty
   ];
 
   boot.initrd.kernelModules = [ "amdgpu" ];
