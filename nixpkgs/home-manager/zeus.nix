@@ -29,7 +29,7 @@
   ];
 
   home.file = {
-    ".config/i3/config".source = ./i3config.conf;
+    ".config/i3/config".source = ./programs/i3/i3config.conf;
   };
 
   # neovim snippets 
