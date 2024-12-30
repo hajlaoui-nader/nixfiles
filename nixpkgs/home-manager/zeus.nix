@@ -27,6 +27,11 @@
     bitwarden-cli
   ];
 
+  home.file = {
+    ".config/i3/config".source = ./i3config.conf;
+
+  };
+
   # neovim snippets 
   home.shellAliases = {
     open = "xdg-open";

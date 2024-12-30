@@ -49,20 +49,6 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    xkb = {
-      layout = "us";
-      variant = "";
-    };
-  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -123,12 +109,12 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    neovim
-    kitty
-    playerctl
-    pciutils
+  environment.systemPackages = [
+    pkgs.vim
+    pkgs.neovim
+    pkgs.kitty
+    pkgs.playerctl
+    pkgs.pciutils
   ];
 
   boot.initrd.kernelModules = [ "amdgpu" ];
@@ -176,6 +162,45 @@
       pkgs.nerd-fonts.jetbrains-mono
       pkgs.nerd-fonts.iosevka
     ];
+  };
+
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Enable the GNOME Desktop Environment.
+  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
+  };
+
+  # i3 config 
+  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
+
+  services.displayManager = {
+    defaultSession = "none+i3";
+  };
+
+
+  services.xserver = {
+    desktopManager = {
+      xterm.enable = false;
+    };
+
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu
+        i3status # default i3 status bar
+        i3lock #default i3 screen locker
+        i3blocks
+      ];
+    };
   };
 
 

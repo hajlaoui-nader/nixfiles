@@ -22,9 +22,13 @@
       # if you want to change darwin to use stable change the following, now darwin follows nixpkgs-unstable
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
   };
 
-  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-24_11, home-manager-stable, home-manager-unstable }: {
+  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-24_11, home-manager-stable, home-manager-unstable, ghostty }: {
 
 
     nixosConfigurations = {
@@ -47,6 +51,11 @@
           }
           {
             nix.settings.trusted-users = [ "zeus" ];
+          }
+          {
+            environment.systemPackages = [
+              ghostty.packages.x86_64-linux.default
+            ];
           }
         ];
       };

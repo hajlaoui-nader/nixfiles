@@ -86,3 +86,5 @@ nix repl
 ```
 
 ### TODO
+
+- upgrade and add ghostty
