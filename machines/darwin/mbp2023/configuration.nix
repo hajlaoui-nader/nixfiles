@@ -1,14 +1,6 @@
 { pkgs, config, lib, ... }:
 {
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [
-      pkgs.vim
-      pkgs.home-manager
-    ];
-
-  imports = [ ];
+  imports = [ ../../common-system-packages.nix ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

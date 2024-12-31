@@ -8,6 +8,8 @@
     #./modules/fish.nix
     ./modules/git.nix
     ./programs/tmux
+    ./programs/ghostty
+
   ];
 
   home.homeDirectory = "/Users/naderh";

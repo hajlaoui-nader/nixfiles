@@ -9,6 +9,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../common-system-packages.nix
     ];
 
   # Bootloader.
@@ -110,12 +111,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = [
-    pkgs.vim
     pkgs.neovim
     pkgs.kitty
     pkgs.playerctl
+    pkgs.pamixer
     pkgs.pciutils
-    pkgs.ghostty
   ];
 
   boot.initrd.kernelModules = [ "amdgpu" ];

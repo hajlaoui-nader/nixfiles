@@ -5,7 +5,7 @@
     ./modules/zsh
     ./modules/git.nix
     #./programs/hyprland
-    #./programs/rofi
+    ./programs/rofi
     #./programs/waybar
     ./programs/kitty.nix
     ./programs/tmux
