@@ -85,6 +85,12 @@ nix repl
     > :lf . # load flake
 ```
 
+### check flake
+
+```shell
+darwin-rebuild build --flake .#mbp2023 --dry-run
+```
+
 ### TODO
 
 - upgrade and add ghostty
