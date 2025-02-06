@@ -105,6 +105,8 @@
     defaultEditor = true;
   };
 
+  programs.thunar.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
