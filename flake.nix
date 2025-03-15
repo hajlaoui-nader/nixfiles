@@ -2,7 +2,7 @@
   description = "home-manager configuration for linux, mac and raspberry pi";
 
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/9abb87b552b7f55ac8916b6fc9e5cb486656a2f3";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/bffc22eb12172e6db3c5dde9e3e5628f8e3e7912";
     nixpkgs-24_11.url = "github:NixOS/nixpkgs/88195a94f390381c6afcdaa933c2f6ff93959cb4"; # contains ghostty
 
     home-manager-stable = {

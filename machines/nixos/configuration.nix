@@ -118,6 +118,8 @@
     pkgs.playerctl
     pkgs.pamixer
     pkgs.pciutils
+    # move to common system packages 
+    pkgs.ghostty
   ];
 
   boot.initrd.kernelModules = [ "amdgpu" ];

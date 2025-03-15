@@ -8,9 +8,9 @@
 
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
 
   nix = {
+    enable = true;
     package = pkgs.nix;
 
     # Optimize storage
@@ -38,8 +38,6 @@
     interval = { Weekday = 0; Hour = 0; Minute = 0; };
     options = "--delete-older-than 1w";
   };
-
-  security.pam.enableSudoTouchIdAuth = true;
 
   programs = {
     zsh.enable = true;
