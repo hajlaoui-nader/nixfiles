@@ -102,7 +102,7 @@ in
       bufferline-nvim # bufferline
       nvim-cursorline # cursorline
       indent-blankline-nvim # indent lines
-      #copilot-vim # copilot
+      copilot-vim # copilot
       # rust
       rust-tools-nvim
       crates-nvim
@@ -151,7 +151,7 @@ in
       (builtins.readFile ./visuals.lua)
       (builtins.readFile ./json.lua)
       (builtins.readFile ./hop.lua)
-      #(builtins.readFile ./copilot.lua)
+      (builtins.readFile ./copilot.lua)
       (builtins.readFile ./undotree.lua)
       (builtins.readFile ./neoclip.lua)
       (builtins.readFile ./actions.lua)
