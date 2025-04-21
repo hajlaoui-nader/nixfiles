@@ -1,12 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, inputs, ... }:
 {
-  environment.systemPackages =
-    [
-      pkgs.vim
-      pkgs.home-manager
-      # set when darwin gets updated, and ghostty is no more marked as broken
-      #pkgs.ghostty
-    ];
+  environment.systemPackages = [
+    pkgs.vim
+    pkgs.home-manager
+    # set when darwin gets updated, and ghostty is no more marked as broken
+    #pkgs.ghostty
+  ];
 
-  security.pam.services.sudo_local.touchIdAuth = true;
+  # Configure registry to match flake inputs
+  nix.registry = lib.mapAttrs
+    (name: flake: { inherit flake; })
+    inputs;
+
+  # Set nix path to match inputs
+  nix.nixPath = lib.mapAttrsToList
+    (name: value: "${name}=${value}")
+    inputs;
+
+  nix.channel.enable = false;
 }

@@ -78,6 +78,7 @@
     darwinConfigurations = {
       mbp2023 = darwin.lib.darwinSystem rec {
         system = "aarch64-darwin";
+        specialArgs = { inherit inputs; };
         modules = [
           ./machines/darwin/mbp2023/configuration.nix
           home-manager-unstable.darwinModules.home-manager
@@ -97,6 +98,8 @@
           }
           {
             nix.settings.trusted-users = [ "naderh" ];
+            nix.registry = (nixpkgs-unstable.lib.mapAttrs (_: flake: { inherit flake; }))
+              ((nixpkgs-unstable.lib.filterAttrs (_: nixpkgs-unstable.lib.isType "flake")) inputs);
           }
         ];
         inputs = { inherit darwin nixpkgs-unstable; };
