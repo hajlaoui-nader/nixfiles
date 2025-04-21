@@ -30,8 +30,8 @@
 
     nixosConfigurations = {
       zeus = nixpkgs-24_11.lib.nixosSystem rec {
-
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./machines/nixos/zeus.nix
           home-manager-stable.nixosModules.home-manager
@@ -45,9 +45,6 @@
                 inherit system;
               };
             };
-          }
-          {
-            nix.settings.trusted-users = [ "zeus" ];
           }
         ];
       };
@@ -96,13 +93,7 @@
                   };
               };
           }
-          {
-            nix.settings.trusted-users = [ "naderh" ];
-            nix.registry = (nixpkgs-unstable.lib.mapAttrs (_: flake: { inherit flake; }))
-              ((nixpkgs-unstable.lib.filterAttrs (_: nixpkgs-unstable.lib.isType "flake")) inputs);
-          }
         ];
-        inputs = { inherit darwin nixpkgs-unstable; };
       };
     };
 

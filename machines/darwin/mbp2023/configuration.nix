@@ -12,6 +12,7 @@
   nix = {
     enable = true;
     package = pkgs.nix;
+    settings.trusted-users = [ "naderh" ];
 
     # Optimize storage
     # You can also manually optimize the store via:
