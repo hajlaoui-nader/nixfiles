@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
   imports = [
     ./configuration.nix
@@ -6,4 +6,7 @@
   ];
 
   nix.settings.trusted-users = [ "zeus" ];
+
+  nix.registry.nixpkgs.flake = inputs.nixpkgs-24_11;
+
 }
