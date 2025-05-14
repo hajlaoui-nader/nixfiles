@@ -48,11 +48,11 @@
 
   users.users.naderh = {
     home = "/Users/naderh";
-    shell = "${pkgs.fish}/bin/zsh";
+    shell = "${pkgs.zsh}/bin/zsh";
   };
   users.users.root = {
     home = "/var/root";
-    shell = "${pkgs.fish}/bin/zsh";
+    shell = "${pkgs.zsh}/bin/zsh";
   };
 
   # # can be read via `defaults read NSGlobalDomain`

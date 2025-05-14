@@ -41,7 +41,7 @@
             home-manager.users.zeus =
               import ./nixpkgs/home-manager/zeus.nix;
             home-manager.extraSpecialArgs = {
-              nixpkgs = nixpkgs-24_11 {
+              nixpkgs = import nixpkgs-24_11 {
                 inherit system;
               };
             };
