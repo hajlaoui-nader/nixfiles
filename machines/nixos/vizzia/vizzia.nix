@@ -5,8 +5,9 @@
     ./hardware-configuration.nix
   ];
 
-  nix.settings.trusted-users = [ "zeus" ];
+  nix.settings.trusted-users = [ "nader" ];
 
   nix.registry.nixpkgs.flake = inputs.nixpkgs-stable;
 
 }
+
