@@ -50,6 +50,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  programs.light.enable = true;
+
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -58,6 +60,13 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    extraConfig.pipewire = {
+      "99-disable-bell" = {
+        "context.properties" = {
+          "module.x11.bell" = false;
+        };
+      };
+    };
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -100,6 +109,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    acpi
+    playerctl
+    pamixer
+    xorg.xbacklight
+    xorg.xev
+    dunst
+    lxappearance
+    pipewire
     vim
     neovim
     git
