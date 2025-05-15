@@ -2,8 +2,11 @@
 {
   environment.systemPackages = [
     pkgs.vim
+    pkgs.libnotify
     pkgs.home-manager
     pkgs.flameshot
+    pkgs.cheese
+    pkgs.vlc
     # set when darwin gets updated, and ghostty is no more marked as broken
     #pkgs.ghostty
   ];

@@ -19,6 +19,9 @@
   networking.hostName = "nixos"; # Define your hostname.
   services.fstrim.enable = true;
 
+  programs.thunar.enable = true;
+
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -49,8 +52,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  programs.light.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -114,6 +115,7 @@
     pamixer
     xorg.xbacklight
     xorg.xev
+    brightnessctl
     dunst
     lxappearance
     pipewire
@@ -217,18 +219,18 @@
     videoDrivers = [ "modsetting" ];
 
     displayManager = {
-      setupCommands = ''
-        ${pkgs.xorg.xrandr}/bin/xrandr --newmode "2256x1504_60.00"  287.00  2256 2424 2664 3072  1504 1507 1517 1559 -hsync +vsync
-        ${pkgs.xorg.xrandr}/bin/xrandr --addmode Virtual1 2256x1504_60.00
-        ${pkgs.xorg.xrandr}/bin/xrandr --output Virtual1 --mode 2256x1504_60.00
-      '';
+      #setupCommands = ''
+      #${pkgs.xorg.xrandr}/bin/xrandr --newmode "2256x1504_60.00"  287.00  2256 2424 2664 3072  1504 1507 1517 1559 -hsync +vsync
+      #${pkgs.xorg.xrandr}/bin/xrandr --addmode Virtual1 2256x1504_60.00
+      #${pkgs.xorg.xrandr}/bin/xrandr --output Virtual1 --mode 2256x1504_60.00
+      #'';
     };
 
-    monitorSection = ''
-      DisplaySize 344 229
-    '';
+    #monitorSection = ''
+    #DisplaySize 344 229
+    #'';
 
-    dpi = 255;
+    #dpi = 255;
 
     windowManager.i3 = {
       enable = true;
@@ -240,6 +242,11 @@
       ];
     };
   };
+
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
   services.fwupd.enable = true;
   # This value determines the NixOS release from which the default
