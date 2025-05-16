@@ -7,6 +7,7 @@
     pkgs.flameshot
     pkgs.cheese
     pkgs.vlc
+    pkgs.feh
     # set when darwin gets updated, and ghostty is no more marked as broken
     #pkgs.ghostty
   ];
