@@ -31,7 +31,8 @@
 
   home.file = {
     ".config/i3/config".source = ./programs/i3/i3config.conf;
-    ".config/i3status/config".source = ./programs/i3/i3status.conf;
+    #".config/i3status/config".source = ./programs/i3/i3status.conf;
+    #".config/rofi/config.rasi".source = ./programs/rofi/config.rasi;
   };
 
   # neovim snippets 
