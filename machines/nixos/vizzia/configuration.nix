@@ -91,6 +91,7 @@
       xclip
       libreoffice
       evince
+      awscli2
     ];
   };
 
