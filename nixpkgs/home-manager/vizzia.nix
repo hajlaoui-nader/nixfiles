@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, gitEmail, ... }: {
   imports = [
     ./modules/home-manager.nix
     ./modules/common.nix

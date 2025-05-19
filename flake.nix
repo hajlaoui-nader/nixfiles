@@ -69,6 +69,7 @@
               nixpkgs = import nixpkgs-stable {
                 inherit system;
               };
+              gitEmail = "nader.hajlaoui@vizzia.fr";
             };
           }
         ];

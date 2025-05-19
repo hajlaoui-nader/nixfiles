@@ -1,9 +1,9 @@
-{ config, pkgs, lib, libs, ... }:
+{ config, pkgs, lib, libs, gitEmail ? "hajlaoui.nader@gmail.com", ... }:
 {
   programs.git = {
     enable = true;
     userName = "Nader Hajlaoui";
-    userEmail = "hajlaoui.nader@gmail.com";
+    userEmail = gitEmail;
 
     delta = {
       enable = true;
