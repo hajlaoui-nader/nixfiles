@@ -89,7 +89,8 @@
       firefox
       git
       xclip
-
+      libreoffice
+      evince
     ];
   };
 
