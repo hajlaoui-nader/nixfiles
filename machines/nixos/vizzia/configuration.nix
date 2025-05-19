@@ -89,6 +89,7 @@
       firefox
       git
       xclip
+
     ];
   };
 
