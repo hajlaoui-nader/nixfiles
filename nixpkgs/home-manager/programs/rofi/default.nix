@@ -10,7 +10,6 @@
       font = "Iosevka 20";
       show-icons = true;
       icon-theme = "Papirus";
-
     };
   };
 
