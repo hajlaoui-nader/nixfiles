@@ -92,6 +92,7 @@
       libreoffice
       evince
       awscli2
+      poetry
     ];
   };
 
