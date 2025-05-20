@@ -80,6 +80,7 @@ in
       evince
       awscli2
       poetry
+      nodePackages_latest.aws-cdk
     ];
   };
   programs.zsh.enable = true;
@@ -170,6 +171,14 @@ in
   # Desktop environment configuration based on useGnome
   environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
 
+  services.displayManager = {
+    defaultSession = if useGnome then "gnome" else "none+i3";
+    autoLogin = {
+      enable = true;
+      user = "nader";
+    };
+  };
+
   services.xserver = {
     enable = true;
     xkb = {
@@ -184,12 +193,7 @@ in
     };
 
     displayManager = {
-      defaultSession = if useGnome then "gnome" else "none+i3";
       gdm.enable = useGnome;
-      autoLogin = {
-        enable = true;
-        user = "nader";
-      };
 
       # i3-specific display configuration
       setupCommands =
