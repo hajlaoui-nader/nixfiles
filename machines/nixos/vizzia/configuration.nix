@@ -109,6 +109,7 @@ in
     git
     vscode
     ghostty
+    picom
     #  wget
   ] ++ (if !useGnome then [
     dmenu

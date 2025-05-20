@@ -34,12 +34,12 @@
     ".config/i3/config".source = ./programs/i3/i3config.conf;
     ".config/i3status/config".source = ./programs/i3/i3status.conf;
     #".config/rofi/config.rasi".source = ./programs/rofi/config.rasi;
+    #".config/picom/picom.conf".source = ./programs/i3/picom/picom.conf;
   };
 
   # neovim snippets 
   home.shellAliases = {
-    open = "xdg-open";
-    generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+    open = "thunar .";
   };
 
 }
