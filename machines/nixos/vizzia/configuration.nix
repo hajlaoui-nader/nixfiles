@@ -110,6 +110,7 @@ in
     vscode
     ghostty
     picom
+    rofimoji
     #  wget
   ] ++ (if !useGnome then [
     dmenu
