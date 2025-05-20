@@ -216,10 +216,19 @@ in
       extraPackages = with pkgs; [ ];
     };
   };
+  services.libinput = {
+    enable = true;
+    touchpad = {
+      accelSpeed = "1.0"; # Increase this value for faster tracking
+      # Values typically range from -1.0 to 1.0
+    };
+  };
 
-  # Enable bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  # Enable bluetooth hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    powerOnBoot = true;
+    enable = true;
+  };
   services.blueman.enable = true;
   services.fwupd.enable = true;
   # This value determines the NixOS release from which the default
