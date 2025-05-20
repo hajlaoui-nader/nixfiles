@@ -184,6 +184,7 @@ in
     xkb = {
       layout = "us";
       variant = "";
+      options = "compose:ralt";
     };
 
     # Configure based on chosen DE
