@@ -219,7 +219,7 @@ in
   services.libinput = {
     enable = true;
     touchpad = {
-      accelSpeed = "1.0"; # Increase this value for faster tracking
+      accelSpeed = "0.6"; # Increase this value for faster tracking
       # Values typically range from -1.0 to 1.0
     };
   };
