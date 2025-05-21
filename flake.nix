@@ -69,6 +69,9 @@
               nixpkgs = import nixpkgs-stable {
                 inherit system;
               };
+              unstable = import nixpkgs-unstable {
+                inherit system;
+              };
               gitEmail = "nader.hajlaoui@vizzia.fr";
             };
           }
@@ -108,16 +111,13 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.naderh =
-              import ./nixpkgs/home-manager/mbp2023.nix;
-            home-manager.extraSpecialArgs =
-              {
-                # put here the variables that you want to pass to the home-manager configuration such as pkgs unstable
-                unstable = import nixpkgs-unstable
-                  {
-                    inherit system;
-                  };
+            home-manager.users.naderh = import ./nixpkgs/home-manager/mbp2023.nix;
+            home-manager.extraSpecialArgs = {
+              # put here the variables that you want to pass to the home-manager configuration such as pkgs unstable
+              unstable = import nixpkgs-unstable {
+                inherit system;
               };
+            };
           }
         ];
       };

@@ -124,7 +124,9 @@ in
       vim-dadbod-completion
       # float terminal 
       toggleterm-nvim
-
+    ] ++ [
+      ## unstable 
+      unstable.vimPlugins.hardtime-nvim
     ];
 
     extraConfig = ''
@@ -157,6 +159,7 @@ in
       (builtins.readFile ./actions.lua)
       (builtins.readFile ./surround.lua)
       (builtins.readFile ./terminal.lua)
+      (builtins.readFile ./hardtime.lua)
     ]) + ''
 
       EOF'';
