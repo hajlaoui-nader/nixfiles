@@ -3,6 +3,7 @@ let
   lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
   conform = (import ./formatters.nix { inherit pkgs; }).conform;
+  glow = (import ./markdown.nix { inherit pkgs; }).markdown;
   gruberDarker = pkgs.vimUtils.buildVimPlugin {
     name = "gruber-darker-nvim";
     src = pkgs.fetchFromGitHub {
@@ -124,6 +125,7 @@ in
       vim-dadbod-completion
       # float terminal 
       toggleterm-nvim
+      glow-nvim
     ] ++ [
       ## unstable 
       unstable.vimPlugins.hardtime-nvim
@@ -160,6 +162,8 @@ in
       (builtins.readFile ./surround.lua)
       (builtins.readFile ./terminal.lua)
       (builtins.readFile ./hardtime.lua)
+      (builtins.readFile ./markdown.lua)
+      glow
     ]) + ''
 
       EOF'';
