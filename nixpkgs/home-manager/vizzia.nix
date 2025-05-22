@@ -42,4 +42,27 @@
     open = "thunar .";
   };
 
+  programs.zsh = {
+    initExtra = ''
+      # VPN Management Functions
+      function connect_vpn() {
+        sudo systemctl start openvpn-vizzia-$1.service
+      }
+
+      function disconnect_vpn() {
+        sudo systemctl stop openvpn-vizzia-$1.service
+      }
+
+      function vpn_sessions() {
+        local sessions=$(sudo systemctl list-units --type=service | grep openvpn-vizzia)
+
+        if [ -z "$sessions" ]; then
+          echo "No VPN sessions found"
+        else
+          echo "Active VPN sessions:"
+          echo "$sessions"
+        fi
+      }
+    '';
+  };
 }

@@ -104,6 +104,7 @@ in
     dunst
     lxappearance
     pipewire
+    caffeine-ng
     vim
     neovim
     git
@@ -111,6 +112,7 @@ in
     ghostty
     picom
     rofimoji
+    openvpn3
     #  wget
   ] ++ (if !useGnome then [
     dmenu
@@ -233,6 +235,21 @@ in
   };
   services.blueman.enable = true;
   services.fwupd.enable = true;
+
+  # vpn 
+  services.openvpn.servers = {
+    vizzia-prod = {
+      config = "config /home/nader/vpn/vizzia-prod.ovpn";
+      autoStart = false;
+    };
+    vizzia-dev = {
+      config = "config /home/nader/vpn/vizzia-dev.ovpn";
+      autoStart = false;
+      #updateResolvConf = true;
+    };
+  };
+
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
