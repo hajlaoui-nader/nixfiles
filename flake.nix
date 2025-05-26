@@ -48,6 +48,10 @@
               nixpkgs = import nixpkgs-stable {
                 inherit system;
               };
+              unstable = import nixpkgs-unstable {
+                inherit system;
+              };
+              gitEmail = "hajlaoui.nader@gmail.com";
             };
           }
         ];
