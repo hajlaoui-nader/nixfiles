@@ -113,7 +113,8 @@ in
     picom
     rofimoji
     openvpn3
-    #  wget
+    wget
+    bc
   ] ++ (if !useGnome then [
     dmenu
     i3status
@@ -248,7 +249,6 @@ in
       #updateResolvConf = true;
     };
   };
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
