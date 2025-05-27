@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/88195a94f390381c6afcdaa933c2f6ff93959cb4"; # contains ghostty
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/7c43f080a7f28b2774f3b3f43234ca11661bf334"; # contains ghostty
 
     home-manager-stable = {
       url = "github:nix-community/home-manager/2f7739d01080feb4549524e8f6927669b61c6ee3";

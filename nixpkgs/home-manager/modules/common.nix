@@ -37,6 +37,7 @@ in
       lua-language-server
       lua
       go
+      gcc14
     ] ++ lib.optionals stdenv.isDarwin [
       coreutils # provides `dd` with --status=progress
       wifi-password

@@ -5,9 +5,9 @@
     ./modules/zsh
     ./modules/git.nix
     #./programs/hyprland
-    ./programs/rofi
+    #./programs/rofi
     #./programs/waybar
-    ./programs/kitty.nix
+    #./programs/kitty.nix
     ./programs/tmux
     ./programs/ghostty
   ];
@@ -37,7 +37,7 @@
     #".config/picom/picom.conf".source = ./programs/i3/picom/picom.conf;
   };
 
-  # neovim snippets 
+  # neovim snippets
   home.shellAliases = {
     open = "thunar .";
   };
