@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 {
+  services.blueman.enable = true;
   # X11 configuration for i3
   services.xserver = {
     enable = true;

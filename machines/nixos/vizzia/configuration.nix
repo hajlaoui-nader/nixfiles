@@ -172,7 +172,7 @@ in
     powerOnBoot = true;
     enable = true;
   };
-  services.blueman.enable = true;
+
   services.fwupd.enable = true;
 
   # VPN configuration
