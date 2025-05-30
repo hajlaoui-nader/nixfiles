@@ -43,6 +43,7 @@
   services.gnome = {
     gnome-keyring.enable = true;
     evolution-data-server.enable = true;
+    gnome-browser-connector.enable = true;
   };
 
   # Exclude some default GNOME applications if desired

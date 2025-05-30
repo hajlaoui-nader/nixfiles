@@ -81,7 +81,6 @@
     description = "zeus";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
-      firefox
       git
       xclip
       #wl-clipboard
@@ -120,7 +119,7 @@
     pkgs.playerctl
     pkgs.pamixer
     pkgs.pciutils
-    # move to common system packages 
+    # move to common system packages
     pkgs.ghostty
   ];
 
@@ -186,8 +185,8 @@
     };
   };
 
-  # i3 config 
-  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw 
+  # i3 config
+  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
 
   services.displayManager = {
     defaultSession = "none+i3";
