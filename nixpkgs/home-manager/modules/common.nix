@@ -38,6 +38,7 @@ in
       lua
       go
       gcc14
+      dig # DNS lookup
     ] ++ lib.optionals stdenv.isDarwin [
       coreutils # provides `dd` with --status=progress
       wifi-password
