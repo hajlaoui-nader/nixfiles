@@ -29,27 +29,31 @@ require("gitsigns").setup({
 			end)
 			return "<Ignore>"
 		end
+
 		wk.add({
 			mode = "n",
 			{ "<leader>g", group = "gitsigns" },
 			---- blame gb
 			{ "<leader>gb", "<cmd>lua require'gitsigns'.blame_line{full=true}<cr>", desc = "blame (full)" },
 			-- diff this
-			{ "<leader>gd", "<cmd>lua require'gitsigns'.diffthis(nil, {vertical=true})<cr>", desc = "diff current file" },
+			{
+				"<leader>gd",
+				"<cmd>lua require'gitsigns'.diffthis(nil, {vertical=true})<cr>",
+				desc = "diff current file",
+			},
 			-- diff this ~
 			{ "<leader>gD", "<cmd>lua require'gitsigns'.diffthis('~')<cr>", desc = "diff file" },
 			-- S
 			{ "<leader>gs", "<cmd>lua require'gitsigns'.stage_buffer()<cr>", desc = "stage buffer" },
 			-- R
 			{ "<leader>gr", "<cmd>lua require'gitsigns'.reset_buffer_index()<cr>", desc = "reset buffer" },
-		
-    })
+		})
 
-    -- toggle
-    wk.add({
-      mode ="n",
-      {"<leader>gt", group ="toggle"},
-      -- toggle current line blame
+		-- toggle
+		wk.add({
+			mode = "n",
+			{ "<leader>gt", group = "toggle" },
+			-- toggle current line blame
 			{
 				"<leader>gtb",
 				"<cmd>Gitsigns toggle_current_line_blame<cr>",
@@ -57,8 +61,7 @@ require("gitsigns").setup({
 			},
 			-- toggle deleted
 			{ "<leader>gtd", "<cmd>Gitsigns toggle_deleted<cr>", desc = "toggle deleted" },
-
-    })
+		})
 
 		-- git hunks
 		wk.add({
@@ -76,3 +79,11 @@ require("gitsigns").setup({
 		map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 	end,
 })
+
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>gd",
+	'<cmd>lua require("gitsigns").diffthis(nil, {vertical=true})<CR>',
+	{ noremap = true, silent = true }
+)
+
