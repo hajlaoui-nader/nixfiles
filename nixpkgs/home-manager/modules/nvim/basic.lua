@@ -189,8 +189,21 @@ vim.api.nvim_set_keymap("n", "<leader>ba", ":bufdo bd<CR>", {
 	silent = true,
 })
 
--- close all other buffers
-vim.api.nvim_set_keymap("n", "<leader>bo", ":%bd|e#|bd#<CR>", {
+local function close_all_buffers_except_current()
+	local current = vim.api.nvim_get_current_buf()
+	local buffers = vim.api.nvim_list_bufs()
+
+	for _, buf in ipairs(buffers) do
+		if buf ~= current and vim.api.nvim_buf_is_valid(buf) then
+			local modified = vim.api.nvim_buf_get_option(buf, "modified")
+			if not modified then
+				pcall(vim.api.nvim_buf_delete, buf, {})
+			end
+		end
+	end
+end
+
+vim.keymap.set("n", "<leader>bo", close_all_buffers_except_current, {
 	noremap = true,
 	silent = true,
 })
