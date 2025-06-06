@@ -35,7 +35,7 @@ require("gitsigns").setup({
 			---- blame gb
 			{ "<leader>gb", "<cmd>lua require'gitsigns'.blame_line{full=true}<cr>", desc = "blame (full)" },
 			-- diff this
-			{ "<leader>gd", "<cmd>Gitsigns diffthis<cr>", desc = "diff current file" },
+			{ "<leader>gd", "<cmd>lua require'gitsigns'.diffthis(nil, {vertical=true})<cr>", desc = "diff current file" },
 			-- diff this ~
 			{ "<leader>gD", "<cmd>lua require'gitsigns'.diffthis('~')<cr>", desc = "diff file" },
 			-- S
