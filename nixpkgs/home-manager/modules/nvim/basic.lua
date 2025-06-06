@@ -188,3 +188,9 @@ vim.api.nvim_set_keymap("n", "<leader>ba", ":bufdo bd<CR>", {
 	noremap = true,
 	silent = true,
 })
+
+-- close all other buffers
+vim.api.nvim_set_keymap("n", "<leader>bo", ":%bd|e#|bd#<CR>", {
+	noremap = true,
+	silent = true,
+})
