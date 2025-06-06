@@ -13,8 +13,15 @@ local lspkind = require("lspkind")
 cmp.setup({
 	formatting = {
 		format = lspkind.cmp_format({
-			--options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-			mode = "text_symbol",
+			mode = "symbol_text",
+			maxwidth = 50,
+			ellipsis_char = "...",
+			show_labelDetails = true, -- show source name
+			before = function(entry, vim_item)
+				-- Show source name
+				vim_item.menu = "[" .. entry.source.name .. "]"
+				return vim_item
+			end,
 		}),
 	},
 	snippet = {
