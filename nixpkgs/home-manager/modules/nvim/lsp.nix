@@ -9,7 +9,7 @@
 
         -- lsp signature: hints as you type
         require("lsp_signature").setup()
-    
+
         vim.cmd [[
           augroup RustMappings
           autocmd!
@@ -26,7 +26,7 @@
             vim.api.nvim_set_keymap('n', '<leader>rg', "<cmd>lua require('rust-tools.crate_graph').view_crate_graph('x11', nil)<CR>", opts)
         end
 
-        vim.cmd [[ 
+        vim.cmd [[
             autocmd filetype nix setlocal tabstop=2 shiftwidth=2 softtabstop=2
         ]]
 
@@ -60,8 +60,8 @@
             vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lmc', '<cmd>lua require("metals").commands()<CR>', opts)
             vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lmi', '<cmd>lua require("metals").toggle_setting("showImplicitArguments")<CR>', opts)
         end
-    
-    
+
+
         vim.g.formatsave = "true"
 
         -- Enable formatting
@@ -87,7 +87,7 @@
           local lspconfig = require('lspconfig')
 
           local capabilities = vim.lsp.protocol.make_client_capabilities()
-      
+
           capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
            -- Rust config
 
@@ -229,7 +229,7 @@
           lspconfig.clangd.setup {
               capabilities = capabilities;
               on_attach = default_on_attach,
-              cmd = { "/usr/bin/clangd", "--offset-encoding=utf-16" }
+              cmd = { "${pkgs.clang-tools_19}/bin/clangd", "--offset-encoding=utf-16" }
             }
 
             lspconfig.gopls.setup {
