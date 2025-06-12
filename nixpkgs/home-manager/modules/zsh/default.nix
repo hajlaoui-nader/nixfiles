@@ -1,4 +1,4 @@
-{ pkgs, config, machine, ... }:
+{ pkgs, lib, config, machine, ... }:
 {
 
   programs.direnv = {
@@ -11,10 +11,10 @@
     syntaxHighlighting.enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
-    #enableAutosuggestions = true;
+
     oh-my-zsh = {
       enable = true;
-      plugins = [ "z" ];
+      plugins = [ "z" "virtualenv"];
     };
 
     plugins = [
@@ -23,8 +23,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "Aloxaf";
           repo = "fzf-tab";
-          rev = "7e0eee64df6c7c81a57792674646b5feaf89f263";
-          sha256 = "sha256-ixUnuNtxxmiigeVjzuV5uG6rIBPY/1vdBZF2/Qv0Trs=";
+          rev = "v1.2.0";
+          sha256 = "sha256-q26XVS/LcyZPRqDNwKKA9exgBByE0muyuNb0Bbar2lY=";
         };
       }
       {
@@ -33,8 +33,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "chisui";
           repo = "zsh-nix-shell";
-          rev = "v0.5.0";
-          sha256 = "0za4aiwwrlawnia4f29msk822rj9bgcygw6a8a6iikiwzjjz0g91";
+          rev = "v0.8.0";
+          sha256 = "sha256-Z6EYQdasvpl1P78poj9efnnLj7QQg13Me8x1Ryyw+dM=";
         };
       }
     ];
