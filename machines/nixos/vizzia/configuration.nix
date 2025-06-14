@@ -12,6 +12,7 @@ in
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../common-system-packages.nix
+    ../../common-linux-system-packages.nix
     # Desktop environment modules
     (../desktop-environments + "/${desktopEnvironment}.nix")
   ];

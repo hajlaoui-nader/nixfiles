@@ -1,6 +1,8 @@
 { pkgs, config, lib, ... }:
 {
-  imports = [ ../../common-system-packages.nix ];
+  imports = [ 
+    ../../common-system-packages.nix 
+  ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -10,7 +12,7 @@
   # Auto upgrade nix package and the daemon service.
 
   nix = {
-    enable = true;
+    enable = false; # handled by determinate systems
     package = pkgs.nix;
     settings.trusted-users = [ "naderh" ];
 
@@ -19,7 +21,7 @@
     #    nix-store --optimise
     # Refer to the following link for more details:
     # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
-    optimise.automatic = true;
+    # optimise.automatic = true;
 
     extraOptions = ''
       # needed for nix-direnv
@@ -34,11 +36,11 @@
   };
 
   # Perform garbage collection weekly to maintain low disk usage
-  nix.gc = {
-    automatic = true;
-    interval = { Weekday = 0; Hour = 0; Minute = 0; };
-    options = "--delete-older-than 1w";
-  };
+  # nix.gc = {
+  #   automatic = true;
+  #   interval = { Weekday = 0; Hour = 0; Minute = 0; };
+  #   options = "--delete-older-than 1w";
+  # };
 
   programs = {
     zsh.enable = true;

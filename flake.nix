@@ -121,6 +121,7 @@
               unstable = import nixpkgs-unstable {
                 inherit system;
               };
+              gitEmail = "hajlaoui.nader@gmail.com";
             };
           }
         ];
