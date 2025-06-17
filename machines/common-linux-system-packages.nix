@@ -13,4 +13,7 @@
     # set when darwin gets updated, and ghostty is no more marked as broken
     #pkgs.ghostty
   ];
+
+  # allow dynamic linked packages to be used
+  programs.nix-ld.enable = true;
 }
