@@ -75,6 +75,7 @@
               };
               unstable = import nixpkgs-unstable {
                 inherit system;
+                config.allowUnfree = true;
               };
               gitEmail = "nader.hajlaoui@vizzia.fr";
             };
