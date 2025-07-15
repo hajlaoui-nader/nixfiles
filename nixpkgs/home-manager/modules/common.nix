@@ -39,6 +39,7 @@ in
       go
       gcc14
       dig # DNS lookup
+      claude-code
     ] ++ lib.optionals stdenv.isDarwin [
       coreutils # provides `dd` with --status=progress
       wifi-password
