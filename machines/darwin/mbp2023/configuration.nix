@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 {
-  imports = [ 
-    ../../common-system-packages.nix 
+  imports = [
+    ../../common-system-packages.nix
   ];
 
   # Allow unfree packages
@@ -56,7 +56,7 @@
     home = "/var/root";
     shell = "${pkgs.zsh}/bin/zsh";
   };
-
+  system.primaryUser = "naderh";
   # # can be read via `defaults read NSGlobalDomain`
   system.defaults.NSGlobalDomain = {
     InitialKeyRepeat = 15; # unit is 15ms, so 500ms

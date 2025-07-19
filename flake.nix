@@ -121,7 +121,9 @@
               # put here the variables that you want to pass to the home-manager configuration such as pkgs unstable
               unstable = import nixpkgs-unstable {
                 inherit system;
+                config.allowUnfree = true;
               };
+
               gitEmail = "hajlaoui.nader@gmail.com";
             };
           }
