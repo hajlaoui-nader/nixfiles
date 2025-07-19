@@ -67,6 +67,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
             home-manager.users.nader =
               import ./nixpkgs/home-manager/vizzia.nix;
             home-manager.extraSpecialArgs = {

@@ -5,7 +5,7 @@
 let
   # Desktop environment selection
   # Options: "cosmic", "gnome", "i3"
-  desktopEnvironment = "gnome";
+  desktopEnvironment = "hyprland";
 in
 {
   imports = [

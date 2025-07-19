@@ -4,9 +4,7 @@
     ./modules/common.nix
     ./modules/zsh
     ./modules/git.nix
-    #./programs/hyprland
-    #./programs/rofi
-    #./programs/waybar
+    ../../machines/nixos/desktop-environments/hyprland/home-manager.nix
     #./programs/kitty.nix
     ./programs/tmux
     ./programs/ghostty
