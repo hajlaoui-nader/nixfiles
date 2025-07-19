@@ -38,6 +38,7 @@ in
       pkgs.go
       pkgs.gcc14
       pkgs.dig # DNS lookup
+      pkgs.openresolv # DNS resolver
       unstable.claude-code
     ] ++ lib.optionals pkgs.stdenv.isDarwin [
       pkgs.coreutils # provides `dd` with --status=progress

@@ -180,10 +180,12 @@ in
     vizzia-prod = {
       config = "config /home/nader/vpn/vizzia-prod.ovpn";
       autoStart = false;
+      updateResolvConf = true;
     };
     vizzia-dev = {
       config = "config /home/nader/vpn/vizzia-dev.ovpn";
       autoStart = false;
+      updateResolvConf = true;
     };
   };
 
