@@ -12,12 +12,13 @@ jobs:
     strategy:
       matrix:
         include:
-          - name: "NixOS - zeus"
-            system: "x86_64-linux"
-            config: "zeus"
-          - name: "NixOS - vizzia"
-            system: "x86_64-linux"
-            config: "vizzia"
+          # TODO UPDATE NIXPKGS STABLE THEN UNCOMMENT
+          #- name: "NixOS - zeus"
+            #system: "x86_64-linux"
+            #config: "zeus"
+          #- name: "NixOS - vizzia"
+            #system: "x86_64-linux"
+            #config: "vizzia"
           - name: "Darwin - mbp2023"
             system: "aarch64-darwin"
             config: "mbp2023"
