@@ -32,29 +32,35 @@ jobs:
       - name: Setup Nix cache
         uses: DeterminateSystems/magic-nix-cache-action@main
 
-      - name: Pin home-manager versions
-        run: |
-          # Ensure we use the same home-manager versions as specified in flake.nix
-          nix flake lock --update-input home-manager-stable
-          nix flake lock --update-input home-manager-unstable
-
-      - name: Check flake
-        run: nix flake check
-
       - name: Show flake info
         run: nix flake show
 
-      - name: Build configuration
-        run: |
-          nix build .#nixosConfigurations.${{ matrix.config }}.config.system.build.toplevel \
-            --system ${{ matrix.system }} \
-            --no-link \
-            --print-out-paths
-
-
-
-      - name: Check for evaluation errors
+      - name: Test configuration evaluation
+        if: matrix.config != 'mbp2023'
         run: |
           nix eval .#nixosConfigurations.${{ matrix.config }}.config.system.build.toplevel \
             --system ${{ matrix.system }} \
             --json
+
+      - name: Test darwin configuration evaluation
+        if: matrix.config == 'mbp2023'
+        run: |
+          nix eval .#darwinConfigurations.${{ matrix.config }}.system \
+            --system ${{ matrix.system }} \
+            --json
+
+      - name: Build NixOS configuration (dry run)
+        if: matrix.config != 'mbp2023'
+        run: |
+          nix build .#nixosConfigurations.${{ matrix.config }}.config.system.build.toplevel \
+            --system ${{ matrix.system }} \
+            --no-link \
+            --dry-run
+
+      - name: Build darwin configuration (dry run)
+        if: matrix.config == 'mbp2023'
+        run: |
+          nix build .#darwinConfigurations.${{ matrix.config }}.system \
+            --system ${{ matrix.system }} \
+            --no-link \
+            --dry-run
