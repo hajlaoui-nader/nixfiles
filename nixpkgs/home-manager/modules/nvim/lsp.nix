@@ -54,7 +54,7 @@
             vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
             vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lsh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
             vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'F', '<cmd>lua require("conform").format({lsp_fallback = true })<CR>', opts)
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lf', '<cmd>lua require("conform").format({lsp_fallback = true })<CR>', opts)
 
             -- Metals specific
             vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lmc', '<cmd>lua require("metals").commands()<CR>', opts)
@@ -141,9 +141,9 @@
 
             -- Python config
           lspconfig.pyright.setup{
-            capabilities = capabilities;
-            on_attach=default_on_attach_python;
-            cmd = {"${pkgs.pyright}/bin/pyright-langserver", "--stdio"};
+            capabilities = capabilities,
+            on_attach=default_on_attach_python,
+            cmd = {"${pkgs.pyright}/bin/pyright-langserver", "--stdio"},
             python = {
               analysis = {
                 autoSearchPaths = true,
@@ -156,7 +156,7 @@
 
            -- Nix config
             lspconfig.nil_ls.setup{
-              capabilities = capabilities;
+              capabilities = capabilities,
               on_attach = function(client, bufnr)
                 attach_keymaps(client, bufnr)
               end,
@@ -168,9 +168,16 @@
                   diagnostics = {
                     ignored = { "uri_literal" },
                     excludedFiles = { }
+                  },
+                  nix = {
+                    flake = {
+                      autoArchive = false,
+                      autoEvalInputs = false,
+                      nixpkgsInputName = "nixpkgs"
+                    }
                   }
                 }
-              };
+              },
               cmd = {"${pkgs.nil}/bin/nil"}
             }
 
@@ -208,34 +215,34 @@
 
           -- TS config
           lspconfig.ts_ls.setup {
-              capabilities = capabilities;
+              capabilities = capabilities,
               on_attach = function(client, bufnr)
                 attach_keymaps(client, bufnr)
               end,
-              cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" }
+              cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" },
             }
 
           -- HTML config
           lspconfig.html.setup {
-              capabilities = capabilities;
+              capabilities = capabilities,
               on_attach = function(client, bufnr)
                 attach_keymaps(client, bufnr)
               end,
-              cmd = { "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server", "--stdio" }
+              cmd = { "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server", "--stdio" },
             }
 
 
           -- C Config
           lspconfig.clangd.setup {
-              capabilities = capabilities;
+              capabilities = capabilities,
               on_attach = default_on_attach,
-              cmd = { "${pkgs.clang-tools_19}/bin/clangd", "--offset-encoding=utf-16" }
+              cmd = { "${pkgs.clang-tools_19}/bin/clangd", "--offset-encoding=utf-16" },
             }
 
             lspconfig.gopls.setup {
-              capabilities = capabilities;
-              on_attach = default_on_attach;
-              cmd = { "${pkgs.gopls}/bin/gopls", "serve" }
+              capabilities = capabilities,
+              on_attach = default_on_attach,
+              cmd = { "${pkgs.gopls}/bin/gopls", "serve" },
             }
 
           -- Lua Config

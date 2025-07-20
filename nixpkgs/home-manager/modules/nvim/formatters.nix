@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   conform = ''
     -- set formatting shortcut if lsp is not attached
-    vim.api.nvim_set_keymap("n", "F", '<cmd>lua require("conform").format({lsp_fallback = true })<CR>', {
+    vim.api.nvim_set_keymap("n", "<leader>lf", '<cmd>lua require("conform").format({lsp_fallback = true })<CR>', {
         noremap = true,
         silent = true,
     })
@@ -24,6 +24,7 @@
         markdown = { "prettier" },
         typescript = { "prettier" },
         javascript = { "prettier" },
+        nix = { "nixpkgs-fmt" },
         -- Use the "_" filetype to run formatters on filetypes that don't have other formatters configured.
         ["_"] = { "trim_whitespace" },
       },
@@ -39,6 +40,9 @@
         },
         prettier = {
           command = "${pkgs.nodePackages.prettier}/bin/prettier"
+        },
+        ["nixpkgs-fmt"] = {
+          command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"
         },
       },
     })
