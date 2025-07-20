@@ -47,9 +47,11 @@
             home-manager.extraSpecialArgs = {
               nixpkgs = import nixpkgs-stable {
                 inherit system;
+                overlays = [ (import ./nixpkgs/overlays/claude-code-overlay.nix) ];
               };
               unstable = import nixpkgs-unstable {
                 inherit system;
+                overlays = [ (import ./nixpkgs/overlays/claude-code-overlay.nix) ];
               };
               gitEmail = "hajlaoui.nader@gmail.com";
             };
@@ -72,10 +74,12 @@
             home-manager.extraSpecialArgs = {
               nixpkgs = import nixpkgs-stable {
                 inherit system;
+                overlays = [ (import ./nixpkgs/overlays/claude-code-overlay.nix) ];
               };
               unstable = import nixpkgs-unstable {
                 inherit system;
                 config.allowUnfree = true;
+                overlays = [ (import ./nixpkgs/overlays/claude-code-overlay.nix) ];
               };
               gitEmail = "nader.hajlaoui@vizzia.fr";
             };
@@ -122,6 +126,7 @@
               unstable = import nixpkgs-unstable {
                 inherit system;
                 config.allowUnfree = true;
+                overlays = [ (import ./nixpkgs/overlays/claude-code-overlay.nix) ];
               };
 
               gitEmail = "hajlaoui.nader@gmail.com";
