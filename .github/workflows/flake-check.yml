@@ -32,6 +32,12 @@ jobs:
       - name: Setup Nix cache
         uses: DeterminateSystems/magic-nix-cache-action@main
 
+      - name: Pin home-manager versions
+        run: |
+          # Ensure we use the same home-manager versions as specified in flake.nix
+          nix flake lock --update-input home-manager-stable
+          nix flake lock --update-input home-manager-unstable
+
       - name: Check flake
         run: nix flake check
 
