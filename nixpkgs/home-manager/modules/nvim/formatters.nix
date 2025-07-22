@@ -17,7 +17,7 @@
         end,
 
       formatters_by_ft = {
-        python = { "black" },
+        python = { "ruff" },
         lua = { "stylua" },
         html = { "prettier" },
         css = { "prettier" },
@@ -32,8 +32,10 @@
       notify_on_error = true,
 
       formatters = {
-        black = {
-          command = "${pkgs.black}/bin/black"
+        ruff = {
+          command = "${pkgs.ruff}/bin/ruff",
+          args = { "format", "--stdin-filename", "$FILENAME" },
+          stdin = true,
         },
         stylua = {
           command = "${pkgs.stylua}/bin/stylua"

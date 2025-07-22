@@ -7,7 +7,7 @@
 
 ## formatters
 
-- `python`: `black`
+- `python`: `ruff`
 - `lua`: `stylua`
 
 ## telescope

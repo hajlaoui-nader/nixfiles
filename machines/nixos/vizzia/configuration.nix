@@ -77,6 +77,8 @@ in
       evince
       awscli2
       poetry
+      python311
+      uv
       nodePackages_latest.aws-cdk
     ];
   };
