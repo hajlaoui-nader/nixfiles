@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, inputs, ... }:
 {
   imports = [
     ../../common-system-packages.nix
@@ -33,6 +33,9 @@
 
       experimental-features = nix-command flakes
     '';
+
+    registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+
   };
 
   # Perform garbage collection weekly to maintain low disk usage
