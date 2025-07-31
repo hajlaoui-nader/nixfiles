@@ -20,8 +20,10 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
+  boot.binfmt = {
+    emulatedSystems = [ "aarch64-linux" ];
+    preferStaticEmulators = true; # Make it work with Docker
+  };
   networking.hostName = "nixos"; # Define your hostname.
   services.fstrim.enable = true;
   programs.thunar.enable = true;
