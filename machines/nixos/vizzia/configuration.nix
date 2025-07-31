@@ -20,6 +20,7 @@ in
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   networking.hostName = "nixos"; # Define your hostname.
   services.fstrim.enable = true;
@@ -118,6 +119,7 @@ in
     openvpn3
     wget
     bc
+    qemu
   ];
 
   # Docker configuration
