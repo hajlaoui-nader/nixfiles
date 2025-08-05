@@ -51,6 +51,8 @@
               };
               unstable = import nixpkgs-unstable {
                 inherit system;
+                config.allowUnfree = true;
+
                 overlays = [ (import ./nixpkgs/overlays/claude-code-overlay.nix) ];
               };
               gitEmail = "hajlaoui.nader@gmail.com";

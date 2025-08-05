@@ -1,4 +1,7 @@
-{ pkgs, gitEmail, ... }: {
+{ pkgs, gitEmail, ... }:
+let cursor = pkgs.callPackage ./cursor/cursor.nix { };
+in {
+
   imports = [
     ./modules/home-manager.nix
     ./modules/common.nix
@@ -28,6 +31,7 @@
     bitwarden-cli
     bitwarden-desktop
     slack
+    cursor
   ];
 
   home.file = {
