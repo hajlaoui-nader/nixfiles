@@ -32,6 +32,7 @@ in {
     bitwarden-desktop
     slack
     cursor
+    postman
   ];
 
   home.file = {
