@@ -76,7 +76,10 @@
             home-manager.extraSpecialArgs = {
               nixpkgs = import nixpkgs-stable {
                 inherit system;
-                overlays = [ (import ./nixpkgs/overlays/claude-code-overlay.nix) ];
+                overlays = [
+                  (import ./nixpkgs/overlays/claude-code-overlay.nix)
+                  (import ./nixpkgs/overlays/postman-overlay.nix)
+                ];
               };
               unstable = import nixpkgs-unstable {
                 inherit system;

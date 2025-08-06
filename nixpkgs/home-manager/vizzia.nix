@@ -1,4 +1,4 @@
-{ pkgs, gitEmail, ... }:
+{ pkgs, unstable, gitEmail, ... }:
 let cursor = pkgs.callPackage ./cursor/cursor.nix { };
 in {
 
@@ -32,7 +32,7 @@ in {
     bitwarden-desktop
     slack
     cursor
-    postman
+    (unstable.postman)
   ];
 
   home.file = {
