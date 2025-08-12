@@ -33,6 +33,7 @@ in {
     slack
     cursor
     (unstable.postman)
+    unstable.bruno
   ];
 
   home.file = {
