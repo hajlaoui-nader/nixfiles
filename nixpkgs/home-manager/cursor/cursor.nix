@@ -2,12 +2,12 @@
 { pkgs, ... }:
 let
   pname = "cursor";
-  version = "1.3.9";
+  version = "1.4.5";
 
   src = pkgs.fetchurl {
     url =
-      "https://downloads.cursor.com/production/54c27320fab08c9f5dd5873f07fca101f7a3e076/linux/x64/Cursor-1.3.9-x86_64.AppImage";
-    hash = "sha256-0kkTL6ZCnLxGBQSVoZ7UEOBNtTZVQolVAk/2McCV0Rw=";
+      "https://downloads.cursor.com/production/af58d92614edb1f72bdd756615d131bf8dfa5299/linux/x64/Cursor-1.4.5-x86_64.AppImage";
+    hash = "sha256-2Hz1tXC+YkIIHWG1nO3/84oygH+wvaUtTXqvv19ZAz4=";
   };
   appimageContents = pkgs.appimageTools.extract { inherit pname version src; };
 in

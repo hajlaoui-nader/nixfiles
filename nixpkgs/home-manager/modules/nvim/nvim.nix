@@ -126,6 +126,8 @@ in
       # float terminal 
       toggleterm-nvim
       glow-nvim
+      # pr review
+      #octo-nvim
     ] ++ [
       ## unstable 
       unstable.vimPlugins.hardtime-nvim
