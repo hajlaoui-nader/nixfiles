@@ -122,6 +122,7 @@ in
     wget
     bc
     qemu
+    gcc-unwrapped
   ];
 
   # Docker configuration
