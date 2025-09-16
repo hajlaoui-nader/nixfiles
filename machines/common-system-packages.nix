@@ -14,4 +14,12 @@
   nix.nixPath = lib.mapAttrsToList (name: value: "${name}=${value}") inputs;
 
   nix.channel.enable = false;
+
+  xdg.terminal-exec = {
+    enable = true;
+    settings.default = [
+      "ghostty.desktop"
+    ];
+  };
+
 }

@@ -123,6 +123,9 @@ in
     bc
     qemu
     gcc-unwrapped
+    opencv
+    libGL
+    mesa
   ];
 
   # Docker configuration
