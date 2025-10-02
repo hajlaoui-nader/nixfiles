@@ -4,10 +4,13 @@ let
   pname = "cursor";
   version = "1.4.5";
 
+  # nix-prefetch-url "https://api2.cursor.sh/updates/download/golden/linux-x64/cursor/1.7"
+  # 0mg6byzhadh6k8jrbnns8p7g66x34vwvb5h46kk7fmmjc8cg27v4
+  # nix hash convert --hash-algo sha256 0mg6byzhadh6k8jrbnns8p7g66x34vwvb5h46kk7fmmjc8cg27v4
   src = pkgs.fetchurl {
     url =
-      "https://downloads.cursor.com/production/af58d92614edb1f72bdd756615d131bf8dfa5299/linux/x64/Cursor-1.4.5-x86_64.AppImage";
-    hash = "sha256-2Hz1tXC+YkIIHWG1nO3/84oygH+wvaUtTXqvv19ZAz4=";
+      "https://api2.cursor.sh/updates/download/golden/linux-x64/cursor/1.7";
+    hash = "sha256-ZB/xGGKyVnfmNASWtfkmoxvzzkXa2pUlmgY2Bb9f5lU=";
   };
   appimageContents = pkgs.appimageTools.extract { inherit pname version src; };
 in
