@@ -34,6 +34,11 @@ in {
     cursor
     (unstable.postman)
     unstable.bruno
+    gnome-tweaks
+    arc-theme
+    #papirus-icon-theme
+    unstable.catppuccin-gtk
+    unstable.catppuccin-papirus-folders
   ];
 
   home.file = {
@@ -70,5 +75,14 @@ in {
         fi
       }
     '';
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Catppuccin-Macchiato-Standard-Blue-Dark";
+      icon-theme = "Papirus-Dark"; # patched by catppuccin-papirus-folders
+      cursor-theme = "Adwaita";
+      color-scheme = "prefer-dark";
+    };
   };
 }
