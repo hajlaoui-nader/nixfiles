@@ -70,11 +70,6 @@
         silent = true
     });
 
-    vim.api.nvim_set_keymap('n', '<leader>flsw', "<cmd> Telescope lsp_workspace_symbols<CR>", {
-        noremap = true,
-        silent = true
-    });
-
     vim.api.nvim_set_keymap('n', '<leader>flr', "<cmd> Telescope lsp_references<CR>", {
         noremap = true,
         silent = true
@@ -110,10 +105,10 @@
             "--smart-case",
             "--fixed-strings"
           },
-          pickers = {
-            find_command = {
-              "${pkgs.fd}/bin/fd",
-            },
+        },
+        pickers = {
+          find_command = {
+            "${pkgs.fd}/bin/fd",
           },
         },
         extensions = {
