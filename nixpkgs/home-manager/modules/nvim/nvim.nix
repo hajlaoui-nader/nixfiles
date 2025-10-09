@@ -97,9 +97,8 @@ in
       nvim-metals # metals
       nvim-lspconfig # lsp config
       hop-nvim
-      # TODO: add these back in
-      # vim-plugins.nvim-ufo
-      # vim-plugins.promise-async
+      nvim-ufo
+      promise-async
       bufferline-nvim # bufferline
       nvim-cursorline # cursorline
       indent-blankline-nvim # indent lines
