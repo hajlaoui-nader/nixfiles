@@ -165,6 +165,7 @@ in
       (builtins.readFile ./terminal.lua)
       (builtins.readFile ./hardtime.lua)
       (builtins.readFile ./markdown.lua)
+      (builtins.readFile ./blink-highlight.lua)
       glow
     ]) + ''
 
