@@ -49,7 +49,7 @@ in
     unstable.claude-code # temporarily disabled due to hash mismatch
   ] ++ lib.optionals pkgs.stdenv.isDarwin [
     pkgs.coreutils # provides `dd` with --status=progress
-    pkgs.wifi-password
+    #pkgs.wifi-password
   ] ++ lib.optionals pkgs.stdenv.isLinux [
     pkgs.iputils # provides `ping`, `ifconfig`, ...
     pkgs.libuuid # `uuidgen` (already pre-installed on mac)
