@@ -143,7 +143,7 @@
                     }
                   }
                 }
-                vim.lsp.enable('pyright')
+                vim.lsp.enable('pyright', { filetypes = { 'python' } })
 
                        -- Nix config
                         vim.lsp.config['nil_ls'] = {
@@ -171,7 +171,7 @@
                           },
                           cmd = {"${pkgs.nil}/bin/nil"}
                         }
-                        vim.lsp.enable('nil_ls')
+                        vim.lsp.enable('nil_ls', { filetypes = { 'nix' } })
 
                       -- Scala nvim-metals config
                       metals_config = require('metals').bare_config()
@@ -213,7 +213,7 @@
                           end,
                           cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" },
                         }
-                        vim.lsp.enable('ts_ls')
+                        vim.lsp.enable('ts_ls', { filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' } })
 
                       -- HTML config
                       vim.lsp.config['html'] = {
@@ -223,7 +223,7 @@
                           end,
                           cmd = { "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server", "--stdio" },
                         }
-                        vim.lsp.enable('html')
+                        vim.lsp.enable('html', { filetypes = { 'html' } })
 
 
                       -- C Config
@@ -232,7 +232,7 @@
                           on_attach = default_on_attach,
                           cmd = { "${pkgs.clang-tools_19}/bin/clangd", "--offset-encoding=utf-16" },
                         }
-                        vim.lsp.enable('clangd')
+                        vim.lsp.enable('clangd', { filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' } })
 
                         -- Go Config
                         vim.lsp.config['gopls'] = {
@@ -240,7 +240,7 @@
                           on_attach = default_on_attach,
                           cmd = { "${pkgs.gopls}/bin/gopls", "serve" },
                         }
-                        vim.lsp.enable('gopls')
+                        vim.lsp.enable('gopls', { filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' } })
 
                       -- Lua Config
                  vim.lsp.config['lua_ls'] = {
@@ -271,7 +271,7 @@
                     Lua = {}
                   }
                 }
-                vim.lsp.enable('lua_ls')
+                vim.lsp.enable('lua_ls', { filetypes = { 'lua' } })
 
                       require("telescope").load_extension("ui-select")
 
