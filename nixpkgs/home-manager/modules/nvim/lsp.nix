@@ -134,6 +134,7 @@
                   capabilities = capabilities,
                   on_attach=default_on_attach_python,
                   cmd = {"${pkgs.pyright}/bin/pyright-langserver", "--stdio"},
+                  filetypes = { 'python' },
                   python = {
                     analysis = {
                       autoSearchPaths = true,
@@ -143,7 +144,7 @@
                     }
                   }
                 }
-                vim.lsp.enable('pyright', { filetypes = { 'python' } })
+                vim.lsp.enable('pyright')
 
                        -- Nix config
                         vim.lsp.config['nil_ls'] = {
@@ -151,6 +152,7 @@
                           on_attach = function(client, bufnr)
                             attach_keymaps(client, bufnr)
                           end,
+                          filetypes = { 'nix' },
                           settings = {
                             ['nil'] = {
                               formatting = {
@@ -171,7 +173,7 @@
                           },
                           cmd = {"${pkgs.nil}/bin/nil"}
                         }
-                        vim.lsp.enable('nil_ls', { filetypes = { 'nix' } })
+                        vim.lsp.enable('nil_ls')
 
                       -- Scala nvim-metals config
                       metals_config = require('metals').bare_config()
@@ -211,9 +213,10 @@
                           on_attach = function(client, bufnr)
                             attach_keymaps(client, bufnr)
                           end,
+                          filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
                           cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" },
                         }
-                        vim.lsp.enable('ts_ls', { filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' } })
+                        vim.lsp.enable('ts_ls')
 
                       -- HTML config
                       vim.lsp.config['html'] = {
@@ -221,29 +224,33 @@
                           on_attach = function(client, bufnr)
                             attach_keymaps(client, bufnr)
                           end,
+                          filetypes = { 'html' },
                           cmd = { "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server", "--stdio" },
                         }
-                        vim.lsp.enable('html', { filetypes = { 'html' } })
+                        vim.lsp.enable('html')
 
 
                       -- C Config
                       vim.lsp.config['clangd'] = {
                           capabilities = capabilities,
                           on_attach = default_on_attach,
+                          filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
                           cmd = { "${pkgs.clang-tools_19}/bin/clangd", "--offset-encoding=utf-16" },
                         }
-                        vim.lsp.enable('clangd', { filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' } })
+                        vim.lsp.enable('clangd')
 
                         -- Go Config
                         vim.lsp.config['gopls'] = {
                           capabilities = capabilities,
                           on_attach = default_on_attach,
+                          filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
                           cmd = { "${pkgs.gopls}/bin/gopls", "serve" },
                         }
-                        vim.lsp.enable('gopls', { filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' } })
+                        vim.lsp.enable('gopls')
 
                       -- Lua Config
                  vim.lsp.config['lua_ls'] = {
+                        filetypes = { 'lua' },
                         on_init = function(client)
                     if client.workspace_folders then
                       local path = client.workspace_folders[1].name
@@ -271,7 +278,7 @@
                     Lua = {}
                   }
                 }
-                vim.lsp.enable('lua_ls', { filetypes = { 'lua' } })
+                vim.lsp.enable('lua_ls')
 
                       require("telescope").load_extension("ui-select")
 

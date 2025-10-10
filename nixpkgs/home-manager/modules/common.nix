@@ -46,7 +46,7 @@ in
     pkgs.inetutils # provides `ftp`, `telnet`, ...
     pkgs.dig # DNS lookup
     pkgs.openresolv # DNS resolver
-    # unstable.claude-code # temporarily disabled due to hash mismatch
+    unstable.claude-code # temporarily disabled due to hash mismatch
   ] ++ lib.optionals pkgs.stdenv.isDarwin [
     pkgs.coreutils # provides `dd` with --status=progress
     pkgs.wifi-password

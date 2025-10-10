@@ -1,14 +1,13 @@
-const a = 1
-
+const a = 1;
 
 type A = {
-  a: number
-  b: string
-}
+  a: number;
+  b: string;
+};
 
 const b: A = {
   a: 1,
-  b: '2'
-}
+  b: "2",
+};
 
-const c = b.a
+const c = b.a;

@@ -30,12 +30,12 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "crates" },
-		{ name = "vsnip" },
-		{ name = "treesitter" },
-		{ name = "path" }, -- path completion
-		{ name = "buffer" },
+		{ name = "nvim_lsp", priority = 1000 },
+		{ name = "crates", priority = 750 },
+		{ name = "vsnip", priority = 500 },
+		{ name = "treesitter", priority = 300 },
+		{ name = "path", priority = 250 },
+		{ name = "buffer", priority = 100 },
 	},
 	mapping = {
 		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
