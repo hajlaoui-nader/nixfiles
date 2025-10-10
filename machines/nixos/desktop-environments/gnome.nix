@@ -12,13 +12,14 @@
 
     desktopManager = {
       xterm.enable = false;
-      gnome.enable = true;
-    };
-
-    displayManager = {
-      gdm.enable = true;
     };
   };
+
+  # GNOME desktop environment
+  services.desktopManager.gnome.enable = true;
+
+  # GDM display manager
+  services.displayManager.gdm.enable = true;
 
   # Display manager configuration
   services.displayManager = {

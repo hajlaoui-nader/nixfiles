@@ -76,7 +76,7 @@ in
     packages = with pkgs; [
       git
       xclip
-      libreoffice
+      #libreoffice # TODO put it back when I need it
       evince
       awscli2
       poetry

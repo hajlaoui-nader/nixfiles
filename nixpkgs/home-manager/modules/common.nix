@@ -13,6 +13,9 @@ in
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
+  # Suppress SSH default config warning
+  programs.ssh.enableDefaultConfig = false;
+
   home.packages = [
     pkgs.man-pages # linux programmer's manual
     pkgs.zip # archives
@@ -38,10 +41,12 @@ in
     pkgs.go
     pkgs.gcc14
     pkgs.gdb
+    pkgs.cargo
+    pkgs.rustc
     pkgs.inetutils # provides `ftp`, `telnet`, ...
     pkgs.dig # DNS lookup
     pkgs.openresolv # DNS resolver
-    unstable.claude-code
+    # unstable.claude-code # temporarily disabled due to hash mismatch
   ] ++ lib.optionals pkgs.stdenv.isDarwin [
     pkgs.coreutils # provides `dd` with --status=progress
     pkgs.wifi-password

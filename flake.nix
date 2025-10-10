@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/7c43f080a7f28b2774f3b3f43234ca11661bf334"; # contains ghostty
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/3d359bbda48b4d25b65007b944c09f09ff00e8e9"; # commit 10-10-2025
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/2f7739d01080feb4549524e8f6927669b61c6ee3";
+      url = "github:nix-community/home-manager/004753ae6b04c4b18aa07192c1106800aaacf6c3"; # commit 1-10-2025
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 

@@ -19,11 +19,10 @@
 
         function SetupRustMappings()
             local opts = { noremap = true, silent = true }
-            vim.api.nvim_set_keymap('n', '<leader>ri', '<cmd>lua require("rust-tools.inlay_hints").toggle_inlay_hints()<CR>', opts)
-            vim.api.nvim_set_keymap('n', '<leader>rr', '<cmd>lua require("rust-tools.runnables").runnables()<CR>', opts)
-            vim.api.nvim_set_keymap('n', '<leader>re', '<cmd>lua require("rust-tools.expand_macro").expand_macro()<CR>', opts)
-            vim.api.nvim_set_keymap('n', '<leader>rc', '<cmd>lua require("rust-tools.open_cargo_toml").open_cargo_toml()<CR>', opts)
-            vim.api.nvim_set_keymap('n', '<leader>rg', "<cmd>lua require('rust-tools.crate_graph').view_crate_graph('x11', nil)<CR>", opts)
+            vim.api.nvim_set_keymap('n', '<leader>rr', '<cmd>RustLsp runnables<CR>', opts)
+            vim.api.nvim_set_keymap('n', '<leader>re', '<cmd>RustLsp expandMacro<CR>', opts)
+            vim.api.nvim_set_keymap('n', '<leader>rc', '<cmd>RustLsp openCargo<CR>', opts)
+            vim.api.nvim_set_keymap('n', '<leader>rd', '<cmd>RustLsp debuggables<CR>', opts)
         end
 
         vim.cmd [[
@@ -83,27 +82,20 @@
               format_callback(client, bufnr)
           end
 
-          -- Enable lspconfig
-          local lspconfig = require('lspconfig')
-
           local capabilities = vim.lsp.protocol.make_client_capabilities()
 
           capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
            -- Rust config
 
-            local rustopts = {
-              tools = {
-                autoSetHints = true,
-                hover_with_actions = false,
-                inlay_hints = {
-                  only_current_line = false,
-                }
-              },
+            vim.g.rustaceanvim = {
               server = {
                 capabilities = capabilities,
-                on_attach = default_on_attach,
+                on_attach = function(client, bufnr)
+                  attach_keymaps(client, bufnr)
+                  format_callback(client, bufnr)
+                end,
                 cmd = {"${pkgs.rust-analyzer}/bin/rust-analyzer"},
-                settings = {
+                default_settings = {
                   ["rust-analyzer"] = {
                     experimental = {
                       procAttrMacros = true,
@@ -115,8 +107,6 @@
 
                   require('crates').setup {
                   }
-
-                  require('rust-tools').setup(rustopts)
 
                   default_on_attach_python = function(client, bufnr)
                       attach_keymaps(client, bufnr)
@@ -140,7 +130,7 @@
                   end
 
                   -- Python config
-                lspconfig.pyright.setup{
+                vim.lsp.config['pyright'] = {
                   capabilities = capabilities,
                   on_attach=default_on_attach_python,
                   cmd = {"${pkgs.pyright}/bin/pyright-langserver", "--stdio"},
@@ -153,9 +143,10 @@
                     }
                   }
                 }
+                vim.lsp.enable('pyright')
 
                        -- Nix config
-                        lspconfig.nil_ls.setup{
+                        vim.lsp.config['nil_ls'] = {
                           capabilities = capabilities,
                           on_attach = function(client, bufnr)
                             attach_keymaps(client, bufnr)
@@ -180,6 +171,7 @@
                           },
                           cmd = {"${pkgs.nil}/bin/nil"}
                         }
+                        vim.lsp.enable('nil_ls')
 
                       -- Scala nvim-metals config
                       metals_config = require('metals').bare_config()
@@ -214,39 +206,44 @@
                       vim.cmd([[augroup end]])
 
                       -- TS config
-                      lspconfig.ts_ls.setup {
+                      vim.lsp.config['ts_ls'] = {
                           capabilities = capabilities,
                           on_attach = function(client, bufnr)
                             attach_keymaps(client, bufnr)
                           end,
                           cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" },
                         }
+                        vim.lsp.enable('ts_ls')
 
                       -- HTML config
-                      lspconfig.html.setup {
+                      vim.lsp.config['html'] = {
                           capabilities = capabilities,
                           on_attach = function(client, bufnr)
                             attach_keymaps(client, bufnr)
                           end,
                           cmd = { "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server", "--stdio" },
                         }
+                        vim.lsp.enable('html')
 
 
                       -- C Config
-                      lspconfig.clangd.setup {
+                      vim.lsp.config['clangd'] = {
                           capabilities = capabilities,
                           on_attach = default_on_attach,
                           cmd = { "${pkgs.clang-tools_19}/bin/clangd", "--offset-encoding=utf-16" },
                         }
+                        vim.lsp.enable('clangd')
 
-                        lspconfig.gopls.setup {
+                        -- Go Config
+                        vim.lsp.config['gopls'] = {
                           capabilities = capabilities,
                           on_attach = default_on_attach,
                           cmd = { "${pkgs.gopls}/bin/gopls", "serve" },
                         }
+                        vim.lsp.enable('gopls')
 
                       -- Lua Config
-                 lspconfig.lua_ls.setup {
+                 vim.lsp.config['lua_ls'] = {
                         on_init = function(client)
                     if client.workspace_folders then
                       local path = client.workspace_folders[1].name
@@ -274,6 +271,7 @@
                     Lua = {}
                   }
                 }
+                vim.lsp.enable('lua_ls')
 
                       require("telescope").load_extension("ui-select")
 

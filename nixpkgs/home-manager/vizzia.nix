@@ -54,7 +54,7 @@ in {
   };
 
   programs.zsh = {
-    initExtra = ''
+    initContent = ''
       # VPN Management Functions
       function connect_vpn() {
         sudo systemctl start openvpn-vizzia-$1.service
