@@ -141,7 +141,15 @@ in
 
   # Nix configuration
   nix = {
-    settings.auto-optimise-store = true;
+    settings = {
+      auto-optimise-store = true;
+      substituters = [
+        "https://cache.garnix.io"
+      ];
+      trusted-public-keys = [
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      ];
+    };
     extraOptions = ''
       # needed for nix-direnv
       keep-outputs = true

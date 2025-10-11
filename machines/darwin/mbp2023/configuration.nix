@@ -14,7 +14,15 @@
   nix = {
     enable = false; # handled by determinate systems
     package = pkgs.nix;
-    settings.trusted-users = [ "naderh" ];
+    settings = {
+      trusted-users = [ "naderh" ];
+      substituters = [
+        "https://cache.garnix.io"
+      ];
+      trusted-public-keys = [
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      ];
+    };
 
     # Optimize storage
     # You can also manually optimize the store via:
