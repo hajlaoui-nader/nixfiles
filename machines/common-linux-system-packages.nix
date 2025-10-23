@@ -9,6 +9,7 @@
     pkgs.vlc # media player
     pkgs.feh # image viewer
     pkgs.smile # emoji picker
+    pkgs.powertop # power management tool
     #pkgs.appimage-run
     # set when darwin gets updated, and ghostty is no more marked as broken
     #pkgs.ghostty
