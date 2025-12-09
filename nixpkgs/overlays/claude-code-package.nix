@@ -17,7 +17,7 @@
 }:
 
 let
-  version = "2.0.13";  # Update this to install a newer version
+  version = "2.0.62"; # Update this to install a newer version
 
   # Pre-fetch the npm package as a Fixed Output Derivation
   # This allows network access during fetch phase for sandbox compatibility
@@ -25,7 +25,7 @@ let
     url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
     # To get new hash when updating version:
     # nix-prefetch-url https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-VERSION.tgz
-    hash = "sha256-eZWtiIWE0pV7Z/6hAtr+s46t4nuv/d+U2K9AgfpjjSE=";
+    hash = "sha256-c2VNNQBxklpkaI9lu2M/luDDgCtb/LzelQYjiK8T2Rw=";
   };
 in
 stdenv.mkDerivation rec {
@@ -37,8 +37,8 @@ stdenv.mkDerivation rec {
 
   # Build dependencies
   nativeBuildInputs = [
-    nodejs_22   # Use Node.js v22 LTS for compatibility
-    cacert      # SSL certificates for npm
+    nodejs_22 # Use Node.js v22 LTS for compatibility
+    cacert # SSL certificates for npm
   ];
 
   buildPhase = ''
@@ -62,54 +62,54 @@ stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
-    # The npm-generated binary has issues with env and paths
-    # Remove it so we can create our own wrapper
-    rm -f $out/bin/claude
+        # The npm-generated binary has issues with env and paths
+        # Remove it so we can create our own wrapper
+        rm -f $out/bin/claude
 
-    # Create a wrapper script that:
-    # 1. Uses NODE_PATH to find modules without changing directory
-    # 2. Runs claude from the user's current directory
-    # 3. Passes all arguments through
-    # 4. Preserves the consistent path for settings
-    mkdir -p $out/bin
-    cat > $out/bin/claude << 'EOF'
-#!${bash}/bin/bash
-# Set NODE_PATH to find the claude-code modules
-export NODE_PATH="$out/lib/node_modules"
+        # Create a wrapper script that:
+        # 1. Uses NODE_PATH to find modules without changing directory
+        # 2. Runs claude from the user's current directory
+        # 3. Passes all arguments through
+        # 4. Preserves the consistent path for settings
+        mkdir -p $out/bin
+        cat > $out/bin/claude << 'EOF'
+    #!${bash}/bin/bash
+    # Set NODE_PATH to find the claude-code modules
+    export NODE_PATH="$out/lib/node_modules"
 
-# Set a consistent executable path for claude to prevent permission resets
-# This makes macOS and claude think it's always the same binary
-export CLAUDE_EXECUTABLE_PATH="$HOME/.local/bin/claude"
+    # Set a consistent executable path for claude to prevent permission resets
+    # This makes macOS and claude think it's always the same binary
+    export CLAUDE_EXECUTABLE_PATH="$HOME/.local/bin/claude"
 
-# Disable automatic update checks since updates should go through Nix
-export DISABLE_AUTOUPDATER=1
+    # Disable automatic update checks since updates should go through Nix
+    export DISABLE_AUTOUPDATER=1
 
-# Create a temporary npm wrapper that Claude Code will use internally
-# This ensures it doesn't interfere with project npm versions
-export _CLAUDE_NPM_WRAPPER="$(mktemp -d)/npm"
-cat > "$_CLAUDE_NPM_WRAPPER" << 'NPM_EOF'
-#!${bash}/bin/bash
-# Intercept npm commands that might trigger update checks
-if [[ "$1" = "update" ]] || [[ "$1" = "outdated" ]] || [[ "$1" = "view" && "$2" =~ @anthropic-ai/claude-code ]]; then
-    echo "Updates are managed through Nix. Current version: ${version}"
-    exit 0
-fi
-# Pass through to bundled npm for other commands
-exec ${nodejs_22}/bin/npm "$@"
-NPM_EOF
-chmod +x "$_CLAUDE_NPM_WRAPPER"
+    # Create a temporary npm wrapper that Claude Code will use internally
+    # This ensures it doesn't interfere with project npm versions
+    export _CLAUDE_NPM_WRAPPER="$(mktemp -d)/npm"
+    cat > "$_CLAUDE_NPM_WRAPPER" << 'NPM_EOF'
+    #!${bash}/bin/bash
+    # Intercept npm commands that might trigger update checks
+    if [[ "$1" = "update" ]] || [[ "$1" = "outdated" ]] || [[ "$1" = "view" && "$2" =~ @anthropic-ai/claude-code ]]; then
+        echo "Updates are managed through Nix. Current version: ${version}"
+        exit 0
+    fi
+    # Pass through to bundled npm for other commands
+    exec ${nodejs_22}/bin/npm "$@"
+    NPM_EOF
+    chmod +x "$_CLAUDE_NPM_WRAPPER"
 
-# Only add our npm wrapper to PATH for Claude Code's internal use
-export PATH="$(dirname "$_CLAUDE_NPM_WRAPPER"):$PATH"
+    # Only add our npm wrapper to PATH for Claude Code's internal use
+    export PATH="$(dirname "$_CLAUDE_NPM_WRAPPER"):$PATH"
 
-# Run claude from current directory
-exec ${nodejs_22}/bin/node --no-warnings --enable-source-maps "$out/lib/node_modules/@anthropic-ai/claude-code/cli.js" "$@"
-EOF
-    chmod +x $out/bin/claude
+    # Run claude from current directory
+    exec ${nodejs_22}/bin/node --no-warnings --enable-source-maps "$out/lib/node_modules/@anthropic-ai/claude-code/cli.js" "$@"
+    EOF
+        chmod +x $out/bin/claude
 
-    # Replace $out placeholder with the actual output path
-    substituteInPlace $out/bin/claude \
-      --replace '$out' "$out"
+        # Replace $out placeholder with the actual output path
+        substituteInPlace $out/bin/claude \
+          --replace '$out' "$out"
   '';
 
   meta = with lib; {
