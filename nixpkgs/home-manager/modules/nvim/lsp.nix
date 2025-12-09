@@ -83,6 +83,10 @@
           end
 
           local capabilities = vim.lsp.protocol.make_client_capabilities()
+          -- Enable lspconfig
+
+
+          local lspconfig = require('lspconfig')
 
           capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
            -- Rust config
@@ -130,7 +134,7 @@
                   end
 
                   -- Python config
-                vim.lsp.config['pyright'] = {
+                lspconfig.pyright.setup{
                   capabilities = capabilities,
                   on_attach=default_on_attach_python,
                   cmd = {"${pkgs.pyright}/bin/pyright-langserver", "--stdio"},
@@ -144,7 +148,6 @@
                     }
                   }
                 }
-                vim.lsp.enable('pyright')
 
                        -- Nix config
                         vim.lsp.config['nil_ls'] = {

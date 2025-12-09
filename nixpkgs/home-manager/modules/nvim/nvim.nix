@@ -95,7 +95,7 @@ in
       nvim-code-action-menu # code actions
       trouble-nvim # lsp diagnostics
       nvim-metals # metals
-      #nvim-lspconfig # lsp config
+      nvim-lspconfig # lsp config
       hop-nvim
       nvim-ufo
       promise-async
