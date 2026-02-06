@@ -1,23 +1,26 @@
-@define-color bg rgba(4, 20, 45, 0.50);
-@define-color bg-alt #252428;
-@define-color fg #f5f5f5;
-@define-color alert #f53c3c;
-@define-color disabled #a5a5a5;
-@define-color bordercolor #29c8e5;
-@define-color highlight #FBD47F;
-@define-color activegreen #8fb666;
+/* ═══════════════════════════════════════════════════════════════════════════
+   WAYBAR THEME - Catppuccin Mocha with HiDPI Support
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@define-color bg rgba(30, 30, 46, 0.85);
+@define-color bg-alt #181825;
+@define-color fg #cdd6f4;
+@define-color alert #f38ba8;
+@define-color disabled #6c7086;
+@define-color bordercolor #89b4fa;
+@define-color highlight #f9e2af;
+@define-color activegreen #a6e3a1;
 
 * {
   min-height: 0;
-  font-family: "JetBrainsMono Nerd Font", "Hack Nerd Font", FontAwesome, Roboto,
-    Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  /* background-color: #04142d; */
+  font-family: "Iosevka Nerd Font", "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
+  font-size: 16px;  /* Larger for HiDPI */
+  font-weight: 600;
 }
 
 window#waybar {
-  color: #f5f5f5;
-  background: @bg00;
+  color: @fg;
+  background: transparent;
   transition-property: background-color;
   transition-duration: 0.5s;
 }
@@ -26,87 +29,86 @@ window#waybar.empty {
   opacity: 0.3;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   MODULE GROUPS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 .modules-left {
   background: @bg;
   border: 2px solid @bordercolor;
-  border-radius: 20px;
-
-  padding-right: 5px;
-  padding-left: 5px;
+  border-radius: 16px;
+  padding: 2px 8px;
+  margin-left: 5px;
 }
 
 .modules-right {
   background: @bg;
   border: 2px solid @bordercolor;
-  border-radius: 20px;
-
-  padding-right: 5px;
-  padding-left: 5px;
+  border-radius: 16px;
+  padding: 2px 8px;
+  margin-right: 5px;
 }
 
 .modules-center {
   background: @bg;
   border: 2px solid @bordercolor;
-  border-radius: 20px;
-
-  padding-right: 5px;
-  padding-left: 5px;
+  border-radius: 16px;
+  padding: 2px 12px;
 }
 
-button {
-  /* Use box-shadow instead of border so the text isn't offset */
-  box-shadow: inset 0 -3px transparent;
-  /* Avoid rounded borders under each button name */
-  border: none;
-  border-radius: 0;
-}
+/* ═══════════════════════════════════════════════════════════════════════════
+   WORKSPACES
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-  background: inherit;
-  box-shadow: inset 0 -3px transparent;
+#workspaces {
+  padding: 0px 4px;
 }
 
 #workspaces button {
-  /* background-color: #252428; */
+  padding: 4px 10px;
+  margin: 2px 2px;
+  color: @disabled;
+  background: transparent;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+#workspaces button:hover {
+  background: rgba(137, 180, 250, 0.2);
+  color: @bordercolor;
+}
+
+#workspaces button.empty {
+  color: @disabled;
+}
+
+#workspaces button.active {
   color: @fg;
+  background: @bordercolor;
+  background: linear-gradient(45deg, #89b4fa, #cba6f7);
+  font-weight: bold;
 }
 
 #workspaces button.urgent {
   color: @alert;
-  /* background-color: #252428; */
-  /* border: 3px solid #f53c3c; */
-}
-#workspaces button.empty {
-  color: @disabled;
-  /* background-color: #252428; */
+  background: rgba(243, 139, 168, 0.3);
+  animation: blink 1s ease-in-out infinite;
 }
 
-#workspaces button.active {
-  color: @activegreen;
-  /* background-color: #252428; */
-  /* border: 3px solid #7bcbd5; */
+/* ═══════════════════════════════════════════════════════════════════════════
+   WINDOW TITLE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+#window {
+  padding: 4px 12px;
+  margin: 0px 8px;
+  color: @fg;
+  font-weight: 500;
 }
 
-#workspaces button.focused {
-  background-color: @fg;
-  color: @bg-alt;
-}
-
-/* Uncomment If using icons instead of number for workspaces*/
-
-/* #workspaces, */
-/* #workspaces button,  */
-/* #workspaces button.active, */
-/* #workspaces button:hover,  */
-/* #workspaces button.focused, */
-/* #workspaces button.urgent { */
-/*     padding-right: 0px;  */
-/*     padding: 0px 6px;  */
-/*     padding-left: 3px; */
-/*     color: #F5F5F5; */
-/*     background-color: rgba(0, 0, 0, 0); */
-/* }  */
+/* ═══════════════════════════════════════════════════════════════════════════
+   MODULE STYLING
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 #clock,
 #battery,
@@ -117,115 +119,148 @@ button:hover {
 #backlight,
 #network,
 #pulseaudio,
-#pulseaudio.muted,
-#wireplumber,
-#custom-media,
-#taskbar,
 #tray,
-#tray menu,
-#tray > .needs-attention,
-#tray > .passive,
-#tray > .active,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#custom-power,
-#mpd {
-  padding: 0px 5px;
-  padding-right: 10px;
-  margin: 3px 3px;
+#custom-power {
+  padding: 4px 10px;
+  margin: 2px 2px;
   color: @fg;
-  /* background-color: #252428; */
+  border-radius: 10px;
+  background: transparent;
+  transition: all 0.3s ease;
 }
 
+/* Hover effects */
+#clock:hover,
+#battery:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#backlight:hover,
+#network:hover,
+#pulseaudio:hover {
+  background: rgba(137, 180, 250, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INDIVIDUAL MODULE COLORS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 #custom-power {
-  color: #f53c3c;
+  color: @alert;
 }
 
 #cpu {
-  color: #cb221b;
+  color: #f38ba8;
 }
 
 #temperature {
-  color: #d55c0d;
+  color: #fab387;
 }
 
 #memory {
-  color: #d69821;
+  color: #f9e2af;
 }
 
 #disk {
-  color: #979618;
+  color: #a6e3a1;
 }
 
 #backlight {
-  color: #679c68;
+  color: #94e2d5;
 }
 
 #pulseaudio {
-  color: #448486;
-}
-
-#clock {
-  color: #b16186;
-}
-
-#battery {
-  color: #48aa4c;
+  color: #89dceb;
 }
 
 #network {
-  color: #5cc084;
+  color: #74c7ec;
 }
 
-label:focus {
-  background-color: #000000;
+#battery {
+  color: #a6e3a1;
 }
+
+#clock {
+  color: #cba6f7;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATE-SPECIFIC STYLING
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 #network.disconnected {
-  background-color: @alert;
+  color: @alert;
+  background: rgba(243, 139, 168, 0.2);
 }
 
 #battery.charging,
 #battery.plugged {
-  color: #f5f5f5;
-  background-color: #26a65b;
+  color: @activegreen;
 }
 
-#wireplumber.muted {
-  background-color: @alert;
-}
-
-#language {
-  background: @fg;
-  color: @bg-alt;
-  padding: 0 5px;
-  margin: 0 5px;
-  min-width: 16px;
-}
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-  margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-  margin-right: 0;
-}
-@keyframes blink {
-  to {
-    background-color: @fg;
-    color: @bg-alt;
-  }
+#battery.warning:not(.charging) {
+  color: #f9e2af;
+  background: rgba(249, 226, 175, 0.2);
 }
 
 #battery.critical:not(.charging) {
-  background-color: @alert;
+  color: @alert;
+  background: rgba(243, 139, 168, 0.3);
+  animation: blink 0.5s linear infinite alternate;
+}
+
+#pulseaudio.muted {
+  color: @disabled;
+  background: rgba(108, 112, 134, 0.2);
+}
+
+#temperature.critical {
+  color: @alert;
+  background: rgba(243, 139, 168, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TRAY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+#tray {
+  padding: 4px 8px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  color: @alert;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes blink {
+  to {
+    background-color: rgba(243, 139, 168, 0.5);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TOOLTIP
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+tooltip {
+  background: @bg-alt;
+  border: 2px solid @bordercolor;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+tooltip label {
   color: @fg;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  font-size: 14px;
 }

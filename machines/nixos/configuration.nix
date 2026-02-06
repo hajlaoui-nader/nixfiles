@@ -186,29 +186,28 @@
     };
   };
 
-  # i3 config
-  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
+  # i3 config - DISABLED, using Hyprland now
+  # environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
 
-  services.displayManager = {
-    defaultSession = "none+i3";
-  };
+  # services.displayManager = {
+  #   defaultSession = "none+i3";
+  # };
 
+  # services.xserver = {
+  #   desktopManager = {
+  #     xterm.enable = false;
+  #   };
 
-  services.xserver = {
-    desktopManager = {
-      xterm.enable = false;
-    };
-
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        dmenu
-        i3status # default i3 status bar
-        i3lock #default i3 screen locker
-        i3blocks
-      ];
-    };
-  };
+  #   windowManager.i3 = {
+  #     enable = true;
+  #     extraPackages = with pkgs; [
+  #       dmenu
+  #       i3status # default i3 status bar
+  #       i3lock #default i3 screen locker
+  #       i3blocks
+  #     ];
+  #   };
+  # };
 
 
   # This value determines the NixOS release from which the default
