@@ -238,7 +238,7 @@
                           capabilities = capabilities,
                           on_attach = default_on_attach,
                           filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
-                          cmd = { "${pkgs.clang-tools_19}/bin/clangd", "--offset-encoding=utf-16" },
+                          cmd = { "${pkgs.llvmPackages_19.clang-tools}/bin/clangd", "--offset-encoding=utf-16" },
                         }
                         vim.lsp.enable('clangd')
 
