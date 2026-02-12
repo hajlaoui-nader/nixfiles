@@ -2,19 +2,6 @@
 {
   programs.git = {
     enable = true;
-    userName = "Nader Hajlaoui";
-    userEmail = gitEmail;
-
-    delta = {
-      enable = true;
-      options = {
-        #syntax-theme = "solarized-dark";
-        side-by-side = true;
-      };
-    };
-
-    # TODO there's a problem here, all aliases defined below don't appear
-    aliases = { };
 
     ignores = [
       "**/.metals/"
@@ -28,14 +15,20 @@
       "**/.DS_Store"
     ];
 
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Nader Hajlaoui";
+        email = gitEmail;
+      };
+
+      alias = { };
+
       pull.rebase = true;
       init.defaultBranch = "main";
       github.user = "hajlaoui-nader";
 
       push.autoSetupRemote = true;
       push.followTags = true; # push tags when pushing branches
-
 
       core.editor = "nvim";
       core.fileMode = false;
@@ -45,14 +38,23 @@
       tag.sort = "version:refname"; # sort tags by version number
       diff.algorithm = "histogram";
       diff.colorMoved = "plain"; # don't color moved lines
-      diff.mnemonicprefix = true; # use mnemonic prefixes in diffs 
+      diff.mnemonicprefix = true; # use mnemonic prefixes in diffs
       diff.renames = true; # detect renames
-      # fetch 
-      fetch.prune = true; # prune deleted branches 
-      fetch.pruneTags = true; # prune deleted tags 
+      # fetch
+      fetch.prune = true; # prune deleted branches
+      fetch.pruneTags = true; # prune deleted tags
       fetch.all = true; # fetch all branches
-      # commit 
+      # commit
       commit.verbose = true; # show diff in commit message
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      #syntax-theme = "solarized-dark";
+      side-by-side = true;
     };
   };
 }

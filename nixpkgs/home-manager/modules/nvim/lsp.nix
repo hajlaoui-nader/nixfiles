@@ -83,10 +83,6 @@
           end
 
           local capabilities = vim.lsp.protocol.make_client_capabilities()
-          -- Enable lspconfig
-
-
-          local lspconfig = require('lspconfig')
 
           capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
            -- Rust config
@@ -134,20 +130,23 @@
                   end
 
                   -- Python config
-                lspconfig.pyright.setup{
+                vim.lsp.config['pyright'] = {
                   capabilities = capabilities,
-                  on_attach=default_on_attach_python,
+                  on_attach = default_on_attach_python,
                   cmd = {"${pkgs.pyright}/bin/pyright-langserver", "--stdio"},
                   filetypes = { 'python' },
-                  python = {
-                    analysis = {
-                      autoSearchPaths = true,
-                      useLibraryCodeForTypes = true,
-                      diagnosticMode = "workspace",
-                      typeCheckingMode = "off",
+                  settings = {
+                    python = {
+                      analysis = {
+                        autoSearchPaths = true,
+                        useLibraryCodeForTypes = true,
+                        diagnosticMode = "workspace",
+                        typeCheckingMode = "off",
+                      }
                     }
                   }
                 }
+                vim.lsp.enable('pyright')
 
                        -- Nix config
                         vim.lsp.config['nil_ls'] = {
@@ -207,7 +206,7 @@
 
                       vim.cmd([[augroup lsp]])
                       vim.cmd([[autocmd!]])
-                      vim.cmd([[autocmd FileType java,scala,sbt lua require('metals').initialize_or_attach(metals_config)]])
+                      vim.cmd([[autocmd FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)]])
                       vim.cmd([[augroup end]])
 
                       -- TS config
@@ -282,6 +281,49 @@
                   }
                 }
                 vim.lsp.enable('lua_ls')
+
+                      -- Java Config (jdtls)
+                      vim.lsp.config['jdtls'] = {
+                        capabilities = capabilities,
+                        on_attach = default_on_attach,
+                        filetypes = { 'java' },
+                        cmd = { "${pkgs.jdt-language-server}/bin/jdtls" },
+                        settings = {
+                          java = {
+                            eclipse = {
+                              downloadSources = true,
+                            },
+                            maven = {
+                              downloadSources = true,
+                            },
+                            implementationsCodeLens = {
+                              enabled = true,
+                            },
+                            referencesCodeLens = {
+                              enabled = true,
+                            },
+                            references = {
+                              includeDecompiledSources = true,
+                            },
+                            format = {
+                              enabled = true,
+                            },
+                          },
+                          signatureHelp = { enabled = true },
+                          completion = {
+                            favoriteStaticMembers = {
+                              "org.hamcrest.MatcherAssert.assertThat",
+                              "org.hamcrest.Matchers.*",
+                              "org.hamcrest.CoreMatchers.*",
+                              "org.junit.jupiter.api.Assertions.*",
+                              "java.util.Objects.requireNonNull",
+                              "java.util.Objects.requireNonNullElse",
+                              "org.mockito.Mockito.*"
+                            },
+                          },
+                        },
+                      }
+                      vim.lsp.enable('jdtls')
 
                       require("telescope").load_extension("ui-select")
 

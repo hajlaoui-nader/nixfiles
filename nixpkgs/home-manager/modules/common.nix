@@ -39,8 +39,8 @@ in
     pkgs.lua-language-server
     pkgs.lua
     pkgs.go
+    pkgs.jdk # Java Development Kit
     pkgs.gcc14
-    pkgs.gdb
     pkgs.cargo
     pkgs.rustc
     pkgs.inetutils # provides `ftp`, `telnet`, ...
@@ -51,6 +51,7 @@ in
     pkgs.coreutils # provides `dd` with --status=progress
     #pkgs.wifi-password
   ] ++ lib.optionals pkgs.stdenv.isLinux [
+    pkgs.gdb # gdb doesn't build on macOS, only install on Linux
     pkgs.iputils # provides `ping`, `ifconfig`, ...
     pkgs.libuuid # `uuidgen` (already pre-installed on mac)
     pkgs.font-awesome # awesome fonts
