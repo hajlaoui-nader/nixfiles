@@ -63,7 +63,13 @@
 
       vizzia = nixpkgs-stable.lib.nixosSystem rec {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+          unstable = import nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
         modules = [
           ./machines/nixos/vizzia/vizzia.nix
           nixos-hardware.nixosModules.framework-13-7040-amd

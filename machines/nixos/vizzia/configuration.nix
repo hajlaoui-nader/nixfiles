@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
-{ config, pkgs, ... }:
+{ config, pkgs, unstable, ... }:
 let
   # Desktop environment selection
   # Options: "cosmic", "gnome", "i3"
@@ -93,8 +93,11 @@ in
   systemd.services."getty@tty1".enable = false;
   systemd.services."autovt@tty1".enable = false;
 
-  # Install firefox.
-  programs.firefox.enable = true;
+  # Install firefox from unstable channel.
+  programs.firefox = {
+    enable = true;
+    package = unstable.firefox;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -201,7 +204,7 @@ in
       updateResolvConf = true;
     };
     vizzia-dev = {
-      config = "config /home/nader/vpn/vizzia-dev.ovpn";
+      config = "config /home/nader/vpn/vizzia-dev.ovpn-bp";
       autoStart = false;
       updateResolvConf = true;
     };
