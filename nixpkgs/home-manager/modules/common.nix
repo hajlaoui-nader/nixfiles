@@ -48,6 +48,7 @@ in
     pkgs.openresolv # DNS resolver
     unstable.claude-code # temporarily disabled due to hash mismatch
     pkgs.nodejs_24
+    pkgs.gh
   ] ++ lib.optionals pkgs.stdenv.isDarwin [
     pkgs.coreutils # provides `dd` with --status=progress
     #pkgs.wifi-password
