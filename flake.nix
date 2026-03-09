@@ -100,7 +100,7 @@
     };
 
     homeConfigurations = {
-      linux = inputs.home-manager.lib.homeManagerConfiguration {
+      linux = inputs.home-manager-unstable.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
         modules = [
           ./nixpkgs/home-manager/linux.nix
@@ -110,7 +110,7 @@
         ];
       };
 
-      homepi = inputs.home-manager.lib.homeManagerConfiguration {
+      homepi = inputs.home-manager-unstable.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs-unstable.legacyPackages.aarch64-linux;
         modules = [
           ./nixpkgs/home-manager/homepi.nix
