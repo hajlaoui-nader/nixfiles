@@ -99,27 +99,27 @@
       };
     };
 
-    homeConfigurations = {
-      linux = inputs.home-manager-unstable.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
-        modules = [
-          ./nixpkgs/home-manager/linux.nix
-          {
-            nix.settings.trusted-users = [ "naderh" ];
-          }
-        ];
-      };
+    #homeConfigurations = {
+    #linux = inputs.home-manager-unstable.lib.homeManagerConfiguration {
+    #pkgs = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
+    #modules = [
+    #./nixpkgs/home-manager/linux.nix
+    #{
+    #nix.settings.trusted-users = [ "naderh" ];
+    #}
+    #];
+    #};
 
-      homepi = inputs.home-manager-unstable.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs-unstable.legacyPackages.aarch64-linux;
-        modules = [
-          ./nixpkgs/home-manager/homepi.nix
-          {
-            nix.settings.trusted-users = [ "naderh" ];
-          }
-        ];
-      };
-    };
+    #homepi = inputs.home-manager-unstable.lib.homeManagerConfiguration {
+    #pkgs = inputs.nixpkgs-unstable.legacyPackages.aarch64-linux;
+    #modules = [
+    #./nixpkgs/home-manager/homepi.nix
+    #{
+    #nix.settings.trusted-users = [ "naderh" ];
+    #}
+    #];
+    #};
+    #};
 
     darwinConfigurations = {
       mbp2023 = darwin.lib.darwinSystem rec {
