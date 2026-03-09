@@ -3,9 +3,6 @@
   programs.git = {
     enable = true;
 
-    userName = "Nader Hajlaoui";
-    userEmail = gitEmail;
-
     ignores = [
       "**/.metals/"
       "**/project/metals.sbt"
@@ -18,9 +15,10 @@
       "**/.DS_Store"
     ];
 
-    aliases = { };
-
-    extraConfig = {
+    settings = {
+      user.name = "Nader Hajlaoui";
+      user.email = gitEmail;
+      alias = { };
       pull.rebase = true;
       init.defaultBranch = "main";
       github.user = "hajlaoui-nader";
@@ -45,13 +43,14 @@
       # commit
       commit.verbose = true; # show diff in commit message
     };
+  };
 
-    delta = {
-      enable = true;
-      options = {
-        #syntax-theme = "solarized-dark";
-        side-by-side = true;
-      };
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      #syntax-theme = "solarized-dark";
+      side-by-side = true;
     };
   };
 }
