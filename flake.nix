@@ -27,9 +27,14 @@
       url = "github:NixOS/nixos-hardware/master";
     };
 
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkfs.follows = "nixpkgs-unstable";
+    };
+
   };
 
-  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-stable, home-manager-stable, home-manager-unstable, nixos-hardware }: {
+  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-stable, home-manager-stable, home-manager-unstable, nixos-hardware, claude-code }: {
 
 
     nixosConfigurations = {
@@ -137,7 +142,7 @@
               unstable = import nixpkgs-unstable {
                 inherit system;
                 config.allowUnfree = true;
-                overlays = [ (import ./nixpkgs/overlays/claude-code-overlay.nix) ];
+                overlays = [ claude-code.overlays.default ];
               };
 
               gitEmail = "hajlaoui.nader@gmail.com";
