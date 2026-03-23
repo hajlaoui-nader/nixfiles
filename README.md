@@ -1,96 +1,60 @@
-# The what ?
+# nixfiles
 
-this is a basic flake definitions containing my basic configuration for my:
+Nix flakes configuration managing system and home environments across multiple machines.
 
-- home-manager
-- linuxwork: linux machine
-- homepi: raspberry pi
-- darwin: macos
+| Host | Platform | Type |
+|------|----------|------|
+| `mbp2023` | macOS (Apple Silicon) | nix-darwin + home-manager |
+| `zeus` | NixOS (x86_64) | NixOS + home-manager |
+| `vizzia` | NixOS (Framework 13, AMD 7040) | NixOS + home-manager |
 
-# Before
+## Structure
 
-- Install [Nix](!https://nixos.org/) and then install [home-manager](!https://github.com/nix-community/home-manager). You should be
-  able to run the `home-manager` program in a shell.
-
-# The how ?
-
-- linux or rapsberry pi: `nix build .#homeConfigurations.<hostname>.activationPackage`
-- macos: ```
-  $ nix build .#darwinConfigurations.mbp2023.system
-  $ ./result/sw/bin/darwin-rebuild switch --flake .
-
-````
-
-# Dotfiles
+```
+hosts/          # system-level config per machine
+home/           # home-manager config per machine
+modules/
+├── system/     # shared NixOS/Darwin system modules
+└── home/       # shared home-manager modules
+overlays/       # custom package overlays
+scripts/        # build/activation scripts
+```
 
 ## Usage
-### hm
 
-```shell
-$ home-manager switch
-$ home-manager switch --flake .#linuxwork
-````
-
-flake activation on linux
-
-```shell
-nix build .#homeConfigurations.linux.activationPackage
-result/activate
+```bash
+make mbp-switch   # build + switch macOS
+make zeus-switch  # build + switch zeus (run on zeus)
+make mbp-build    # dry-run macOS build
+make zeus-build   # dry-run zeus build
+make check        # validate flake
+make update       # update all inputs
+make gc           # garbage collect old generations
 ```
 
-update the flake
+## Setup
 
-```shell
-$ nix flake update
+### macOS
+
+1. Install [Nix](https://determinate.systems/posts/determinate-nix-installer) via Determinate Systems installer
+2. Run `make mbp-switch`
+
+### NixOS
+
+```bash
+sudo nixos-rebuild switch --flake .#zeus
 ```
 
-update a single input, exemple `nixpkgs-unstable`
+## Updating nixpkgs pins
 
-```shell
+Both `nixpkgs-stable` and `nixpkgs-unstable` are pinned to specific commits in `flake.nix`.
 
-$ nix flake lock --update-input nixpkgs-unstable
+```bash
+# Update a single input
+nix flake lock --update-input nixpkgs-unstable
+
+# Update all inputs
+make update
 ```
 
-# after
-
-- copy `nixpkgs/modules/iterm/com.googlecode.iterm2.plist` to `~/Library/Preferences/com.googlecode.iterm2`
-
-# helpers
-
-## install package
-
-```shell
-nix-env -iA nixpkgs.<package>
-```
-
-## search package
-
-```shell
-nix search nixpkgs <package>
-```
-
-## Update system
-
-```shell
-nix flake update
-
-# Apply the updates
-sudo nixos-rebuild switch --flake .#??? <== put output
-```
-
-### repl
-
-```shell
-nix repl
-    > :lf . # load flake
-```
-
-### check flake
-
-```shell
-darwin-rebuild build --flake .#mbp2023 --dry-run
-```
-
-### TODO
-
-- upgrade and add ghostty
+Update the date comment in `flake.nix` when changing a pin.

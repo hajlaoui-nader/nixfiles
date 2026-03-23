@@ -1,103 +1,153 @@
-# here's my neovim shortcuts
+# Neovim keybinds
 
-## basics
+## Basics
 
-- `<leader>s` - substitute
-- select word using `*` or `#`, change it with `cgn`, `.` to repeat
+- `<leader>s` — substitute
+- `*` / `#` — select word, then `cgn` to change, `.` to repeat
 
-## formatters
+## Telescope
 
-- `python`: `ruff`
-- `lua`: `stylua`
-
-## telescope
-
-- `<ctrl> p` - Telescope find_files
-- `<leader> ff` - Telescope find_files
-- `<leader> fg` - Telescope live_grep: send the result to quifix list: `<ctrl> q`
-- `<leader> fb` - Telescope buffers
-- `<leader> fh` - Telescope help_tags
-- `<leader> ft` - Telescope
-- `<leader> fvcw` - Telescope git_commits
-- `<leader> fvcb` - Telescope git_bcommits
-- `<leader> fvb` - Telescope git_branches
-- `<leader> fvs` - Telescope git_status
-- `<leader> fvx` - Telescope git_stash
-- `<leader> flsb` - Telescope lsp_document_symbols
-- `<leader> flsw` - Telescope lsp_workspace_symbols
-- `<leader> flr` - Telescope lsp_references
-- `<leader> fli` - Telescope lsp_implementations
-- `<leader> flD` - Telescope lsp_definitions
-- `<leader> flt` - Telescope lsp_type_definitions
-- `<leader> fld` - Telescope diagnostics
-- `<leader> fs` - Telescope treesitter
-
-## filetree
-
-- `<ctrl> f` - tree toggle
-- `<ctrl> s` - tree find file
-- `<ctrl> v` - open file in vertical split
-- `<ctrl> x` - open file in horizontal split
-- `<leader> tr` - refresh tree
-
-## markdown
-
-- `Leader + p` - Glow print
+| Key | Action |
+|-----|--------|
+| `<C-p>` / `<leader>ff` | Find files |
+| `<leader>fg` | Live grep (send to quickfix: `<C-q>`) |
+| `<leader>fm` | Multi grep (pattern + file filter separated by two spaces) |
+| `<leader>fb` | Buffers |
+| `<leader>fh` | Help tags |
+| `<leader>ft` | Telescope picker |
+| `<leader>fs` | Treesitter symbols |
+| `<leader>fvcw` | Git commits |
+| `<leader>fvcb` | Git buffer commits |
+| `<leader>fvb` | Git branches |
+| `<leader>fvs` | Git status |
+| `<leader>fvx` | Git stash |
+| `<leader>flsb` | LSP document symbols |
+| `<leader>flsw` | LSP workspace symbols |
+| `<leader>flr` | LSP references |
+| `<leader>fli` | LSP implementations |
+| `<leader>flD` | LSP definitions |
+| `<leader>flt` | LSP type definitions |
+| `<leader>fld` | LSP diagnostics |
 
 ## LSP
 
-- TODO
+| Key | Action |
+|-----|--------|
+| `K` / `<leader>lh` | Hover |
+| `<leader>lgd` | Go to definition |
+| `<leader>lgD` | Go to declaration |
+| `<leader>lgt` | Go to type definition |
+| `<leader>lgn` | Next diagnostic |
+| `<leader>lgp` | Prev diagnostic |
+| `<leader>ln` | Rename |
+| `<leader>lf` | Format |
+| `<leader>lca` | Code actions (preview) |
+| `<leader>lsh` | Signature help |
+| `<leader>lwa` | Add workspace folder |
+| `<leader>lwr` | Remove workspace folder |
+| `<leader>lwl` | List workspace folders |
 
-## metals
+### Formatters
 
-- `Leader + d` - Metals commands
-- `Leader + lmc` - Metals commands
-- `Leader + lmi` - Show implicits
-- `Leader + ws` - Metals worksheet hover
-- `Leader + a` - Metals open all diagnostics
+Auto-formats on save. Supported languages:
 
-## Buffers
+| Language | Formatter |
+|----------|-----------|
+| Python | ruff |
+| Lua | stylua |
+| Nix | nixpkgs-fmt |
+| HTML / CSS / Markdown / TS / JS | prettier |
 
-- `Leader + bn` - Next buffer
-- `Leader + bp` - Prev buffer
-- `Leader + bc` - Buffer line pick
-- `Leader + bse` - Sort buffer by extension
-- `Leader + bsd` - Sort buffer by directory
-- `Leader + bsi` - Sort buffer by size
-- `Leader + bmn` - Buffer line move next
-- `Leader + bmp` - Buffer line move prev
-- `Leader + b1` - Go to buffer 1
-- `Leader + b2` - Go to buffer 2
-- `Leader + b3` - Go to buffer 3
-- `Leader + b4` - Go to buffer 4
-- `Leader + b5` - Go to buffer 5
-- `Leader + b6` - Go to buffer 6
-- `Leader + b7` - Go to buffer 7
-- `Leader + b8` - Go to buffer 8
-- `Leader + b9` - Go to buffer 9
+Commands:
+- `:FormatDisable` — disable autoformat globally
+- `:FormatDisable!` — disable autoformat for current buffer only
+- `:FormatEnable` — re-enable autoformat
 
-## json
+### Folds (ufo)
 
-- `Leader + jf` - Format json
+| Key | Action |
+|-----|--------|
+| `zR` | Open all folds |
+| `zM` | Close all folds |
+| `zr` | Open folds except kinds |
+| `zm` | Close folds with |
 
-## tabs
+### Rust
 
-- `Ctrl + W s` - Split window horizontally
-- `Ctrl + W v` - Split window vertically
-- `Ctrl + W t` - Move current tab to a new tab window
-- `Ctrl + W c` - Close current tab
+| Key | Action |
+|-----|--------|
+| `<leader>rr` | Runnables |
+| `<leader>re` | Expand macro |
+| `<leader>rc` | Open Cargo.toml |
+| `<leader>rd` | Debuggables |
 
-## terminal
+### Metals (Scala)
 
-- `:term` - Open terminal
-- `ctrl + \ ctrl + n` - Back to Normal mode
+| Key | Action |
+|-----|--------|
+| `<leader>lmc` | Metals commands |
+| `<leader>lmi` | Toggle implicit arguments |
+| `<leader>ws` | Worksheet hover |
+| `<leader>ad` | Open all diagnostics |
+| `<leader>ac` | Code action menu |
 
-## copilot
+## File tree (nvim-tree)
 
-- `Ctrl + J` - Accept
-- `Ctrl + [` - Previous
-- `Ctrl + ]` - Next
+| Key | Action |
+|-----|--------|
+| `<C-f>` | Toggle tree |
+| `<C-s>` | Find current file in tree |
+| `<leader>tr` | Refresh tree |
 
-## undotree
+## Buffers (bufferline)
 
-- `Leader + F5` - Toggle undotree
+| Key | Action |
+|-----|--------|
+| `<leader>bn` | Next buffer |
+| `<leader>bp` | Prev buffer |
+| `<leader>bc` | Pick buffer |
+| `<leader>b1`–`b9` | Go to buffer N |
+| `<leader>bmn` | Move buffer next |
+| `<leader>bmp` | Move buffer prev |
+| `<leader>bse` | Sort by extension |
+| `<leader>bsd` | Sort by directory |
+| `<leader>bsi` | Sort by ID |
+
+## Terminal (toggleterm)
+
+| Key | Action |
+|-----|--------|
+| `<C-\>` | Toggle floating terminal |
+| `<C-\><C-n>` | Exit terminal mode (back to normal) |
+
+## Copilot
+
+| Key | Action |
+|-----|--------|
+| `<C-j>` | Accept suggestion |
+
+## JSON
+
+| Key | Action |
+|-----|--------|
+| `<leader>jf` | Format JSON (via `jq`) |
+
+## Markdown
+
+| Key | Action |
+|-----|--------|
+| `<leader>p` | Preview with Glow |
+
+## Undotree
+
+| Key | Action |
+|-----|--------|
+| `<leader><F5>` | Toggle undotree |
+
+## Window splits
+
+| Key | Action |
+|-----|--------|
+| `<C-w>s` | Split horizontal |
+| `<C-w>v` | Split vertical |
+| `<C-w>c` | Close split |

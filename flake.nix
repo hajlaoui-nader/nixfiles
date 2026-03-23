@@ -2,15 +2,10 @@
   description = "home-manager configuration for linux, mac and raspberry pi";
 
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/3d359bbda48b4d25b65007b944c09f09ff00e8e9"; # commit 10-10-2025
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/c53e5d1c2bfc2b905062022bee7380609f0f5029"; # pinned 2026-03-23
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/3d359bbda48b4d25b65007b944c09f09ff00e8e9"; # pinned 2025-10-10
 
-    home-manager-stable = {
-      url = "github:nix-community/home-manager/004753ae6b04c4b18aa07192c1106800aaacf6c3"; # commit 1-10-2025
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
-
-    home-manager-unstable = {
+    home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
@@ -19,23 +14,29 @@
 
     darwin = {
       url = "github:lnl7/nix-darwin/master";
-      # if you want to change darwin to use stable change the following, now darwin follows nixpkgs-unstable
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
-
-    claude-code = {
-      url = "github:sadjow/claude-code-nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
   };
 
-  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-stable, home-manager-stable, home-manager-unstable, nixos-hardware, claude-code }: {
+  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-stable, home-manager, nixos-hardware }:
+  let
+    claudeCodeOverlay = import ./overlays/claude-code-overlay.nix;
+    postmanOverlay    = import ./overlays/postman-overlay.nix;
 
+    mkUnstable = system: overlays: import nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+      overlays = overlays;
+    };
+    mkStable = system: overlays: import nixpkgs-stable {
+      inherit system;
+      overlays = overlays;
+    };
+  in {
 
     nixosConfigurations = {
       zeus = nixpkgs-stable.lib.nixosSystem rec {
@@ -43,23 +44,14 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/zeus/system.nix
-          home-manager-stable.nixosModules.home-manager
+          home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.zeus =
-              import ./home/zeus.nix;
+            home-manager.users.zeus = import ./home/zeus.nix;
             home-manager.extraSpecialArgs = {
-              nixpkgs = import nixpkgs-stable {
-                inherit system;
-                overlays = [ (import ./overlays/claude-code-overlay.nix) ];
-              };
-              unstable = import nixpkgs-unstable {
-                inherit system;
-                config.allowUnfree = true;
-
-                overlays = [ (import ./overlays/claude-code-overlay.nix) ];
-              };
+              nixpkgs  = mkStable   system [ claudeCodeOverlay ];
+              unstable = mkUnstable system [ claudeCodeOverlay ];
               gitEmail = "hajlaoui.nader@gmail.com";
             };
           }
@@ -70,33 +62,19 @@
         system = "x86_64-linux";
         specialArgs = {
           inherit inputs;
-          unstable = import nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = true;
-          };
+          unstable = mkUnstable system [];
         };
         modules = [
           ./hosts/vizzia/system.nix
           nixos-hardware.nixosModules.framework-13-7040-amd
-          home-manager-stable.nixosModules.home-manager
+          home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.nader =
-              import ./home/vizzia.nix;
+            home-manager.users.nader = import ./home/vizzia.nix;
             home-manager.extraSpecialArgs = {
-              nixpkgs = import nixpkgs-stable {
-                inherit system;
-                overlays = [
-                  (import ./overlays/claude-code-overlay.nix)
-                  (import ./overlays/postman-overlay.nix)
-                ];
-              };
-              unstable = import nixpkgs-unstable {
-                inherit system;
-                config.allowUnfree = true;
-                overlays = [ (import ./overlays/claude-code-overlay.nix) ];
-              };
+              nixpkgs  = mkStable   system [ claudeCodeOverlay postmanOverlay ];
+              unstable = mkUnstable system [ claudeCodeOverlay ];
               gitEmail = "nader.hajlaoui@vizzia.fr";
             };
           }
@@ -105,20 +83,20 @@
     };
 
     #homeConfigurations = {
-    #linux = inputs.home-manager-unstable.lib.homeManagerConfiguration {
+    #linux = inputs.home-manager.lib.homeManagerConfiguration {
     #pkgs = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
     #modules = [
-    #./nixpkgs/home-manager/linux.nix
+    #./home/linux.nix
     #{
     #nix.settings.trusted-users = [ "naderh" ];
     #}
     #];
     #};
 
-    #homepi = inputs.home-manager-unstable.lib.homeManagerConfiguration {
+    #homepi = inputs.home-manager.lib.homeManagerConfiguration {
     #pkgs = inputs.nixpkgs-unstable.legacyPackages.aarch64-linux;
     #modules = [
-    #./nixpkgs/home-manager/homepi.nix
+    #./home/homepi.nix
     #{
     #nix.settings.trusted-users = [ "naderh" ];
     #}
@@ -132,19 +110,13 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/mbp2023/system.nix
-          home-manager-unstable.darwinModules.home-manager
+          home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.naderh = import ./home/mbp2023.nix;
             home-manager.extraSpecialArgs = {
-              # put here the variables that you want to pass to the home-manager configuration such as pkgs unstable
-              unstable = import nixpkgs-unstable {
-                inherit system;
-                config.allowUnfree = true;
-                overlays = [ claude-code.overlays.default ];
-              };
-
+              unstable = mkUnstable system [ claudeCodeOverlay ];
               gitEmail = "hajlaoui.nader@gmail.com";
             };
           }
@@ -155,4 +127,3 @@
   };
 
 }
-

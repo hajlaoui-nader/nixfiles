@@ -15,6 +15,8 @@
       "**/.DS_Store"
     ];
 
+    signing.format = null;
+
     settings = {
       user.name = "Nader Hajlaoui";
       user.email = gitEmail;
