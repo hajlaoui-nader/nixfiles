@@ -10,42 +10,14 @@
   nixpkgs.overlays = [ (import ../../overlays/direnv-overlay.nix) ];
 
 
-  # Auto upgrade nix package and the daemon service.
-
-  nix = {
-    enable = false; # handled by determinate systems
-    package = pkgs.nix;
-    settings = {
-      trusted-users = [ "naderh" ];
-      substituters = [
-        "https://cache.garnix.io"
-      ];
-      trusted-public-keys = [
-        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      ];
-    };
-
-    # Optimize storage
-    # You can also manually optimize the store via:
-    #    nix-store --optimise
-    # Refer to the following link for more details:
-    # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
-    # optimise.automatic = true;
-
-    extraOptions = ''
-      # needed for nix-direnv
-      keep-outputs = true
-      keep-derivations = true
-
-      # assuming the builder has a faster internet connection
-      builders-use-substitutes = true
-
-      experimental-features = nix-command flakes
-    '';
-
-    registry.nixpkgs.flake = inputs.nixpkgs-unstable;
-
+  # Nix is managed by Determinate Systems — settings below are passed via nix-darwin
+  nix.enable = false;
+  nix.settings = {
+    trusted-users = [ "naderh" ];
+    substituters = [ "https://cache.garnix.io" ];
+    trusted-public-keys = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
   };
+  nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
 
   # Perform garbage collection weekly to maintain low disk usage
   # nix.gc = {
