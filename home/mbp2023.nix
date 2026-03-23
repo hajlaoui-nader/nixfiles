@@ -21,6 +21,8 @@
   # (needed because Determinate Nix disables nix-darwin's nix.registry management)
   nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
 
+  programs.git.settings.user.email = "hajlaoui.nader@gmail.com";
+
   home.stateVersion = "24.11";
 
   home.packages = with pkgs; [

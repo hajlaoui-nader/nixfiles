@@ -13,6 +13,8 @@
     ../modules/home/dunst.nix
   ];
 
+  programs.git.settings.user.email = "hajlaoui.nader@gmail.com";
+
   home.stateVersion = "23.11";
 
   home.username = "zeus";
@@ -62,13 +64,6 @@
     };
   };
 
-  # i3 config - commented out since we're using Hyprland now
-  # home.file = {
-  #   ".config/i3/config".source = ./programs/i3/i3config.conf;
-  #   ".config/i3status/config".source = ./programs/i3/i3status.conf;
-  # };
-
-  # neovim snippets 
   home.shellAliases = {
     open = "xdg-open";
     generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";

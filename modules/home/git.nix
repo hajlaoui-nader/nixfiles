@@ -1,4 +1,4 @@
-{ config, pkgs, lib, libs, gitEmail ? "hajlaoui.nader@gmail.com", ... }:
+{ pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -19,7 +19,6 @@
 
     settings = {
       user.name = "Nader Hajlaoui";
-      user.email = gitEmail;
       alias = { };
       pull.rebase = true;
       init.defaultBranch = "main";

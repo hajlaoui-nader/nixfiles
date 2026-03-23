@@ -17,18 +17,10 @@
   };
 
   outputs = inputs@{ self, darwin, nixpkgs-unstable, home-manager, ... }:
-  let
-    claudeCodeOverlay = import ./overlays/claude-code-overlay.nix;
-
-    mkUnstable = system: overlays: import nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = overlays;
-    };
-in {
+  {
 
     nixosConfigurations = {
-      zeus = nixpkgs-unstable.lib.nixosSystem rec {
+      zeus = nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -38,10 +30,6 @@ in {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.zeus = import ./home/zeus.nix;
-            home-manager.extraSpecialArgs = {
-              unstable = mkUnstable system [ claudeCodeOverlay ];
-              gitEmail = "hajlaoui.nader@gmail.com";
-            };
           }
         ];
       };
@@ -49,7 +37,7 @@ in {
     };
 
     darwinConfigurations = {
-      mbp2023 = darwin.lib.darwinSystem rec {
+      mbp2023 = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
@@ -60,8 +48,6 @@ in {
             home-manager.useUserPackages = true;
             home-manager.users.naderh = import ./home/mbp2023.nix;
             home-manager.extraSpecialArgs = {
-              unstable = mkUnstable system [ claudeCodeOverlay ];
-              gitEmail = "hajlaoui.nader@gmail.com";
               inherit inputs;
             };
           }

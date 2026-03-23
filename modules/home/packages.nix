@@ -1,4 +1,4 @@
-{ pkgs, unstable, lib, ... }:
+{ pkgs, lib, ... }:
 {
   home.packages = [
     pkgs.man-pages # linux programmer's manual
@@ -29,7 +29,7 @@
     pkgs.inetutils # provides `ftp`, `telnet`, ...
     pkgs.dig # DNS lookup
     pkgs.openresolv # DNS resolver
-    unstable.claude-code
+    pkgs.claude-code
     pkgs.nodejs_24
     pkgs.gh
   ] ++ lib.optionals pkgs.stdenv.isDarwin [
