@@ -11,10 +11,10 @@ in
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../common-system-packages.nix
-    ../../common-linux-system-packages.nix
+    ../../modules/system/common-packages.nix
+    ../../modules/system/common-linux-packages.nix
     # Desktop environment modules
-    (../desktop-environments + "/${desktopEnvironment}.nix")
+    (../../modules/system/desktop-environments + "/${desktopEnvironment}.nix")
   ];
 
   # Bootloader.

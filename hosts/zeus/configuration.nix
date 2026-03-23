@@ -9,8 +9,8 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../common-system-packages.nix
-      ../common-linux-system-packages.nix
+      ../../modules/system/common-packages.nix
+      ../../modules/system/common-linux-packages.nix
     ];
 
   # Bootloader.

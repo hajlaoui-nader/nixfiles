@@ -3,7 +3,7 @@
   imports = [
     ./configuration.nix
     ./hardware-configuration.nix
-    ./desktop-environments/hyprland.nix  # Enable Hyprland
+    ../../modules/system/desktop-environments/hyprland.nix  # Enable Hyprland
   ];
 
   nix.settings = {

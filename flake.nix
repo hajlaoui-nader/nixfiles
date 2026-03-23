@@ -29,7 +29,7 @@
 
     claude-code = {
       url = "github:sadjow/claude-code-nix";
-      inputs.nixpkfs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
   };
@@ -42,23 +42,23 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./machines/nixos/zeus.nix
+          ./hosts/zeus/system.nix
           home-manager-stable.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.zeus =
-              import ./nixpkgs/home-manager/zeus.nix;
+              import ./home/zeus.nix;
             home-manager.extraSpecialArgs = {
               nixpkgs = import nixpkgs-stable {
                 inherit system;
-                overlays = [ (import ./nixpkgs/overlays/claude-code-overlay.nix) ];
+                overlays = [ (import ./overlays/claude-code-overlay.nix) ];
               };
               unstable = import nixpkgs-unstable {
                 inherit system;
                 config.allowUnfree = true;
 
-                overlays = [ (import ./nixpkgs/overlays/claude-code-overlay.nix) ];
+                overlays = [ (import ./overlays/claude-code-overlay.nix) ];
               };
               gitEmail = "hajlaoui.nader@gmail.com";
             };
@@ -76,26 +76,26 @@
           };
         };
         modules = [
-          ./machines/nixos/vizzia/vizzia.nix
+          ./hosts/vizzia/system.nix
           nixos-hardware.nixosModules.framework-13-7040-amd
           home-manager-stable.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.nader =
-              import ./nixpkgs/home-manager/vizzia.nix;
+              import ./home/vizzia.nix;
             home-manager.extraSpecialArgs = {
               nixpkgs = import nixpkgs-stable {
                 inherit system;
                 overlays = [
-                  (import ./nixpkgs/overlays/claude-code-overlay.nix)
-                  (import ./nixpkgs/overlays/postman-overlay.nix)
+                  (import ./overlays/claude-code-overlay.nix)
+                  (import ./overlays/postman-overlay.nix)
                 ];
               };
               unstable = import nixpkgs-unstable {
                 inherit system;
                 config.allowUnfree = true;
-                overlays = [ (import ./nixpkgs/overlays/claude-code-overlay.nix) ];
+                overlays = [ (import ./overlays/claude-code-overlay.nix) ];
               };
               gitEmail = "nader.hajlaoui@vizzia.fr";
             };
@@ -131,12 +131,12 @@
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
-          ./machines/darwin/mbp2023/configuration.nix
+          ./hosts/mbp2023/system.nix
           home-manager-unstable.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.naderh = import ./nixpkgs/home-manager/mbp2023.nix;
+            home-manager.users.naderh = import ./home/mbp2023.nix;
             home-manager.extraSpecialArgs = {
               # put here the variables that you want to pass to the home-manager configuration such as pkgs unstable
               unstable = import nixpkgs-unstable {

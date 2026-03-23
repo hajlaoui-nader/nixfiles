@@ -1,7 +1,7 @@
 { pkgs, config, lib, inputs, ... }:
 {
   imports = [
-    ../../common-system-packages.nix
+    ../../modules/system/common-packages.nix
   ];
 
   # Allow unfree packages

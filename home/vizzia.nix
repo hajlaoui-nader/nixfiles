@@ -1,18 +1,18 @@
 { pkgs, unstable, gitEmail, ... }:
-let cursor = pkgs.callPackage ./cursor/cursor.nix { };
+let cursor = pkgs.callPackage ../modules/home/cursor/cursor.nix { };
 in {
 
   imports = [
-    ./modules/home-manager.nix
-    ./modules/common.nix
-    ./modules/zsh
-    ./modules/git.nix
-    #./programs/hyprland
-    #./programs/rofi
-    #./programs/waybar
-    #./programs/kitty.nix
-    ./programs/tmux
-    ./programs/ghostty
+    ../modules/home/home-manager.nix
+    ../modules/home/common.nix
+    ../modules/home/zsh
+    ../modules/home/git.nix
+    #../modules/home/hyprland
+    #../modules/home/rofi
+    #../modules/home/waybar
+    #../modules/home/kitty.nix
+    ../modules/home/tmux
+    ../modules/home/ghostty
   ];
 
   home.stateVersion = "23.11";
@@ -42,8 +42,8 @@ in {
   ];
 
   home.file = {
-    ".config/i3/config".source = ./programs/i3/i3config.conf;
-    ".config/i3status/config".source = ./programs/i3/i3status.conf;
+    ".config/i3/config".source = ../modules/home/i3/i3config.conf;
+    ".config/i3status/config".source = ../modules/home/i3/i3status.conf;
     #".config/rofi/config.rasi".source = ./programs/rofi/config.rasi;
     #".config/picom/picom.conf".source = ./programs/i3/picom/picom.conf;
   };

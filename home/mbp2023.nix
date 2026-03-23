@@ -2,13 +2,13 @@
 
 {
   imports = [
-    ./modules/home-manager.nix
-    ./modules/common.nix
-    ./modules/zsh
-    #./modules/fish.nix
-    ./modules/git.nix
-    ./programs/tmux
-    ./programs/ghostty
+    ../modules/home/home-manager.nix
+    ../modules/home/common.nix
+    ../modules/home/zsh
+    #../modules/home/fish.nix
+    ../modules/home/git.nix
+    ../modules/home/tmux
+    ../modules/home/ghostty
 
   ];
 

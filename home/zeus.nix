@@ -1,16 +1,16 @@
 { pkgs, ... }: {
   imports = [
-    ./modules/home-manager.nix
-    ./modules/common.nix
-    ./modules/zsh
-    ./modules/git.nix
-    ./programs/hyprland
-    ./programs/rofi
-    ./programs/waybar
-    ./programs/kitty.nix
-    ./programs/tmux
-    ./programs/ghostty
-    ./programs/dunst.nix
+    ../modules/home/home-manager.nix
+    ../modules/home/common.nix
+    ../modules/home/zsh
+    ../modules/home/git.nix
+    ../modules/home/hyprland
+    ../modules/home/rofi
+    ../modules/home/waybar
+    ../modules/home/kitty.nix
+    ../modules/home/tmux
+    ../modules/home/ghostty
+    ../modules/home/dunst.nix
   ];
 
   home.stateVersion = "23.11";
