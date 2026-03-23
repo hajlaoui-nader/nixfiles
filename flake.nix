@@ -62,6 +62,7 @@ in {
             home-manager.extraSpecialArgs = {
               unstable = mkUnstable system [ claudeCodeOverlay ];
               gitEmail = "hajlaoui.nader@gmail.com";
+              inherit inputs;
             };
           }
         ];

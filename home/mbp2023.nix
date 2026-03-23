@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -16,6 +16,10 @@
   home.username = "naderh";
 
   programs.htop.enable = true;
+
+  # Pin nix registry so `nix search` / `nix shell` use our locked nixpkgs
+  # (needed because Determinate Nix disables nix-darwin's nix.registry management)
+  nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
 
   home.stateVersion = "24.11";
 
