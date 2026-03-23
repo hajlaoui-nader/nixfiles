@@ -20,7 +20,7 @@
   services.fstrim.enable = true;
 
 
-  networking.hostName = "zeusos"; # Define your hostname.
+  networking.hostName = "zeus"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

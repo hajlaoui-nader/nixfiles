@@ -3,14 +3,12 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/c53e5d1c2bfc2b905062022bee7380609f0f5029"; # pinned 2026-03-23
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/3d359bbda48b4d25b65007b944c09f09ff00e8e9"; # pinned 2025-10-10
+    nixpkgs-stable.url   = "github:NixOS/nixpkgs/50ab793786d9de88ee30ec4e4c24fb4236fc2674"; # nixos-24.11 pinned 2026-03-23
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-
-    flake-utils.url = "github:numtide/flake-utils";
 
     darwin = {
       url = "github:lnl7/nix-darwin/master";
@@ -22,7 +20,7 @@
     };
   };
 
-  outputs = inputs@{ self, flake-utils, darwin, nixpkgs-unstable, nixpkgs-stable, home-manager, nixos-hardware }:
+  outputs = inputs@{ self, darwin, nixpkgs-unstable, nixpkgs-stable, home-manager, nixos-hardware }:
   let
     claudeCodeOverlay = import ./overlays/claude-code-overlay.nix;
     postmanOverlay    = import ./overlays/postman-overlay.nix;
@@ -81,28 +79,6 @@
         ];
       };
     };
-
-    #homeConfigurations = {
-    #linux = inputs.home-manager.lib.homeManagerConfiguration {
-    #pkgs = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux;
-    #modules = [
-    #./home/linux.nix
-    #{
-    #nix.settings.trusted-users = [ "naderh" ];
-    #}
-    #];
-    #};
-
-    #homepi = inputs.home-manager.lib.homeManagerConfiguration {
-    #pkgs = inputs.nixpkgs-unstable.legacyPackages.aarch64-linux;
-    #modules = [
-    #./home/homepi.nix
-    #{
-    #nix.settings.trusted-users = [ "naderh" ];
-    #}
-    #];
-    #};
-    #};
 
     darwinConfigurations = {
       mbp2023 = darwin.lib.darwinSystem rec {

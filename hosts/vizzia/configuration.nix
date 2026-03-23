@@ -24,7 +24,7 @@ in
     emulatedSystems = [ "aarch64-linux" ];
     preferStaticEmulators = true; # Make it work with Docker
   };
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "vizzia"; # Define your hostname.
   services.fstrim.enable = true;
   programs.thunar.enable = true;
 
