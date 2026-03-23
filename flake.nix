@@ -2,8 +2,7 @@
   description = "home-manager configuration for linux, mac and raspberry pi";
 
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/c53e5d1c2bfc2b905062022bee7380609f0f5029"; # pinned 2026-03-23
-    nixpkgs-stable.url   = "github:NixOS/nixpkgs/4590696c8693fea477850fe379a01544293ca4e2"; # nixos-25.11 pinned 2026-03-23
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/4ea98378ec0cfebcecb3eff00dd4c9635ccc695f"; # pinned 2026-03-23
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -17,7 +16,7 @@
 
   };
 
-  outputs = inputs@{ self, darwin, nixpkgs-unstable, nixpkgs-stable, home-manager }:
+  outputs = inputs@{ self, darwin, nixpkgs-unstable, home-manager, ... }:
   let
     claudeCodeOverlay = import ./overlays/claude-code-overlay.nix;
 
@@ -26,25 +25,20 @@
       config.allowUnfree = true;
       overlays = overlays;
     };
-    mkStable = system: overlays: import nixpkgs-stable {
-      inherit system;
-      overlays = overlays;
-    };
-  in {
+in {
 
     nixosConfigurations = {
-      zeus = nixpkgs-stable.lib.nixosSystem rec {
+      zeus = nixpkgs-unstable.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/zeus/system.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = false; # nixpkgs-stable 25.11 lacks makeVimPackageInfo; use HM's own nixpkgs-unstable
+            home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.zeus = import ./home/zeus.nix;
             home-manager.extraSpecialArgs = {
-              nixpkgs  = mkStable   system [ claudeCodeOverlay ];
               unstable = mkUnstable system [ claudeCodeOverlay ];
               gitEmail = "hajlaoui.nader@gmail.com";
             };

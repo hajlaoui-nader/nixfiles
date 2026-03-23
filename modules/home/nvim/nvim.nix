@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }:
+{ pkgs, ... }:
 let
   lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
   telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
@@ -18,7 +18,6 @@ let
 in
 {
   programs.neovim = {
-    #package = unstable.neovim;
     enable = true;
     plugins = with pkgs.vimPlugins; [
       # tokyonight-nvim # theme
@@ -127,9 +126,7 @@ in
       glow-nvim
       # pr review
       #octo-nvim
-    ] ++ [
-      ## unstable 
-      unstable.vimPlugins.hardtime-nvim
+      pkgs.vimPlugins.hardtime-nvim
     ];
 
     extraConfig = ''

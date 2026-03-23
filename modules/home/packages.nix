@@ -8,7 +8,7 @@
     pkgs.docker
     pkgs.jq
     pkgs.docker-compose # docker manager
-    pkgs.neofetch # command-line system information
+    pkgs.fastfetch # command-line system information
     pkgs.ripgrep # fast grep
     pkgs.tree # display files in a tree view
     pkgs.eza # a better `ls`

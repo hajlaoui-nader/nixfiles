@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -19,7 +19,7 @@
 
   home.stateVersion = "24.11";
 
-  home.packages = with unstable; [
+  home.packages = with pkgs; [
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/fonts/nerdfonts/default.nix
     # nerdfonts
     #bitwarden-cli # it causes an error

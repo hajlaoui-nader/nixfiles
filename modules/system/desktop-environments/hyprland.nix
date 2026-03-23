@@ -38,9 +38,9 @@
     libnotify            # For notify-send
 
     # File managers
-    xfce.thunar          # GUI file manager
-    xfce.thunar-archive-plugin
-    xfce.thunar-volman
+    thunar               # GUI file manager
+    thunar-archive-plugin
+    thunar-volman
 
     # Image viewer and wallpaper
     imv                  # Wayland image viewer
@@ -93,7 +93,7 @@
   # Fonts for better display
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     font-awesome
     material-design-icons
   ];

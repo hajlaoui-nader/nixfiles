@@ -16,6 +16,4 @@
     ];
   };
 
-  nix.registry.nixpkgs.flake = inputs.nixpkgs-stable;
-
 }

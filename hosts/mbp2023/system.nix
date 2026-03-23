@@ -7,6 +7,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
+  nixpkgs.overlays = [ (import ../../overlays/direnv-overlay.nix) ];
 
 
   # Auto upgrade nix package and the daemon service.
