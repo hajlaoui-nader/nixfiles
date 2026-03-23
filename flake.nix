@@ -40,7 +40,7 @@
           ./hosts/zeus/system.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
+            home-manager.useGlobalPkgs = false; # nixpkgs-stable 25.11 lacks makeVimPackageInfo; use HM's own nixpkgs-unstable
             home-manager.useUserPackages = true;
             home-manager.users.zeus = import ./home/zeus.nix;
             home-manager.extraSpecialArgs = {
