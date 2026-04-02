@@ -41,7 +41,7 @@
           command = "${pkgs.stylua}/bin/stylua"
         },
         prettier = {
-          command = "${pkgs.nodePackages.prettier}/bin/prettier"
+          command = "${pkgs.prettier}/bin/prettier"
         },
         ["nixpkgs-fmt"] = {
           command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"

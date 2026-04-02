@@ -193,13 +193,13 @@
                           }
                       }
 
-                      metals_config.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-                        vim.lsp.diagnostic.on_publish_diagnostics, {
+                      metals_config.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx)
+                        vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, {
                           virtual_text = {
                             prefix = '',
                           }
-                        }
-                      )
+                        })
+                      end
 
                       -- without doing this, autocommands that deal with filetypes prohibit messages from being shown
                       vim.opt_global.shortmess:remove("F")
@@ -216,7 +216,7 @@
                             attach_keymaps(client, bufnr)
                           end,
                           filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-                          cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" },
+                          cmd = { "${pkgs.typescript-language-server}/bin/typescript-language-server", "--stdio" },
                         }
                         vim.lsp.enable('ts_ls')
 

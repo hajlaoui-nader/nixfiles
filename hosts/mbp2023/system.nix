@@ -7,7 +7,7 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
-  nixpkgs.overlays = [ (import ../../overlays/direnv-overlay.nix) ];
+  nixpkgs.overlays = [ ];
 
 
   # Nix is managed by Determinate Systems — settings below are passed via nix-darwin

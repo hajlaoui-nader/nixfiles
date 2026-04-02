@@ -2,7 +2,7 @@
   description = "home-manager configuration for linux, mac and raspberry pi";
 
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/4ea98378ec0cfebcecb3eff00dd4c9635ccc695f"; # pinned 2026-03-23
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/106eb93cbb9d4e4726bf6bc367a3114f7ed6b32f"; # pinned 2026-04-02
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
