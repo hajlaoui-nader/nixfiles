@@ -28,9 +28,8 @@ local attach_keymaps = function(client, bufnr)
     vim.keymap.set('n', '<leader>lgi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', '<leader>lgr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', '<leader>lgt', vim.lsp.buf.type_definition, opts)
-    -- TODO remove deprecated goto functions
-    vim.keymap.set('n', '<leader>lgn', vim.diagnostic.goto_next, opts)
-    vim.keymap.set('n', '<leader>lgp', vim.diagnostic.goto_prev, opts)
+    vim.keymap.set('n', '<leader>lgn', function() vim.diagnostic.jump({ count = 1 }) end, opts)
+    vim.keymap.set('n', '<leader>lgp', function() vim.diagnostic.jump({ count = -1 }) end, opts)
 
     -- code action
     vim.keymap.set('n', '<leader>lca', vim.lsp.buf.code_action, opts)
