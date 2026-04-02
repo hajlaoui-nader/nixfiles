@@ -1,15 +1,5 @@
 local paths = require("nix-paths")
 
--- Enable trouble diagnostics viewer
-require("nvim-lightbulb").setup(
-  {
-    autocmd = { enabled = true }
-  }
-)
-
--- lsp signature: hints as you type
-require("lsp_signature").setup()
-
 vim.cmd [[
   augroup RustMappings
   autocmd!
@@ -19,10 +9,10 @@ vim.cmd [[
 
 function SetupRustMappings()
     local opts = { noremap = true, silent = true }
-    vim.api.nvim_set_keymap('n', '<leader>rr', '<cmd>RustLsp runnables<CR>', opts)
-    vim.api.nvim_set_keymap('n', '<leader>re', '<cmd>RustLsp expandMacro<CR>', opts)
-    vim.api.nvim_set_keymap('n', '<leader>rc', '<cmd>RustLsp openCargo<CR>', opts)
-    vim.api.nvim_set_keymap('n', '<leader>rd', '<cmd>RustLsp debuggables<CR>', opts)
+    vim.keymap.set('n', '<leader>rr', '<cmd>RustLsp runnables<CR>', opts)
+    vim.keymap.set('n', '<leader>re', '<cmd>RustLsp expandMacro<CR>', opts)
+    vim.keymap.set('n', '<leader>rc', '<cmd>RustLsp openCargo<CR>', opts)
+    vim.keymap.set('n', '<leader>rd', '<cmd>RustLsp debuggables<CR>', opts)
 end
 
 vim.cmd [[
@@ -30,353 +20,282 @@ vim.cmd [[
 ]]
 
 local attach_keymaps = function(client, bufnr)
-    local opts = {
-        noremap = true,
-        silent = true
-    }
+    local opts = { buffer = bufnr }
 
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    -- goto
+    vim.keymap.set('n', '<leader>lgD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', '<leader>lgd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', '<leader>lgi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<leader>lgr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<leader>lgt', vim.lsp.buf.type_definition, opts)
+    -- TODO remove deprecated goto functions
+    vim.keymap.set('n', '<leader>lgn', vim.diagnostic.goto_next, opts)
+    vim.keymap.set('n', '<leader>lgp', vim.diagnostic.goto_prev, opts)
 
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    -- code action
+    vim.keymap.set('n', '<leader>lca', vim.lsp.buf.code_action, opts)
 
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    -- workspace
+    vim.keymap.set('n', '<leader>lwa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set('n', '<leader>lwr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', '<leader>lwl', function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, opts)
 
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lsh', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    -- hover & signature
+    vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>lsh', vim.lsp.buf.signature_help, opts)
+
+    -- rename
+    vim.keymap.set('n', '<leader>ln', vim.lsp.buf.rename, opts)
 
     -- Metals specific
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lmc', '<cmd>lua require("metals").commands()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lmi', '<cmd>lua require("metals").toggle_setting("showImplicitArguments")<CR>', opts)
+    vim.keymap.set('n', '<leader>lmc', function() require("metals").commands() end, opts)
+    vim.keymap.set('n', '<leader>lmi', function() require("metals").toggle_setting("showImplicitArguments") end, opts)
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-vim.g.formatsave = "true"
-
--- Enable formatting
-format_callback = function(client, bufnr)
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = augroup,
-  buffer = bufnr,
-  callback = function()
-      if vim.g.formatsave then
-          local params = require'vim.lsp.util'.make_formatting_params({})
-          client.request('textDocument/formatting', params, nil, bufnr)
-              end
-          end
-      })
-  end
-
-  default_on_attach = function(client, bufnr)
-      attach_keymaps(client, bufnr)
-      format_callback(client, bufnr)
-  end
-
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-  capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-   -- Rust config
-
-    vim.g.rustaceanvim = {
-      server = {
+-- Rust config
+vim.g.rustaceanvim = {
+    server = {
         capabilities = capabilities,
-        on_attach = function(client, bufnr)
-          attach_keymaps(client, bufnr)
-          format_callback(client, bufnr)
-        end,
+        on_attach = attach_keymaps,
         cmd = { paths.rust_analyzer },
         default_settings = {
-          ["rust-analyzer"] = {
-            experimental = {
-              procAttrMacros = true,
+            ["rust-analyzer"] = {
+                experimental = {
+                    procAttrMacros = true,
+                },
             },
-          },
         }
-      }
     }
+}
 
-          require('crates').setup {
-          }
+require('crates').setup {}
 
-          default_on_attach_python = function(client, bufnr)
-              attach_keymaps(client, bufnr)
-              format_callback_python(client, bufnr)
-          end
-
-          format_callback_python = function(client, bufnr)
-            if client.supports_method("textDocument/formatting") then
-              vim.api.nvim_clear_autocmds({
-                  group = augroup,
-                  buffer = bufnr,
-                })
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                  group = augroup,
-                  buffer = bufnr,
-                  callback = function()
-                    vim.lsp.buf.format({bufnr = bufnr})
-                    end
-                })
-            end
-          end
-
-          -- Python config
-        vim.lsp.config['pyright'] = {
-          capabilities = capabilities,
-          on_attach = default_on_attach_python,
-          cmd = { paths.pyright, "--stdio" },
-          filetypes = { 'python' },
-          root_markers = { 'pyrightconfig.json', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
-          settings = {
-            python = {
-              analysis = {
+-- Python config
+vim.lsp.config['pyright'] = {
+    capabilities = capabilities,
+    on_attach = attach_keymaps,
+    cmd = { paths.pyright, "--stdio" },
+    filetypes = { 'python' },
+    root_markers = { 'pyrightconfig.json', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
+    settings = {
+        python = {
+            analysis = {
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
                 diagnosticMode = "workspace",
                 typeCheckingMode = "off",
-              }
             }
-          }
         }
-        vim.lsp.enable('pyright')
+    }
+}
+vim.lsp.enable('pyright')
 
-               -- Nix config
-                vim.lsp.config['nil_ls'] = {
-                  capabilities = capabilities,
-                  on_attach = function(client, bufnr)
-                    attach_keymaps(client, bufnr)
-                  end,
-                  filetypes = { 'nix' },
-                  root_markers = { 'flake.nix', '.git' },
-                  settings = {
-                    ['nil'] = {
-                      formatting = {
-                        command = { paths.nixpkgs_fmt }
-                      },
-                      diagnostics = {
-                        ignored = { "uri_literal" },
-                        excludedFiles = { }
-                      },
-                      nix = {
-                        flake = {
-                          autoArchive = false,
-                          autoEvalInputs = false,
-                          nixpkgsInputName = "nixpkgs"
-                        }
-                      }
-                    }
-                  },
-                  cmd = { paths.nil_ls }
+-- Nix config
+vim.lsp.config['nil_ls'] = {
+    capabilities = capabilities,
+    on_attach = attach_keymaps,
+    filetypes = { 'nix' },
+    root_markers = { 'flake.nix', '.git' },
+    settings = {
+        ['nil'] = {
+            formatting = {
+                command = { paths.nixpkgs_fmt }
+            },
+            diagnostics = {
+                ignored = { "uri_literal" },
+                excludedFiles = {}
+            },
+            nix = {
+                flake = {
+                    autoArchive = false,
+                    autoEvalInputs = false,
+                    nixpkgsInputName = "nixpkgs"
                 }
-                vim.lsp.enable('nil_ls')
+            }
+        }
+    },
+    cmd = { paths.nil_ls }
+}
+vim.lsp.enable('nil_ls')
 
-              -- Scala nvim-metals config
-              metals_config = require('metals').bare_config()
-              metals_config.capabilities = capabilities
-              metals_config.on_attach = default_on_attach
+-- Scala nvim-metals config
+metals_config = require('metals').bare_config()
+metals_config.capabilities = capabilities
+metals_config.on_attach = attach_keymaps
 
-              metals_config.settings = {
-                  metalsBinaryPath = paths.metals,
-                  showImplicitArguments = true,
-                  showImplicitConversionsAndClasses = true,
-                  showInferredType = true,
-                  excludedPackages = {
-                    "akka.actor.typed.javadsl",
-                    "com.github.swagger.akka.javadsl"
-                  }
-              }
+metals_config.settings = {
+    metalsBinaryPath = paths.metals,
+    showImplicitArguments = true,
+    showImplicitConversionsAndClasses = true,
+    showInferredType = true,
+    excludedPackages = {
+        "akka.actor.typed.javadsl",
+        "com.github.swagger.akka.javadsl"
+    }
+}
 
-              metals_config.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx)
-                vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, {
-                  virtual_text = {
-                    prefix = '',
-                  }
-                })
-              end
+metals_config.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx)
+    vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, {
+        virtual_text = {
+            prefix = '',
+        }
+    })
+end
 
-              -- without doing this, autocommands that deal with filetypes prohibit messages from being shown
-              vim.opt_global.shortmess:remove("F")
+-- without doing this, autocommands that deal with filetypes prohibit messages from being shown
+vim.opt_global.shortmess:remove("F")
 
-              vim.cmd([[augroup lsp]])
-              vim.cmd([[autocmd!]])
-              vim.cmd([[autocmd FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)]])
-              vim.cmd([[augroup end]])
+vim.cmd([[augroup lsp]])
+vim.cmd([[autocmd!]])
+vim.cmd([[autocmd FileType scala,sbt lua require('metals').initialize_or_attach(metals_config)]])
+vim.cmd([[augroup end]])
 
-              -- TS config
-              vim.lsp.config['ts_ls'] = {
-                  capabilities = capabilities,
-                  on_attach = function(client, bufnr)
-                    attach_keymaps(client, bufnr)
-                  end,
-                  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
-                  cmd = { paths.typescript_language_server, "--stdio" },
-                  root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
-                }
-                vim.lsp.enable('ts_ls')
+-- TS config
+vim.lsp.config['ts_ls'] = {
+    capabilities = capabilities,
+    on_attach = attach_keymaps,
+    filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+    cmd = { paths.typescript_language_server, "--stdio" },
+    root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
+}
+vim.lsp.enable('ts_ls')
 
-              -- HTML config
-              vim.lsp.config['html'] = {
-                  capabilities = capabilities,
-                  on_attach = function(client, bufnr)
-                    attach_keymaps(client, bufnr)
-                  end,
-                  filetypes = { 'html' },
-                  cmd = { paths.html_language_server, "--stdio" },
-                  root_markers = { 'package.json', '.git' },
-                }
-                vim.lsp.enable('html')
+-- HTML config
+vim.lsp.config['html'] = {
+    capabilities = capabilities,
+    on_attach = attach_keymaps,
+    filetypes = { 'html' },
+    cmd = { paths.html_language_server, "--stdio" },
+    root_markers = { 'package.json', '.git' },
+}
+vim.lsp.enable('html')
 
+-- C Config
+vim.lsp.config['clangd'] = {
+    capabilities = capabilities,
+    on_attach = attach_keymaps,
+    filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
+    cmd = { paths.clangd, "--offset-encoding=utf-16" },
+    root_markers = { '.clangd', 'compile_commands.json', 'compile_flags.txt', '.git' },
+}
+vim.lsp.enable('clangd')
 
-              -- C Config
-              vim.lsp.config['clangd'] = {
-                  capabilities = capabilities,
-                  on_attach = default_on_attach,
-                  filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
-                  cmd = { paths.clangd, "--offset-encoding=utf-16" },
-                  root_markers = { '.clangd', 'compile_commands.json', 'compile_flags.txt', '.git' },
-                }
-                vim.lsp.enable('clangd')
+-- Go Config
+vim.lsp.config['gopls'] = {
+    capabilities = capabilities,
+    on_attach = attach_keymaps,
+    filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+    cmd = { paths.gopls, "serve" },
+    root_markers = { 'go.mod', 'go.work', '.git' },
+}
+vim.lsp.enable('gopls')
 
-                -- Go Config
-                vim.lsp.config['gopls'] = {
-                  capabilities = capabilities,
-                  on_attach = default_on_attach,
-                  filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
-                  cmd = { paths.gopls, "serve" },
-                  root_markers = { 'go.mod', 'go.work', '.git' },
-                }
-                vim.lsp.enable('gopls')
-
-              -- Lua Config
-         vim.lsp.config['lua_ls'] = {
-                filetypes = { 'lua' },
-                root_markers = { '.luarc.json', '.luarc.jsonc', '.stylua.toml', '.git' },
-                on_init = function(client)
-            if client.workspace_folders then
-              local path = client.workspace_folders[1].name
-              if vim.uv.fs_stat(path..'/.luarc.json') or vim.uv.fs_stat(path..'/.luarc.jsonc') then
+-- Lua Config
+vim.lsp.config['lua_ls'] = {
+    filetypes = { 'lua' },
+    root_markers = { '.luarc.json', '.luarc.jsonc', '.stylua.toml', '.git' },
+    on_init = function(client)
+        if client.workspace_folders then
+            local path = client.workspace_folders[1].name
+            if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
                 return
-              end
             end
+        end
 
-            client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-              runtime = {
-                -- Tell the language server which version of Lua you're using
-                -- (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT'
-              },
-              -- Make the server aware of Neovim runtime files
-              workspace = {
+        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            runtime = { version = 'LuaJIT' },
+            workspace = {
                 checkThirdParty = false,
-                library = {
-                  vim.env.VIMRUNTIME
-                }
-              }
-            })
-          end,
-          settings = {
-            Lua = {}
-          }
-        }
-        vim.lsp.enable('lua_ls')
+                library = { vim.env.VIMRUNTIME }
+            }
+        })
+    end,
+    settings = {
+        Lua = {}
+    }
+}
+vim.lsp.enable('lua_ls')
 
-              -- Java Config (jdtls)
-              vim.lsp.config['jdtls'] = {
-                capabilities = capabilities,
-                on_attach = default_on_attach,
-                filetypes = { 'java' },
-                cmd = { paths.jdtls },
-                root_markers = { 'build.gradle', 'pom.xml', 'settings.gradle', '.git' },
-                settings = {
-                  java = {
-                    eclipse = {
-                      downloadSources = true,
-                    },
-                    maven = {
-                      downloadSources = true,
-                    },
-                    implementationsCodeLens = {
-                      enabled = true,
-                    },
-                    referencesCodeLens = {
-                      enabled = true,
-                    },
-                    references = {
-                      includeDecompiledSources = true,
-                    },
-                    format = {
-                      enabled = true,
-                    },
-                  },
-                  signatureHelp = { enabled = true },
-                  completion = {
-                    favoriteStaticMembers = {
-                      "org.hamcrest.MatcherAssert.assertThat",
-                      "org.hamcrest.Matchers.*",
-                      "org.hamcrest.CoreMatchers.*",
-                      "org.junit.jupiter.api.Assertions.*",
-                      "java.util.Objects.requireNonNull",
-                      "java.util.Objects.requireNonNullElse",
-                      "org.mockito.Mockito.*"
-                    },
-                  },
-                },
-              }
-              vim.lsp.enable('jdtls')
+-- Java Config (jdtls)
+vim.lsp.config['jdtls'] = {
+    capabilities = capabilities,
+    on_attach = attach_keymaps,
+    filetypes = { 'java' },
+    cmd = { paths.jdtls },
+    root_markers = { 'build.gradle', 'pom.xml', 'settings.gradle', '.git' },
+    settings = {
+        java = {
+            eclipse = { downloadSources = true },
+            maven = { downloadSources = true },
+            implementationsCodeLens = { enabled = true },
+            referencesCodeLens = { enabled = true },
+            references = { includeDecompiledSources = true },
+            format = { enabled = true },
+        },
+        signatureHelp = { enabled = true },
+        completion = {
+            favoriteStaticMembers = {
+                "org.hamcrest.MatcherAssert.assertThat",
+                "org.hamcrest.Matchers.*",
+                "org.hamcrest.CoreMatchers.*",
+                "org.junit.jupiter.api.Assertions.*",
+                "java.util.Objects.requireNonNull",
+                "java.util.Objects.requireNonNullElse",
+                "org.mockito.Mockito.*"
+            },
+        },
+    },
+}
+vim.lsp.enable('jdtls')
 
-              require("telescope").load_extension("ui-select")
+require("telescope").load_extension("ui-select")
 
 capabilities.textDocument.foldingRange = {
-  dynamicRegistration = false,
-  lineFoldingOnly = true
+    dynamicRegistration = false,
+    lineFoldingOnly = true
 }
 
 -- Display number of folded lines
 local ufo_handler = function(virtText, lnum, endLnum, width, truncate)
-  local newVirtText = {}
-  local suffix = ('  %d '):format(endLnum - lnum)
-  local sufWidth = vim.fn.strdisplaywidth(suffix)
-  local targetWidth = width - sufWidth
-  local curWidth = 0
-  for _, chunk in ipairs(virtText) do
-    local chunkText = chunk[1]
-    local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-    if targetWidth > curWidth + chunkWidth then
-      table.insert(newVirtText, chunk)
-    else
-        chunkText = truncate(chunkText, targetWidth - curWidth)
-        local hlGroup = chunk[2]
-        table.insert(newVirtText, {chunkText, hlGroup})
-        chunkWidth = vim.fn.strdisplaywidth(chunkText)
-        -- str width returned from truncate() may less than 2nd argument, need padding
-        if curWidth + chunkWidth < targetWidth then
-          suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+    local newVirtText = {}
+    local suffix = ('  %d '):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+        local chunkText = chunk[1]
+        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        if targetWidth > curWidth + chunkWidth then
+            table.insert(newVirtText, chunk)
+        else
+            chunkText = truncate(chunkText, targetWidth - curWidth)
+            local hlGroup = chunk[2]
+            table.insert(newVirtText, { chunkText, hlGroup })
+            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            if curWidth + chunkWidth < targetWidth then
+                suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+            end
+            break
         end
-        break
+        curWidth = curWidth + chunkWidth
     end
-    curWidth = curWidth + chunkWidth
-  end
-  table.insert(newVirtText, {suffix, 'MoreMsg'})
-  return newVirtText
+    table.insert(newVirtText, { suffix, 'MoreMsg' })
+    return newVirtText
 end
 
 require('ufo').setup({
-   fold_virt_text_handler = ufo_handler
+    fold_virt_text_handler = ufo_handler
 })
 
--- Using ufo provider needs a large value
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
--- Using ufo provider need remap `zR` and `zM`
 vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)

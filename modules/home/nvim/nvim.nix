@@ -5,12 +5,10 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "blazkowolf";
       repo = "gruber-darker.nvim";
-      rev = "master"; # You can specify a specific commit or tag here.
-      #sha256 = "OftISM/UpLJsNpnZAC9D/CfDueNjUdbCkrotS4vnH6M="; # Replace with the correct hash.
+      rev = "master";
       sha256 = "dMs2gdzhS8DLg6P0+msJ+cYluV9LoXE5cW3rI2i+tus=";
     };
   };
-  #vim-plugins = import ./plugins.nix { inherit pkgs lib; };
 in
 {
   # Generate nix-paths.lua — the only Nix-interpolated Lua file.
@@ -44,117 +42,88 @@ in
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
-      # tokyonight-nvim # theme
-      catppuccin-nvim # theme
-      onedark-nvim # theme
-      gruberDarker # theme
-      kanagawa-nvim # theme
-      telescope-nvim # fuzzy finder
-      telescope-ui-select-nvim # telescope ui
-      actions-preview-nvim # code action
-      nui-nvim # ui
-      nvim-surround # surround
-      which-key-nvim # keybindings
-      nvim-tree-lua # file tree
-      gitsigns-nvim # git signs
-      conform-nvim # formatter
-      nvim-cmp # autocompletion
+      # themes
+      catppuccin-nvim
+      onedark-nvim
+      gruberDarker
+      kanagawa-nvim
+      # core
+      telescope-nvim
+      telescope-ui-select-nvim
+      nui-nvim
+      nvim-surround
+      which-key-nvim
+      nvim-tree-lua
+      gitsigns-nvim
+      conform-nvim
+      # completion
+      nvim-cmp
       cmp-nvim-lsp
       cmp-buffer
       cmp-vsnip
       cmp-path
       cmp-treesitter
       vim-vsnip
-      render-markdown-nvim # markdown preview
-      nvim-autopairs # auto pairs
-      nerdcommenter # comments
-      nvim-web-devicons # icons
-      mini-nvim # containing mini.icons
-      lualine-nvim # statusline
-      #nvim-treesitter.withAllGrammars
+      # markdown
+      render-markdown-nvim
+      # editing
+      nvim-autopairs
+      nerdcommenter
+      # icons
+      nvim-web-devicons
+      mini-nvim
+      # statusline
+      lualine-nvim
+      # treesitter
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
-          tsx
-          nix
-          c
-          python
-          lua
-          scala
-          java
-          rust
-          go
-          bash
-          json
-          sql
-          dockerfile
-          scala
-          yaml
-          markdown
-          vim
-          gitignore
-          hcl
-          http
-          terraform
-          typescript
-          javascript
-          html
-          css
-          scss
-          vimdoc
-          #(tree-sitter-scala.overrideAttrs
-          #(old: {
-          #version = "master";
-          #src = tree-sitter-scala-master;
-          #})
-          #)
+          tsx nix c python lua scala java rust go bash json sql
+          dockerfile yaml markdown vim gitignore hcl http terraform
+          typescript javascript html css scss vimdoc
         ]
       ))
-      nvim-treesitter-context # context
-      nvim-ts-autotag # auto close tags
-      nvim-lightbulb # lightbulb
-      lsp_signature-nvim # lsp signature
-      vim-nix # File type and syntax highlighting.
-      lspkind-nvim # lsp kind
-      nvim-code-action-menu # code actions
-      trouble-nvim # lsp diagnostics
-      nvim-metals # metals
-      nvim-lspconfig # lsp config
+      nvim-treesitter-context
+      nvim-ts-autotag
+      # lsp
+      lspkind-nvim
+      trouble-nvim
+      nvim-metals
+      nvim-lspconfig
+      # navigation
       hop-nvim
+      # folding
       nvim-ufo
       promise-async
-      bufferline-nvim # bufferline
-      nvim-cursorline # cursorline
-      indent-blankline-nvim # indent lines
-      copilot-vim # copilot
+      # ui
+      bufferline-nvim
+      nvim-cursorline
+      indent-blankline-nvim
+      # copilot
+      copilot-vim
       # rust
       rustaceanvim
       crates-nvim
       # notify
       nvim-notify
-      # undotree (using built-in nvim.undotree)
       # references
       vim-illuminate
       # neoclip
       nvim-neoclip-lua
-      # fugitive
+      # git
       vim-fugitive
       # db
       vim-dadbod
-      # db-ui
       vim-dadbod-ui
-      # db-completion
       vim-dadbod-completion
-      # float terminal
+      # terminal
       toggleterm-nvim
+      # markdown preview
       glow-nvim
-      # pr review
-      #octo-nvim
+      # discipline
       pkgs.vimPlugins.hardtime-nvim
     ];
 
-    extraConfig = ''
-      lua << EOF
-    '' + (builtins.concatStringsSep "\n" [
+    initLua = builtins.concatStringsSep "\n" [
       (builtins.readFile ./which-key.lua)
       (builtins.readFile ./basic.lua)
       (builtins.readFile ./completion.lua)
@@ -179,16 +148,13 @@ in
       (builtins.readFile ./copilot.lua)
       (builtins.readFile ./undotree.lua)
       (builtins.readFile ./neoclip.lua)
-      (builtins.readFile ./actions.lua)
       (builtins.readFile ./surround.lua)
       (builtins.readFile ./terminal.lua)
       (builtins.readFile ./hardtime.lua)
       (builtins.readFile ./markdown.lua)
       (builtins.readFile ./blink-highlight.lua)
       (builtins.readFile ./glow-setup.lua)
-    ]) + ''
-
-      EOF'';
+    ];
   };
 
 }
