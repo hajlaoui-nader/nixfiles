@@ -35,18 +35,11 @@ local attach_keymaps = function(client, bufnr)
         silent = true
     }
 
-    -- Using Trouble for live-preview (still uses LSP under the hood)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgD', '<cmd>Trouble lsp_declarations toggle<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgd', '<cmd>Trouble lsp_definitions toggle<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgi', '<cmd>Trouble lsp_implementations toggle<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgr', '<cmd>Trouble lsp_references toggle<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgt', '<cmd>Trouble lsp_type_definitions toggle<CR>', opts)
-    -- Native LSP for navigation (no list needed)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 
@@ -140,6 +133,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
           on_attach = default_on_attach_python,
           cmd = { paths.pyright, "--stdio" },
           filetypes = { 'python' },
+          root_markers = { 'pyrightconfig.json', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' },
           settings = {
             python = {
               analysis = {
@@ -160,6 +154,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
                     attach_keymaps(client, bufnr)
                   end,
                   filetypes = { 'nix' },
+                  root_markers = { 'flake.nix', '.git' },
                   settings = {
                     ['nil'] = {
                       formatting = {
@@ -222,6 +217,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
                   end,
                   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
                   cmd = { paths.typescript_language_server, "--stdio" },
+                  root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
                 }
                 vim.lsp.enable('ts_ls')
 
@@ -233,6 +229,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
                   end,
                   filetypes = { 'html' },
                   cmd = { paths.html_language_server, "--stdio" },
+                  root_markers = { 'package.json', '.git' },
                 }
                 vim.lsp.enable('html')
 
@@ -243,6 +240,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
                   on_attach = default_on_attach,
                   filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' },
                   cmd = { paths.clangd, "--offset-encoding=utf-16" },
+                  root_markers = { '.clangd', 'compile_commands.json', 'compile_flags.txt', '.git' },
                 }
                 vim.lsp.enable('clangd')
 
@@ -252,12 +250,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
                   on_attach = default_on_attach,
                   filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
                   cmd = { paths.gopls, "serve" },
+                  root_markers = { 'go.mod', 'go.work', '.git' },
                 }
                 vim.lsp.enable('gopls')
 
               -- Lua Config
          vim.lsp.config['lua_ls'] = {
                 filetypes = { 'lua' },
+                root_markers = { '.luarc.json', '.luarc.jsonc', '.stylua.toml', '.git' },
                 on_init = function(client)
             if client.workspace_folders then
               local path = client.workspace_folders[1].name
@@ -293,6 +293,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
                 on_attach = default_on_attach,
                 filetypes = { 'java' },
                 cmd = { paths.jdtls },
+                root_markers = { 'build.gradle', 'pom.xml', 'settings.gradle', '.git' },
                 settings = {
                   java = {
                     eclipse = {
