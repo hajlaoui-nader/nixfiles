@@ -1,9 +1,5 @@
 { pkgs, ... }:
 let
-  lsp = (import ./lsp.nix { inherit pkgs; }).lsp;
-  telescope = (import ./telescope.nix { inherit pkgs; }).telescope;
-  conform = (import ./formatters.nix { inherit pkgs; }).conform;
-  glow = (import ./markdown.nix { inherit pkgs; }).markdown;
   gruberDarker = pkgs.vimUtils.buildVimPlugin {
     name = "gruber-darker-nvim";
     src = pkgs.fetchFromGitHub {
@@ -17,6 +13,34 @@ let
   #vim-plugins = import ./plugins.nix { inherit pkgs lib; };
 in
 {
+  # Generate nix-paths.lua — the only Nix-interpolated Lua file.
+  # All other Lua files require("nix-paths") to get package paths.
+  xdg.configFile."nvim/lua/nix-paths.lua".text = ''
+    return {
+      -- LSP servers
+      rust_analyzer = "${pkgs.rust-analyzer}/bin/rust-analyzer",
+      pyright = "${pkgs.pyright}/bin/pyright-langserver",
+      nil_ls = "${pkgs.nil}/bin/nil",
+      nixpkgs_fmt = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt",
+      metals = "${pkgs.metals}/bin/metals",
+      typescript_language_server = "${pkgs.typescript-language-server}/bin/typescript-language-server",
+      html_language_server = "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server",
+      clangd = "${pkgs.llvmPackages_19.clang-tools}/bin/clangd",
+      gopls = "${pkgs.gopls}/bin/gopls",
+      jdtls = "${pkgs.jdt-language-server}/bin/jdtls",
+
+      -- Formatters
+      ruff = "${pkgs.ruff}/bin/ruff",
+      stylua = "${pkgs.stylua}/bin/stylua",
+      prettier = "${pkgs.prettier}/bin/prettier",
+
+      -- Tools
+      ripgrep = "${pkgs.ripgrep}/bin/rg",
+      fd = "${pkgs.fd}/bin/fd",
+      glow = "${pkgs.glow}/bin/glow",
+    }
+  '';
+
   programs.neovim = {
     enable = true;
     plugins = with pkgs.vimPlugins; [
@@ -105,7 +129,7 @@ in
       # rust
       rustaceanvim
       crates-nvim
-      # notify 
+      # notify
       nvim-notify
       # undotree
       undotree
@@ -121,7 +145,7 @@ in
       vim-dadbod-ui
       # db-completion
       vim-dadbod-completion
-      # float terminal 
+      # float terminal
       toggleterm-nvim
       glow-nvim
       # pr review
@@ -135,12 +159,12 @@ in
       (builtins.readFile ./which-key.lua)
       (builtins.readFile ./basic.lua)
       (builtins.readFile ./completion.lua)
-      conform
-      lsp
+      (builtins.readFile ./formatters-setup.lua)
+      (builtins.readFile ./lsp.lua)
       (builtins.readFile ./filetree.lua)
       (builtins.readFile ./themes/onedark.lua)
       (builtins.readFile ./treesitter.lua)
-      telescope
+      (builtins.readFile ./telescope-setup.lua)
       (builtins.readFile ./trouble.lua)
       (builtins.readFile ./metals.lua)
       (builtins.readFile ./gitsigns.lua)
@@ -162,7 +186,7 @@ in
       (builtins.readFile ./hardtime.lua)
       (builtins.readFile ./markdown.lua)
       (builtins.readFile ./blink-highlight.lua)
-      glow
+      (builtins.readFile ./glow-setup.lua)
     ]) + ''
 
       EOF'';
