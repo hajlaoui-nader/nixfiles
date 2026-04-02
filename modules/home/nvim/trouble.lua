@@ -12,6 +12,12 @@ vim.api.nvim_set_keymap("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filt
 	desc = "Buffer Diagnostics",
 })
 
+vim.api.nvim_set_keymap("n", "<leader>ll", "<cmd>Trouble lsp toggle focus=true<cr>", {
+	noremap = true,
+	silent = true,
+	desc = "Trouble: LSP Definitions / references",
+})
+
 vim.api.nvim_set_keymap("n", "<leader>xL", "<cmd>Trouble loclist toggle<cr>", {
 	noremap = true,
 	silent = true,
