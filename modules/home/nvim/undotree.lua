@@ -1,1 +1,2 @@
-vim.keymap.set('n', '<leader><F5>', vim.cmd.UndotreeToggle)
+vim.cmd.packadd("nvim.undotree")
+vim.keymap.set('n', '<leader>u', '<cmd>Undotree<CR>')

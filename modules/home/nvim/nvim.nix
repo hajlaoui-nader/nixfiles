@@ -131,8 +131,7 @@ in
       crates-nvim
       # notify
       nvim-notify
-      # undotree
-      undotree
+      # undotree (using built-in nvim.undotree)
       # references
       vim-illuminate
       # neoclip
