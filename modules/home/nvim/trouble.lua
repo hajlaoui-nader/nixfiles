@@ -29,3 +29,15 @@ vim.api.nvim_set_keymap("n", "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", {
 	silent = true,
 	desc = "Quickfix List (Trouble)",
 })
+
+vim.api.nvim_set_keymap("n", "<leader>ltd", "<cmd>Trouble diagnostics toggle focus=true filter.buf=0 win.type=split win.position=bottom<CR>", {
+	noremap = true,
+	silent = true,
+	desc = "Trouble: Buffer Diagnostics",
+})
+
+vim.api.nvim_set_keymap("n", "<leader>lts", "<cmd>Trouble symbols toggle focus=true filter.buf=0 win.type=split win.position=bottom<CR>", {
+	noremap = true,
+	silent = true,
+	desc = "Trouble: Document Symbols",
+})
