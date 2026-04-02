@@ -30,8 +30,6 @@ wk.add({
 -- b buffers
 wk.add({ mode = "n", { "<leader>b", group = "buffers" } })
 
--- c commenter group
-wk.add({ mode = "n", { "<leader>c", group = "commenter" } })
 
 -- f telescope
 wk.add({ mode = "n", { "<leader>f", group = "telescope" } })

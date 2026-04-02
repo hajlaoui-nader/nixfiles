@@ -68,7 +68,7 @@ in
       render-markdown-nvim
       # editing
       nvim-autopairs
-      nerdcommenter
+      # commenting is built-in (gc/gcc) since Neovim 0.10
       # icons
       nvim-web-devicons
       mini-nvim
@@ -139,7 +139,6 @@ in
       (builtins.readFile ./fugitive.lua)
       (builtins.readFile ./notify.lua)
       (builtins.readFile ./autopairs.lua)
-      (builtins.readFile ./comments.lua)
       (builtins.readFile ./statusline.lua)
       (builtins.readFile ./bufferline.lua)
       (builtins.readFile ./visuals.lua)
