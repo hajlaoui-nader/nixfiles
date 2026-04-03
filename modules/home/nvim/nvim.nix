@@ -17,7 +17,7 @@ in
     return {
       -- LSP servers
       rust_analyzer = "${pkgs.rust-analyzer}/bin/rust-analyzer",
-      pyright = "${pkgs.pyright}/bin/pyright-langserver",
+      basedpyright = "${pkgs.basedpyright}/bin/basedpyright",
       nil_ls = "${pkgs.nil}/bin/nil",
       nixpkgs_fmt = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt",
       metals = "${pkgs.metals}/bin/metals",
@@ -77,9 +77,32 @@ in
       # treesitter
       (nvim-treesitter.withPlugins (
         plugins: with plugins; [
-          tsx nix c python lua scala java rust go bash json sql
-          dockerfile yaml markdown vim gitignore hcl http terraform
-          typescript javascript html css scss vimdoc
+          tsx
+          nix
+          c
+          python
+          lua
+          scala
+          java
+          rust
+          go
+          bash
+          json
+          sql
+          dockerfile
+          yaml
+          markdown
+          vim
+          gitignore
+          hcl
+          http
+          terraform
+          typescript
+          javascript
+          html
+          css
+          scss
+          vimdoc
         ]
       ))
       nvim-treesitter-context
