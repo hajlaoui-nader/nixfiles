@@ -33,13 +33,12 @@ o.spell = false
 o.ignorecase = true
 o.smartcase = true
 o.confirm = true
+o.signcolumn = "yes"
 
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 	pattern = "*.md",
 	command = "setlocal spell",
 })
-
-vim.cmd([[ set signcolumn=yes ]])
 
 vim.api.nvim_set_keymap("n", "<space>", "<nop>", {
 	noremap = true,
