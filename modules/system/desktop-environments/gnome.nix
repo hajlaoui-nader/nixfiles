@@ -24,10 +24,6 @@
   # Display manager configuration
   services.displayManager = {
     defaultSession = "gnome";
-    autoLogin = {
-      enable = true;
-      user = "nader";
-    };
   };
 
   # GNOME-specific packages

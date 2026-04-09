@@ -4,7 +4,7 @@
     ../modules/home/common.nix
     ../modules/home/zsh
     ../modules/home/git.nix
-    ../modules/home/hyprland
+    #../modules/home/hyprland
     ../modules/home/rofi
     ../modules/home/waybar
     ../modules/home/kitty.nix

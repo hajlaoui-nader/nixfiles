@@ -11,6 +11,7 @@
     pkgs.smile # emoji picker
     pkgs.powertop # power management tool
     pkgs.krita # digital painting
+    pkgs.gnumake
 
     #pkgs.appimage-run
     # set when darwin gets updated, and ghostty is no more marked as broken
