@@ -4,9 +4,7 @@
     ./modules/home-manager.nix
     ./modules/common.nix
     ./modules/zsh
-    #./modules/fish.nix
-    # TODO uncomment
-    # ./modules/git.nix
+    ./modules/git.nix
   ];
 
   home.stateVersion = "23.05";
