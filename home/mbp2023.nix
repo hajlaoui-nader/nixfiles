@@ -19,7 +19,7 @@
 
   # Pin nix registry so `nix search` / `nix shell` use our locked nixpkgs
   # (needed because Determinate Nix disables nix-darwin's nix.registry management)
-  nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   programs.git.settings.user.email = "hajlaoui.nader@gmail.com";
 

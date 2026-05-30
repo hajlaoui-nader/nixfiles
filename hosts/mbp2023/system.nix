@@ -17,7 +17,7 @@
     substituters = [ "https://cache.garnix.io" ];
     trusted-public-keys = [ "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=" ];
   };
-  nix.registry.nixpkgs.flake = inputs.nixpkgs-unstable;
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   # Perform garbage collection weekly to maintain low disk usage
   # nix.gc = {
