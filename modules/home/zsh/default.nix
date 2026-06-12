@@ -53,6 +53,12 @@
       # powerlevel10k
       source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
       source ${./p10k.zsh}
+
+      # kubectl completion (also applies to the `k` alias)
+      if command -v kubectl >/dev/null 2>&1; then
+        source <(kubectl completion zsh)
+        compdef k=kubectl
+      fi
     '';
 
     history = {
