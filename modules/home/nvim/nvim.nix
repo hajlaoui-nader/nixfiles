@@ -17,7 +17,7 @@ in
     return {
       -- LSP servers
       rust_analyzer = "${pkgs.rust-analyzer}/bin/rust-analyzer",
-      basedpyright = "${pkgs.basedpyright}/bin/basedpyright",
+      basedpyright = "${pkgs.basedpyright}/bin/basedpyright-langserver",
       nil_ls = "${pkgs.nil}/bin/nil",
       nixpkgs_fmt = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt",
       metals = "${pkgs.metals}/bin/metals",

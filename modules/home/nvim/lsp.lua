@@ -86,7 +86,7 @@ require("crates").setup({})
 vim.lsp.config["basedpyright"] = {
 	capabilities = capabilities,
 	on_attach = attach_keymaps,
-	-- cmd = { paths.basedpyright },
+	cmd = { paths.basedpyright, "--stdio" },
 	filetypes = { "python" },
 	-- root_markers = { "pyrightconfig.json", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
 	-- settings = {
