@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05"; # pinned 2026-05-30
 
+    # Unstable channel, exposed in the package set as `pkgs.unstable.<name>`.
+    # Use for packages where you want a newer version than what's in the
+    # stable nixpkgs pin. Update with: nix flake update nixpkgs-unstable
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";

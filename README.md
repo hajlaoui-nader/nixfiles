@@ -47,14 +47,20 @@ sudo nixos-rebuild switch --flake .#zeus
 
 ## Updating nixpkgs pins
 
-Both `nixpkgs-stable` and `nixpkgs-unstable` are pinned to specific commits in `flake.nix`.
+Two nixpkgs inputs:
+
+- `nixpkgs` — tracks a stable release branch (currently `nixos-26.05`). Default package set.
+- `nixpkgs-unstable` — tracks `nixos-unstable`. Exposed at call sites as `pkgs.unstable.<name>` for packages that need to be fresher than the stable pin (e.g. `pkgs.unstable.claude-code`).
 
 ```bash
-# Update a single input
-nix flake lock --update-input nixpkgs-unstable
+# Bump only fresh-track packages (e.g. claude-code)
+nix flake update nixpkgs-unstable
 
-# Update all inputs
+# Bump the stable pin (backports on the same release branch)
+nix flake update nixpkgs
+
+# Bump everything
 make update
 ```
 
-Update the date comment in `flake.nix` when changing a pin.
+After any update, run `make mbp-build` (or `make zeus-build`) before switching.

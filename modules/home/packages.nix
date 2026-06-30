@@ -29,7 +29,7 @@
     pkgs.inetutils # provides `ftp`, `telnet`, ...
     pkgs.dig # DNS lookup
     pkgs.openresolv # DNS resolver
-    pkgs.claude-code
+    pkgs.unstable.claude-code
     pkgs.nodejs_24
     pkgs.gh
   ] ++ lib.optionals pkgs.stdenv.isDarwin [

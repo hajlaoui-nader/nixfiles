@@ -2,12 +2,12 @@
 {
   imports = [
     ../../modules/system/common-packages.nix
+    ../../modules/system/nixpkgs-overlays.nix
   ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
-  nixpkgs.overlays = [ ];
 
 
   # Nix is managed by Determinate Systems — settings below are passed via nix-darwin

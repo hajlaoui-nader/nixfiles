@@ -5,6 +5,7 @@
       ./hardware-configuration.nix
       ../../modules/system/common-packages.nix
       ../../modules/system/common-linux-packages.nix
+      ../../modules/system/nixpkgs-overlays.nix
     ];
 
   # Bootloader.
